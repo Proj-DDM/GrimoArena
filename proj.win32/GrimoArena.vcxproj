@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -96,7 +96,8 @@
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command></Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
@@ -108,7 +109,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
@@ -139,17 +139,54 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command></Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockDataReader.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockFactory.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockManager.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\GoalBlock.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\NormalBlock.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\RedBlock.cpp" />
+    <ClCompile Include="..\Classes\Game\Scene\GameMain\GameMainScene.cpp" />
+    <ClCompile Include="..\Classes\Game\Scene\GameMain\GameMainState.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\Utility\Action\Follow\CustomFollow.cpp" />
+    <ClCompile Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.cpp" />
+    <ClCompile Include="..\Classes\Utility\cocosAssistant\SpriteCreator.cpp" />
+    <ClCompile Include="..\Classes\Utility\FileIO\PlistReader.cpp" />
+    <ClCompile Include="..\Classes\Utility\SceneSupport\IScene.cpp" />
+    <ClCompile Include="..\Classes\Utility\SceneSupport\SceneCreator.cpp" />
+    <ClCompile Include="..\Classes\Utility\Timer\Timer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\ObjectType.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockData.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockDataReader.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockFactory.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockManager.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\GoalBlock.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\NormalBlock.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\Panel.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\RedBlock.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageObj.h" />
+    <ClInclude Include="..\Classes\Game\Scene\GameMain\GameMainScene.h" />
+    <ClInclude Include="..\Classes\Game\Scene\GameMain\GameMainState.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\Utility\Action\Follow\CustomFollow.h" />
+    <ClInclude Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.h" />
+    <ClInclude Include="..\Classes\Utility\cocosAssistant\SpriteCreator.h" />
+    <ClInclude Include="..\Classes\Utility\FileIO\PlistReader.h" />
+    <ClInclude Include="..\Classes\Utility\SceneSupport\IScene.h" />
+    <ClInclude Include="..\Classes\Utility\SceneSupport\SceneCreator.h" />
+    <ClInclude Include="..\Classes\Utility\Timer\Timer.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
