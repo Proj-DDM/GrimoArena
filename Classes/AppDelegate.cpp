@@ -1,7 +1,9 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "Utility/SceneSupport/SceneCreator.h"
+#include "Game/Scene/GameMain/GameMainScene.h"
 
-USING_NS_CC;
+using namespace cocos2d;
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
@@ -16,69 +18,58 @@ AppDelegate::~AppDelegate()
 {
 }
 
+
 //if you want a different context,just modify the value of glContextAttrs
 //it will takes effect on all platforms
 void AppDelegate::initGLContextAttrs()
 {
-    //set OpenGL context attributions,now can only set six attributions:
-    //red,green,blue,alpha,depth,stencil
-    GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
+	//set OpenGL context attributions,now can only set six attributions:
+	//red,green,blue,alpha,depth,stencil
+	GLContextAttrs glContextAttrs = { 8, 8, 8, 8, 24, 8 };
 
-    GLView::setGLContextAttrs(glContextAttrs);
+	GLView::setGLContextAttrs(glContextAttrs);
 }
 
 // If you want to use packages manager to install more packages, 
 // don't modify or remove this function
 static int register_all_packages()
 {
-    return 0; //flag for packages manager
+	return 0; //flag for packages manager
 }
-
 bool AppDelegate::applicationDidFinishLaunching() {
-    // initialize director
+
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    if(!glview) {
+
+	if (!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("GrimoArena", Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
+		glview = GLViewImpl::createWithRect("GrimoArena", Rect(0, 0, mediumResolutionSize.width, mediumResolutionSize.height));
 #else
-        glview = GLViewImpl::create("GrimoArena");
+		glview = GLViewImpl::create("GrimoArena");
 #endif
-        director->setOpenGLView(glview);
-    }
+		director->setOpenGLView(glview);
+	}
 
-    // turn on display FPS
-    director->setDisplayStats(true);
 
-    // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    director->setDisplayStats( true );
+	director->setAnimationInterval( 1.f / 60.f );
 
-    // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-    Size frameSize = glview->getFrameSize();
-    // if the frame's height is larger than the height of medium size.
-    if (frameSize.height > mediumResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(largeResolutionSize.height/designResolutionSize.height, largeResolutionSize.width/designResolutionSize.width));
-    }
-    // if the frame's height is larger than the height of small size.
-    else if (frameSize.height > smallResolutionSize.height)
-    {        
-        director->setContentScaleFactor(MIN(mediumResolutionSize.height/designResolutionSize.height, mediumResolutionSize.width/designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium size.
-    else
-    {        
-        director->setContentScaleFactor(MIN(smallResolutionSize.height/designResolutionSize.height, smallResolutionSize.width/designResolutionSize.width));
-    }
+	glview->setDesignResolutionSize(mediumResolutionSize.width, mediumResolutionSize.height, ResolutionPolicy::NO_BORDER);
+	Size frameSize = glview->getFrameSize();
 
-    register_all_packages();
+	if (frameSize.height > mediumResolutionSize.height) {
+		director->setContentScaleFactor(MIN(largeResolutionSize.height / designResolutionSize.height, largeResolutionSize.width / designResolutionSize.width));
+	}
 
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+	else if (frameSize.height > smallResolutionSize.height) {
+		director->setContentScaleFactor(MIN(smallResolutionSize.height / designResolutionSize.height, smallResolutionSize.width / designResolutionSize.width));
+	}
 
-    // run
-    director->runWithScene(scene);
+	register_all_packages;
+
+	auto firstScene = SceneCreator::createPhysicsScene(GameMainScene::create(), Vect(0, -9.8f), 1.0f, true);
+	auto scene = TransitionFade::create(1.5f, firstScene, Color3B::BLACK);
+	director->runWithScene(scene);
 
     return true;
 }
