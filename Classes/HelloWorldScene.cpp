@@ -1,4 +1,6 @@
 #include "HelloWorldScene.h"
+#include "ListenerAssistant.h"
+#include "FadeScene.h"
 
 USING_NS_CC;
 
@@ -71,8 +73,25 @@ bool HelloWorld::init()
 
     // add the sprite as a child to this layer
     this->addChild(sprite, 0);
+
+
+	auto onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+	
+	ListenerAssistant::setupSingleTouchListener(this, true, onTouchBegan, nullptr, nullptr, nullptr);
+
     
     return true;
+}
+
+bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
+	
+
+	auto test = []{  return HelloWorld::createScene(); };
+	
+	auto scene = FadeScene::create(5,test);
+	Director::getInstance()->replaceScene(scene);
+
+	return true;
 }
 
 
