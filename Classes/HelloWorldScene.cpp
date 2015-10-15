@@ -84,11 +84,11 @@ bool HelloWorld::init()
 }
 
 bool HelloWorld::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
-	
 
-	auto test = []{  return HelloWorld::createScene(); };
-	
-	auto scene = FadeScene::create(5,test);
+	auto scene = ReplaceScene::create([]{
+		auto newScene = HelloWorld::createScene();
+		return newScene;
+	});
 	Director::getInstance()->replaceScene(scene);
 
 	return true;
