@@ -145,13 +145,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockDataReader.cpp" />
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockFactory.cpp" />
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockManager.cpp" />
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\GoalBlock.cpp" />
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.cpp" />
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\NormalBlock.cpp" />
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\RedBlock.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageDataReader.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageFactory.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageManager.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageMapDataReader.cpp" />
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.cpp" />
     <ClCompile Include="..\Classes\Game\Scene\GameMain\GameMainScene.cpp" />
     <ClCompile Include="..\Classes\Game\Scene\GameMain\GameMainState.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
@@ -167,15 +165,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Game\Object\StageObject\ObjectType.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockData.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockDataReader.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockFactory.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockManager.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\GoalBlock.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\NormalBlock.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\Panel.h" />
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\RedBlock.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageDataReader.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageFactory.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageManager.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageMapData.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageMapDataReader.h" />
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.h" />
     <ClInclude Include="..\Classes\Game\Object\StageObject\StageObj.h" />
     <ClInclude Include="..\Classes\Game\Scene\GameMain\GameMainScene.h" />
     <ClInclude Include="..\Classes\Game\Scene\GameMain\GameMainState.h" />
