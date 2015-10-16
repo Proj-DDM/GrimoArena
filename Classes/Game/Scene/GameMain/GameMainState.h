@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "Utility/SceneSupport/IScene.h"
-#include "Game/Object/StageObject/StageMap/BlockManager.h"
+#include "Game/Object/StageObject/StageMap/StageManager.h"
 
 class GameMainState : public IScene {
 public:
@@ -75,8 +75,11 @@ private:
 	------------------------------------------------------------------*/
 	void mainEnd(float at)   override;
 
+
+	void cameraControl(cocos2d::Touch* touch, cocos2d::Event* user_event);
 private:
-	BlockManager* mBlockManager;
+	StageManager* mStageManager;
+	cocos2d::ActionCamera* camera;
 	int mCount;
 
 };
