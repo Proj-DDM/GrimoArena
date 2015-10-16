@@ -4,11 +4,11 @@
 #include "cocos2d.h"
 #include "Utility/CocosAssistant/SpriteCreator.h"
 
-class StageObj : public cocos2d::Node{
+class StageObj : public cocos2d::Node {
 public:
 
-	virtual ~StageObj(){
-		if(mSprite->getReferenceCount() <= 0){
+	virtual ~StageObj() {
+		if(mSprite->getReferenceCount() <= 0) {
 			mSprite->release();
 		}
 	};
@@ -46,9 +46,7 @@ public:
 	-----------------------------------------------------*/
 	cocos2d::Rect getBoundingBox() const override			{ return mSprite->getBoundingBox(); }
 
-
 protected:
-
 	cocos2d::Sprite* mSprite;
 };
 

@@ -23,19 +23,19 @@ bool GameMainState::init(Layer* layer){
 	parentLayer = layer;
 
 
-	mBlockManager = BlockManager::create();
+	mStageManager = StageManager::create();
 
-	parentLayer->addChild(mBlockManager);
+	parentLayer->addChild(mStageManager);
 
 	mCount = 0;
 
-	auto camera = new cocos2d::ActionCamera();
-	
+	camera = new cocos2d::ActionCamera();
 	camera->autorelease();
-	camera->setTarget(layer);
+	/*camera->setTarget(layer);
 	auto eye = camera->getEye();
 	eye.y = -0.0000003;
-	camera->setEye(eye);
+	camera->setEye(eye);*/
+	camera->startWithTarget(layer);
 
 	return true;
 }
@@ -70,7 +70,6 @@ void GameMainState::mainEnd(float at){
 
 
 bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
-
 	return true;
 }
 
