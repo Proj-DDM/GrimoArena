@@ -1,6 +1,5 @@
 ﻿#include "GameMainState.h"
 #include "Utility/SceneSupport/SceneCreator.h"
-#include "Game/Scene/GameMain/GameMainScene.h"
 
 using namespace cocos2d;
 
@@ -22,6 +21,7 @@ bool GameMainState::init(Layer* layer){
 	mSceneState = FADEIN;
 	mUpdateState = UPDATESTART;
 	parentLayer = layer;
+
 
 	mBlockManager = BlockManager::create();
 
@@ -67,6 +67,7 @@ void GameMainState::mainEnd(float at){
 	mUpdateState = UPDATESTART;
 	mSceneState = FADEOUT;
 }
+
 
 bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 
