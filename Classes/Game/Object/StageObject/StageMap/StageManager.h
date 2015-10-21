@@ -29,11 +29,13 @@ public:
 
 	void reset();
 
-	void changeColor();
+	void changeColor(cocos2d::Node* node);
 
 	void focusPanel(cocos2d::Node* node);
 private:
 	cocos2d::Node*	mPanelNode;
+public:
+	int mCount;
 };
 
 #endif
