@@ -10,6 +10,15 @@ Scene* SceneCreator::createScene( Layer* childLayer )
 	return scene;
 }
 
+Scene* SceneCreator::createScene(Layer* childLayer,Layer* uiLayer)
+{
+	auto scene = Scene::create();
+	scene->addChild( childLayer );
+	scene->addChild( uiLayer );
+
+	return scene;
+}
+
 Scene* SceneCreator::createPhysicsScene( Layer* childLayer, const Vect& gravity, float speed, bool isDebug )
 {
 	auto scene	= Scene::createWithPhysics();
