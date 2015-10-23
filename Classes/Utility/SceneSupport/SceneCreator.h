@@ -19,6 +19,8 @@ public:
 	 *	@return	Scene		シーンのインスタンス
 	 */
 	static cocos2d::Scene* createScene( cocos2d::Layer* childLayer );
+
+	static cocos2d::Scene* createScene( cocos2d::Layer* childLayer, cocos2d::Layer* uiLayer );
 	
 	/**
 	 *	@brief	物理空間を所有したシーンの生成
