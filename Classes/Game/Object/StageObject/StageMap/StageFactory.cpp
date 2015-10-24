@@ -11,9 +11,9 @@ void StageFactory::createPanel(Node* parentNode) {
 
 	Vec2 createPosCount(0,0);
 	//c‰¡–‡”@‚»‚Ì‚¤‚¿ŠO•”‚©‚ç
-	Vec2 createSize(10, 10);
+	Vec2 createSize(9, 11);
 	Vec2 createPos(0,0);
-	int panelSize = 32;
+	int panelSize = 64;
 	int createCount = createSize.x * createSize.y;
 	int changeCount = 0;
 	int count = 0;
