@@ -10,52 +10,77 @@ ColorChange::ColorChange() {}
 ColorChange::~ColorChange() {}
 
 void ColorChange::changeColor(Node* node, int value) {
-	mColorChangePosition = value;
+	mCount = 0;
+	mBaseLine = Vec2(0,0);
+	mCharaLine = Vec2(0,0);
 	setPanel(node, value);
-	//setColor(node, value);
 }
 
 void ColorChange::setPanel(Node* node, int value) {
-	int charaPoint = 0;
-	int colorChangePoint = 0;
-	int mDifferenceCount = 0;
 	//仮のキャラデータ
-	std::array<int, 25> testArray = {0, 0, 0, 0, 0,
-									 0, 0, 0, 0, 0,
-									 0, 1, 2, 1, 0,
-									 0, 0, 0, 0, 0,
-									 0, 0, 0, 0, 0};
-	for (int i = 0; i < testArray.size(); ++i){
+	mTestArray = {0, 0, 0, 0, 0,
+				  0, 1, 0, 1, 0,
+				  0, 0, 2, 0, 0,
+				  0, 1, 0, 1, 0,
+				  0, 0, 0, 0, 0 };
+	for (int i = 0; i < mTestArray.size(); ++i) {
+		if (mTestArray[i] == 2){
+			mCharaLine.x = i % 5;
+			mCharaLine.y = i / 5;
+			mBaseLine.x = mCharaLine.x;
+			mBaseLine.y = mCharaLine.y;
+			mCharaLine.x = 0;
+			mCharaLine.y = 0;
+			CCLOG("%i", (int)mBaseLine.x);
+		}
+	}
+	mCount = 0;
+	checkColor(node, value);
+	/*for (int i = 0; i < testArray.size(); ++i){
 		CCLOG("%i", testArray[i]);
 		if (testArray[i] == 1){
 			colorChangePoint = i;
 			CCLOG("%i", colorChangePoint);
 		}
 		if (testArray[i] == 2){
-			charaPoint = i;
-			CCLOG("%i", charaPoint);
+			mCharaPos = i;
+			CCLOG("%i", mCharaPos);
 		}
-		mDifferenceCount = charaPoint - colorChangePoint;
-		mDifferenceCount = abs(mDifferenceCount);
-		if (charaPoint > colorChangePoint) {
-			mColorChangePosition = value - mDifferenceCount;
-			setColor(node, mColorChangePosition);
+		if (mCharaPos != 0) {
+			mDifferenceCount = mCharaPos - colorChangePoint;
+			mDifferenceCount = abs(mDifferenceCount);
 		}
-		if (charaPoint < colorChangePoint ) {
+		//基本1~11
+		if (mCharaPos > colorChangePoint) {
 			mColorChangePosition = value + mDifferenceCount;
 			setColor(node, mColorChangePosition);
 		}
-		setColor(node, mColorChangePosition);
-	}
+		//基本13~24
+		if (mCharaPos < colorChangePoint) {
+			mColorChangePosition = value - mDifferenceCount;
+			setColor(node, mColorChangePosition);
+		}
+	}*/
 }
 
-void ColorChange::posCast(Node* node, int value) {
+void ColorChange::checkColor(Node* node, int value) {
+	if (mCount >= mTestArray.size()) return;
+	mPanelLine = Vec2(0,0);
+	mChangePanelNum = value;
+	if (mTestArray[mCount] == 1){
+		mPanelLine.x = mCount % 5 - mBaseLine.x;
+		mPanelLine.y = mCount / 5 - mBaseLine.y;
+		CCLOG("%i", (int)mPanelLine.x);
+	}
+	mChangePanelNum += mPanelLine.x + mPanelLine.y * 9;
+	++mCount;
+	setColor(node, mChangePanelNum);
 
+	checkColor(node, value);
 }
 
 void ColorChange::setColor(Node* node, int value) {
-	//ここに変換式メソッド
-	posCast(node, value);
+	if (value < 0 || value > 98) return;
 	auto panel = (Sprite*)node->getChildren().at(value);
 	auto panelSprite = (Sprite*)panel->getChildByName(panel->getName());
 	//ターン制が完成したら変える

@@ -33,7 +33,7 @@ bool StagePanel::init(const std::string& nodeName) {
 
 void StagePanel::createPanel() {
 	auto sprite = Sprite::create();
-	sprite->setTextureRect(Rect(0, 0, 32, 32));
+	sprite->setTextureRect(Rect(0, 0, 64, 64));
 	sprite->setColor(Color3B::WHITE);
 	sprite->setName(this->getName());
 	sprite->setOpacity(50);
