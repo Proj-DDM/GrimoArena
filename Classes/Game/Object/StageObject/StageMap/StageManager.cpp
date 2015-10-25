@@ -2,6 +2,7 @@
 #include "StageDataReader.h"
 #include "StageFactory.h"
 #include "ColorChange\ColorChange.h"
+#include "StagePanel.h"
 
 using namespace cocos2d;
 
@@ -77,10 +78,33 @@ void StageManager::changeColor(Node* node) {
 	dispatcher->addEventListenerWithSceneGraphPriority(lis, node);
 }
 
-void StageManager::onTouchBegan(cocos2d::Point pos) {
-	int a = 0;
+int StageManager::onTouchBegan(cocos2d::Point pos) {
+	int i = 0;
+
+	for (auto& node : mPanelNode->getChildren()){
+
+		Rect targetBox = node->getBoundingBox();
+		targetBox.setRect(targetBox.getMinX() - 32, targetBox.getMinY() - 32,
+			node->getContentSize().width, node->getContentSize().height);
+
+		if (targetBox.containsPoint(pos)){
+			auto changer = std::make_shared< ColorChange >();
+			changer->changeColor(mPanelNode, i);
+			return i;
+		}
+
+		i++;
+	}
+
+	return -1;
 }
 
 void StageManager::onTouchMove(cocos2d::Point pos) {}
 
 void StageManager::onTouchEnd(cocos2d::Point pos) {}
+
+Sprite* StageManager::getPanel(int number){
+	if (number >= mPanelNode->getChildrenCount()) return nullptr;
+
+	return (Sprite*)mPanelNode->getChildren().at(number);
+}

@@ -22,9 +22,21 @@ bool CharacterManager::init()
 	return true;
 }
 
-void CharacterManager::update()
+void CharacterManager::update(test_FUNC func)
 {
+	static int i = 0;
+	i++;
+	//コールバックで移動先のパネルの色を変えます
+	if (i % 60 == 0){
+		std::for_each(container.begin(), container.end(), [func](Character* obj){
+			obj->setPositionY(obj->getPositionY() + 64);
+			
+			cocos2d::Vec2 pos = obj->getPosition();
+			int number = (((int)obj->getPositionX() - 32) / 64)  + (((int)obj->getPositionY() - 32) / 64 * 9);
+			func(number);
+		});
 
+	}
 }
 
 

@@ -17,7 +17,7 @@ Kamata::~Kamata()
 bool Kamata::init(const cocos2d::Vec2& position)
 {
 	sprite = Sprite::create("attack_fire1.png");
-	sprite->setScale(0.5f);
+	sprite->setScale(0.1f);
 	addChild(sprite);
 	setPosition(position);
 	return true;

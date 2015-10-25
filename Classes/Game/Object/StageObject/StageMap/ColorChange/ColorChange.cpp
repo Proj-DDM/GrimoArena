@@ -3,6 +3,8 @@
 #include <array>
 #include <stdlib.h>
 
+#define MAX_ARRAY  24
+
 using namespace cocos2d;
 
 ColorChange::ColorChange() {}
@@ -23,6 +25,7 @@ void ColorChange::setPanel(Node* node, int value) {
 				  0, 0, 2, 0, 0,
 				  0, 1, 0, 1, 0,
 				  0, 0, 0, 0, 0 };
+
 	for (int i = 0; i < mTestArray.size(); ++i) {
 		if (mTestArray[i] == 2){
 			mCharaLine.x = i % 5;
@@ -69,13 +72,17 @@ void ColorChange::checkColor(Node* node, int value) {
 	mChangePanelNum = value;
 	if (mTestArray[mCount] == 1){
 		mPanelLine.x = mCount % 5 - mBaseLine.x;
-		mPanelLine.y = mCount / 5 - mBaseLine.y;
+		mPanelLine.y = (MAX_ARRAY - mCount) / 5 - mBaseLine.y;
 		CCLOG("%i", (int)mPanelLine.x);
 	}
-	mChangePanelNum += mPanelLine.x + mPanelLine.y * 9;
-	++mCount;
-	setColor(node, mChangePanelNum);
+	int test_x = value % 9 + mPanelLine.x;
 
+	if (test_x >= 0 && test_x < 9){
+		mChangePanelNum += mPanelLine.x + mPanelLine.y * 9;
+		setColor(node, mChangePanelNum);
+	}
+
+	++mCount;
 	checkColor(node, value);
 }
 

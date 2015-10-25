@@ -1,4 +1,5 @@
 ﻿#include "GameMainScene.h"
+#include "Utility/CocosAssistant/ListenerAssistant.h"
 
 GameMainScene::GameMainScene() {}
 
@@ -31,6 +32,8 @@ bool GameMainScene::init(){
 
 	auto onTouchBegan = CC_CALLBACK_2(GameMainScene::onTouchBegan, this);
 	auto onTouchEnd = CC_CALLBACK_2(GameMainScene::onTouchEnded, this);
+
+	ListenerAssistant::setupSingleTouchListener(this, true, onTouchBegan, nullptr, onTouchEnd, nullptr);
 
     auto node = Node::create();
     this->addChild(node);

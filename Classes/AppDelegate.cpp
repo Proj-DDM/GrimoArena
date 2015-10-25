@@ -2,6 +2,7 @@
 #include "HelloWorldScene.h"
 #include "Utility/SceneSupport/SceneCreator.h"
 #include "Game/Scene/GameMain/GameMainScene.h"
+#include "Game/Layer/UILayer.h"
 
 using namespace cocos2d;
 
@@ -67,7 +68,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	register_all_packages;
 
-	auto firstScene = SceneCreator::createPhysicsScene(GameMainScene::create(), Vect(0, -9.8f), 1.0f, true);
+	auto firstScene = SceneCreator::createScene(GameMainScene::create(), UILayer::create());
 	auto scene = TransitionFade::create(1.5f, firstScene, Color3B::BLACK);
 	director->runWithScene(scene);
 

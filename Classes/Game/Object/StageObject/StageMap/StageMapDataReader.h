@@ -2,8 +2,7 @@
 #define _STAGE_MAP_DATA_READER_H_
 
 #include "cocos2d.h"
-
-struct StageMapData;
+#include "StageMapData.h"
 
 class StageMapDateReader : public cocos2d::Node {
 protected:

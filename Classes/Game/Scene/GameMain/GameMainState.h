@@ -4,6 +4,9 @@
 #include "cocos2d.h"
 #include "Utility/SceneSupport/IScene.h"
 #include "Game/Object/StageObject/StageMap/StageManager.h"
+#include "../../Character/CharacterFactory.h"
+#include "../../Character/CharacterManager.h"
+
 
 class GameMainState : public IScene {
 public:
@@ -81,7 +84,8 @@ private:
 	StageManager* mStageManager;
 	cocos2d::ActionCamera* camera;
 	int mCount;
-
+	CharacterFactory factory;
+	CharacterManager* manager;
 };
 
 #endif

@@ -1,5 +1,8 @@
 ﻿#include "GameMainState.h"
 #include "Utility/SceneSupport/SceneCreator.h"
+#include "Game/Test/TestScene.h"
+#include "../../Character/PlayerDeck.h"
+#include "Game/Object/StageObject/StageMap/StagePanel.h"
 
 using namespace cocos2d;
 
@@ -37,6 +40,10 @@ bool GameMainState::init(Layer* layer){
 	camera->setEye(eye);*/
 	camera->startWithTarget(layer);
 
+	factory.init();
+	manager = CharacterManager::create();
+	parentLayer->addChild(manager);
+
 	return true;
 }
 
@@ -58,9 +65,21 @@ void GameMainState::fadeOut(float at){
 }
 
 void GameMainState::mainStart(float at){
+	mUpdateState = UPDATELOOP;
 }
 
 void GameMainState::mainLoop(float at){
+	auto test = mStageManager;
+
+	//パネルを塗り替えるラムダ式を登録
+	auto func = [test](int number){
+		auto panel = test->getPanel(number);
+		if (!panel) return;
+		auto panelSprite = (Sprite*)panel->getChildByName(panel->getName());
+		panelSprite->setColor(cocos2d::Color3B::BLUE);
+	};
+	
+	manager->update(func);
 }
 
 void GameMainState::mainEnd(float at){
@@ -70,6 +89,20 @@ void GameMainState::mainEnd(float at){
 
 
 bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
+
+	Vec2 touchPoint = touch->getLocation();
+	if (touchPoint.y <= 120) return false;
+	auto uiLayer = parentLayer->getParent()->getChildByTag(1);
+	auto id = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
+	auto param = Parameter(10, 10, 10);
+	
+	int panelNumber = mStageManager->onTouchBegan(touchPoint);
+	if( panelNumber >= 0){
+		Vec2 pos = Vec2((panelNumber % 9  + 1) * 64 - 32, (panelNumber / 9  + 1)* 64 - 32);
+		manager->add(factory.create(id, param, pos));
+	}
+	
+
 	return true;
 }
 

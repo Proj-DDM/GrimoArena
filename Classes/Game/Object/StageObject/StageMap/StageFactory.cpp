@@ -20,6 +20,7 @@ void StageFactory::createPanel(Node* parentNode) {
 
 	for (int i = 0; i < createCount; ++i) {
 		auto panel = StagePanel::create("StagePanel" + std::to_string(i));
+		panel->setContentSize(Size(64, 64));
 		parentNode->addChild(panel);
 		//ビルボード
 		/*auto camera = new cocos2d::ActionCamera();

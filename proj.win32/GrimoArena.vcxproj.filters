@@ -70,6 +70,18 @@
     <Filter Include="Classes\Game\Scene\GameMain\Sequence\Operation">
       <UniqueIdentifier>{62a95871-003c-47dd-9127-cc7b486fd048}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Game\Chara">
+      <UniqueIdentifier>{03d3c9fa-1b2c-4d0a-9572-941a1f3df967}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Layer">
+      <UniqueIdentifier>{8361cd10-e1d5-4e1b-89cd-2b9159e284e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Test">
+      <UniqueIdentifier>{7bd443a7-8c7d-4515-a796-cfa6640ce38d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Object\StageObject\StageMap\ColorChange">
+      <UniqueIdentifier>{bda0c927-25d2-44c3-ae44-a0e06dd867b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -146,6 +158,69 @@
     </ClCompile>
     <ClCompile Include="OperationSequence.cpp">
       <Filter>Classes\Game\Scene\GameMain\Sequence\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Character.cpp">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\CharacterFactory.cpp">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\CharacterManager.cpp">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\CharacterPanel.cpp">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\HP.cpp">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\PlayerDeck.cpp">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\SampleKamata.cpp">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Layer\UILayer.cpp">
+      <Filter>Classes\Game\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Test\SampleHashigo.cpp">
+      <Filter>Classes\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Test\SamplePanel.cpp">
+      <Filter>Classes\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Test\TestScene.cpp">
+      <Filter>Classes\Game\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockDataReader.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockFactory.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\BlockManager.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\GoalBlock.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\NormalBlock.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\RedBlock.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageMapFactory.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageMapManager.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\ColorChange\ColorChange.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap\ColorChange</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +313,84 @@
     </ClInclude>
     <ClInclude Include="OperationSequence.h">
       <Filter>Classes\Game\Scene\GameMain\Sequence\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Character.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterFactory.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterManager.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterPanel.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterParameter.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterType.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\HP.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\PlayerDeck.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\SampleKamata.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Layer\UILayer.h">
+      <Filter>Classes\Game\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Test\SampleHashigo.h">
+      <Filter>Classes\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Test\SamplePanel.h">
+      <Filter>Classes\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Test\TestScene.h">
+      <Filter>Classes\Game\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockData.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockDataReader.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockFactory.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\BlockManager.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\GoalBlock.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\NormalBlock.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\Panel.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\PanelData.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\RedBlock.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageMapFactory.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageMapManager.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\ColorChange\ColorChange.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap\ColorChange</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

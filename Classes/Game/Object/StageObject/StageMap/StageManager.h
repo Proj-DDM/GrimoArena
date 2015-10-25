@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 
+class StagePanel;
+
 class StageManager : public cocos2d::Node {
 	
 protected:
@@ -21,7 +23,7 @@ public:
 
 	void update(float at) override;
 
-	void onTouchBegan(cocos2d::Point pos);
+	int onTouchBegan(cocos2d::Point pos);
 
 	void onTouchMove(cocos2d::Point pos);
 
@@ -32,6 +34,8 @@ public:
 	void changeColor(cocos2d::Node* node);
 
 	void focusPanel(cocos2d::Node* node);
+
+	cocos2d::Sprite* getPanel(int number);
 private:
 	cocos2d::Node*	mPanelNode;
 public:

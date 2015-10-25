@@ -8,10 +8,12 @@ class Character;
 class CharacterManager : public cocos2d::Node
 {
 public:
+	typedef std::function<void(int i)> test_FUNC;
+
 	CharacterManager();
 	~CharacterManager();
 	bool init()override;
-	void update();
+	void update(test_FUNC func);
 	void add(Character* character);
 	static CharacterManager* create();
 
