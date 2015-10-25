@@ -12,13 +12,10 @@ CharacterPanel::~CharacterPanel()
 }
 
 bool CharacterPanel::init(){
+	setName("panel");
 	charaID = CharacterID::FireAttribute;
 	mSprite = Sprite::create("chara_01.png");
 	//mSprite->setScale(0.025f);
-	auto onTouchBegan = CC_CALLBACK_2(CharacterPanel::onTouchBegan, this);
-	auto onTouchEnd = CC_CALLBACK_2(CharacterPanel::onTouchEnded, this);
-
-	ListenerAssistant::setupSingleTouchListener(this, false, onTouchBegan, nullptr, onTouchEnd, nullptr);
 	addChild(mSprite);
 	return true;
 }
