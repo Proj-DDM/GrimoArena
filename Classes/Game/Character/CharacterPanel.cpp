@@ -15,7 +15,6 @@ bool CharacterPanel::init(){
 	setName("panel");
 	charaID = CharacterID::FireAttribute;
 	mSprite = Sprite::create("chara_01.png");
-	//mSprite->setScale(0.025f);
 	addChild(mSprite);
 	return true;
 }
