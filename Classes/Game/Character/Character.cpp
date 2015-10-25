@@ -15,6 +15,5 @@ Character::~Character()
 
 bool Character::init(const cocos2d::Vec2& position)
 {
-	parameter.hp = 10;
 	return true;
 }

@@ -1,6 +1,7 @@
 #include "PlayerDeck.h"
 #include "CharacterPanel.h"
 #include "../Test/SamplePanel.h"
+#include "../../Utility/cocosAssistant/ListenerAssistant.h"
 
 using namespace cocos2d;
 
@@ -11,6 +12,13 @@ PlayerDeck::PlayerDeck() :nowCharacterID(CharacterID::FireAttribute)
 
 PlayerDeck::~PlayerDeck()
 {
+	//•ÛŽ‚µ‚Ä‚¢‚éƒpƒlƒ‹‚ð‚·‚×‚Äíœ
+	Deck::iterator i = deck.begin();
+	while (i != deck.end())
+	{
+		CC_SAFE_RELEASE(*i);
+		++i;
+	}
 }
 
 bool PlayerDeck::init()
@@ -21,6 +29,11 @@ bool PlayerDeck::init()
 	sprite->setTextureRect(Rect(0, 0, 1024, 100));
 	sprite->setColor(Color3B::GREEN);
 	setName("Deck");
+
+	auto onTouchBegan = CC_CALLBACK_2(PlayerDeck::onTouchBegan, this);
+	auto onTouchEnd = CC_CALLBACK_2(PlayerDeck::onTouchEnded, this);
+
+	ListenerAssistant::setupSingleTouchListener(this, false, onTouchBegan, nullptr, onTouchEnd, nullptr);
 
 	sprite->setPosition(Director::getInstance()->getWinSize().width / 2, 60);
 	addChild(sprite);
@@ -77,6 +90,10 @@ void PlayerDeck::update(float deltaTime)
 
 bool PlayerDeck::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
+	for (auto& panel : deck)
+	{
+		panel->onTouchBegan(touch,event);
+	}
 	return true;
 }
 
