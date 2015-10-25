@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CHARAREDER_H
+#define CHARAREDER_H
 
 #include <vector>
 #include "CharaData.h"
@@ -16,3 +17,4 @@ public:
 	static ReadData read(const std::string& fileName);
 };
 
+#endif

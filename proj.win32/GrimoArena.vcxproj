@@ -156,11 +156,19 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Utility\Action\Follow\CustomFollow.cpp" />
     <ClCompile Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.cpp" />
     <ClCompile Include="..\Classes\Utility\cocosAssistant\SpriteCreator.cpp" />
+    <ClCompile Include="..\Classes\Utility\FileIO\CharaReader.cpp" />
     <ClCompile Include="..\Classes\Utility\FileIO\PlistReader.cpp" />
+    <ClCompile Include="..\Classes\Utility\SceneSupport\FadeScene.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\IScene.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\SceneCreator.cpp" />
     <ClCompile Include="..\Classes\Utility\Timer\Timer.cpp" />
+    <ClCompile Include="BattleSequence.cpp" />
+    <ClCompile Include="EndSequence.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainPhase.cpp" />
+    <ClCompile Include="SequenceManager.cpp" />
+    <ClCompile Include="StandbyPhase.cpp" />
+    <ClCompile Include="OperationSequence.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -178,11 +186,21 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\Action\Follow\CustomFollow.h" />
     <ClInclude Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.h" />
     <ClInclude Include="..\Classes\Utility\cocosAssistant\SpriteCreator.h" />
+    <ClInclude Include="..\Classes\Utility\FileIO\CharaData.h" />
+    <ClInclude Include="..\Classes\Utility\FileIO\CharaReader.h" />
     <ClInclude Include="..\Classes\Utility\FileIO\PlistReader.h" />
+    <ClInclude Include="..\Classes\Utility\SceneSupport\FadeScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\IScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\SceneCreator.h" />
     <ClInclude Include="..\Classes\Utility\Timer\Timer.h" />
+    <ClInclude Include="BattleSequence.h" />
+    <ClInclude Include="EndSequence.h" />
+    <ClInclude Include="ISequence.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MainPhase.h" />
+    <ClInclude Include="SequenceManager.h" />
+    <ClInclude Include="StandbyPhase.h" />
+    <ClInclude Include="OperationSequence.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

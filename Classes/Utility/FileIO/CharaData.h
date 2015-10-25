@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CHARADATA_H
+#define CHARADATA_H
 
 #include <string>
 
@@ -47,3 +48,5 @@ struct CharaData
 	}
 	
 };
+
+#endif
