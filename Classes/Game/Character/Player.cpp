@@ -15,7 +15,7 @@ Player* Player::create()
 {
 	auto instance = new Player();
 
-	if (instance&&init){
+	if (instance){
 		instance->retain();
 		instance->autorelease();
 		return instance;
@@ -33,4 +33,18 @@ bool Player::init(const cocos2d::Vec2& position)
 	addChild(sprite);
 	setPosition(position);
 	return true;
+}
+
+Player* Player::clone(const Parameter& param, const cocos2d::Vec2& position)
+{
+	auto chara = new Player();
+
+	if (chara && chara->init(position)){
+		chara->retain();
+		chara->autorelease();
+		return chara;
+	}
+
+	CC_SAFE_DELETE(chara);
+	return nullptr;
 }

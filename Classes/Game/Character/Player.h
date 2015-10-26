@@ -10,6 +10,7 @@ public:
 	~Player();
 	bool init(const cocos2d::Vec2& position)override;
 	static Player* create();
+	Player* clone(const Parameter& param, const cocos2d::Vec2& position)override;
 
 private:
 	
