@@ -1,6 +1,7 @@
 #include "PlayerDeck.h"
 #include "CharacterPanel.h"
 #include "../Test/SamplePanel.h"
+#include "../Test/HigePanel.h"
 #include "../../Utility/cocosAssistant/ListenerAssistant.h"
 
 using namespace cocos2d;
@@ -70,7 +71,7 @@ void PlayerDeck::deckInit()
 	
 	add(KamataPanel::create(), positionX[0]);
 	add(CharacterPanel::create(), positionX[1]);
-	add(CharacterPanel::create(), positionX[2]);
+	add(HigePanel::create(), positionX[2]);
 	add(CharacterPanel::create(), positionX[3]);
 	add(CharacterPanel::create(), positionX[4]);
 	add(CharacterPanel::create(), positionX[5]);

@@ -5,6 +5,7 @@
 #include "CharacterParameter.h"
 #include <map>
 #include "cocos2d.h"
+#include "../../Utility/FileIO/CharaData.h"
 
 class Character;
 
@@ -21,6 +22,8 @@ public:
 private:
 	using Container = std::map < CharacterID, Character* >;
 	Container container;
+	using Charadata = std::vector<CharaData>;
+	Charadata data;
 };
 
 #endif

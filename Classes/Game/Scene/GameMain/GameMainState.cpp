@@ -3,6 +3,7 @@
 #include "Game/Test/TestScene.h"
 #include "../../Character/PlayerDeck.h"
 #include "Game/Object/StageObject/StageMap/StagePanel.h"
+#include "../../../Utility/FileIO/CharaReader.h"
 
 using namespace cocos2d;
 
@@ -101,8 +102,6 @@ bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 		Vec2 pos = Vec2((panelNumber % 9  + 1) * 64 - 32, (panelNumber / 9  + 1)* 64 - 32);
 		manager->add(factory.create(id, param, pos));
 	}
-	
-
 	return true;
 }
 
