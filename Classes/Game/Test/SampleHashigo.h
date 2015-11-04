@@ -11,8 +11,7 @@ public:
 	~Hashigo();
 
 	bool init(const cocos2d::Vec2& position)override;
-	Hashigo* clone(const Parameter& param, const cocos2d::Vec2& position)override;
-	static Hashigo* create();
+	static Hashigo* create(const Parameter& param, const cocos2d::Vec2& position);
 
 
 private:

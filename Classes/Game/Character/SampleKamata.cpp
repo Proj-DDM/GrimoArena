@@ -23,21 +23,8 @@ bool Kamata::init(const cocos2d::Vec2& position)
 	return true;
 }
 
-Kamata* Kamata::create()
-{
-	auto instance = new Kamata();
 
-	if (instance){
-		instance->retain();
-		instance->autorelease();
-		return instance;
-	}
-
-	CC_SAFE_DELETE(instance);
-	return nullptr;
-}
-
-Kamata* Kamata::clone(const Parameter& param, const cocos2d::Vec2& position)
+Kamata* Kamata::create(const Parameter& param, const cocos2d::Vec2& position)
 {
 	auto chara = new Kamata(param);
 

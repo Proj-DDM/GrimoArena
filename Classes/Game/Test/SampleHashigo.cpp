@@ -23,21 +23,7 @@ bool Hashigo::init(const cocos2d::Vec2& position)
 	return true;
 }
 
-Hashigo* Hashigo::create()
-{
-	auto instance = new Hashigo();
-
-	if (instance){
-		instance->retain();
-		instance->autorelease();
-		return instance;
-	}
-
-	CC_SAFE_DELETE(instance);
-	return nullptr;
-}
-
-Hashigo* Hashigo::clone(const Parameter& param, const cocos2d::Vec2& position)
+Hashigo* Hashigo::create(const Parameter& param, const cocos2d::Vec2& position)
 {
 	auto chara = new Hashigo(param);
 

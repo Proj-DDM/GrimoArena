@@ -11,25 +11,19 @@ CharacterFactory::CharacterFactory()
 
 CharacterFactory::~CharacterFactory()
 {
-	//•ÛŽ‚µ‚Ä‚¢‚é»•i‚ð‚·‚×‚Äíœ
-	Container::iterator i = container.begin();
-	while (i != container.end())
-	{
-		CC_SAFE_RELEASE(i->second);
-		++i;
-	}
+	container.clear();
 }
 
 void CharacterFactory::init()
 {
-	add(CharacterID::FireAttribute , Kamata::create());
-	add(CharacterID::WaterAttribute, Hashigo::create());
-	add(CharacterID::Kamata        , Hige::create());
+	add(CharacterID::FireAttribute,  [](const Parameter& param, const cocos2d::Vec2& position){ return Kamata::create(param, position); });
+	add(CharacterID::WaterAttribute, [](const Parameter& param, const cocos2d::Vec2& position){ return Hashigo::create(param, position); });
+	add(CharacterID::Kamata,		 [](const Parameter& param, const cocos2d::Vec2& position){ return Hige::create(param, position); });
 }
 
-void CharacterFactory::add(CharacterID id, Character* instance)
+void CharacterFactory::add(CharacterID id, Function func)
 {
-	container[id] = instance;
+	container[id] = func;
 }
 
 Character* CharacterFactory::create(CharacterID id, const Parameter& param, const cocos2d::Vec2& position)
@@ -65,5 +59,5 @@ Character* CharacterFactory::create(CharacterID id, const Parameter& param, cons
 		break;
 	}
 
-	return container[id]->clone(parameter,position);
+	return container[id](parameter,position);
 }

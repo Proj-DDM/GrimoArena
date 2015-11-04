@@ -10,8 +10,7 @@ public:
 	Hige();
 	~Hige();
 	bool init(const cocos2d::Vec2& position)override;
-	Hige* clone(const Parameter& param, const cocos2d::Vec2& position)override;
-	static Hige* create();
+	static Hige* create(const Parameter& param, const cocos2d::Vec2& position);
 private:
 
 };
