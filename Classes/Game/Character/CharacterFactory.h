@@ -3,10 +3,10 @@
 
 #include "CharacterType.h"
 #include "CharacterParameter.h"
-#include <map>
 #include "cocos2d.h"
 #include "../../Utility/FileIO/CharaData.h"
 #include <unordered_map>
+#include "CharacterIDConverter.h"
 
 class Character;
 
@@ -28,6 +28,7 @@ public:
 private:
 	Container container;
 	Charadata data;
+	CharacterIDConverter converter;
 };
 
 #endif
