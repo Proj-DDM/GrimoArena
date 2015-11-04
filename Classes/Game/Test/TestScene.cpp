@@ -67,7 +67,7 @@ bool TestScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 	Vec2 touchPoint = touch->getLocation();
 	if (touchPoint.y <= 120) return false;
 	auto uiLayer = getParent()->getChildByTag(1);
-	auto id = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
+	auto id = CharacterID::WaterAttribute;
 	auto param = Parameter(10,10,10);
 	manager->add(factory.create(id, param,touchPoint));
 	return true;

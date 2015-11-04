@@ -23,21 +23,8 @@ bool Hige::init(const cocos2d::Vec2& position)
 	return true;
 }
 
-Hige* Hige::create()
-{
-	auto instance = new Hige();
 
-	if (instance){
-		instance->retain();
-		instance->autorelease();
-		return instance;
-	}
-
-	CC_SAFE_DELETE(instance);
-	return nullptr;
-}
-
-Hige* Hige::clone(const Parameter& param, const cocos2d::Vec2& position)
+Hige* Hige::create(const Parameter& param, const cocos2d::Vec2& position)
 {
 	auto chara = new Hige(param);
 
