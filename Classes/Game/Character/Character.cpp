@@ -17,3 +17,17 @@ bool Character::init(const cocos2d::Vec2& position)
 {
 	return true;
 }
+
+Character* Character::create(const Parameter& param, const cocos2d::Vec2& position)
+{
+	auto chara = new Character(param);
+
+	if (chara && chara->init(position)){
+		chara->retain();
+		chara->autorelease();
+		return chara;
+	}
+
+	CC_SAFE_DELETE(chara);
+	return nullptr;
+}
