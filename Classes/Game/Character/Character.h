@@ -12,10 +12,11 @@ public:
 	~Character();
 	virtual bool init(const cocos2d::Vec2& position);
 	virtual Character* create(const Parameter& param, const cocos2d::Vec2& position);
+	Parameter getParameter();		//キャラのパラメータ
+
 protected:
 	Parameter parameter;
 	cocos2d::Sprite* sprite;
-	int indexNumber;
 };
 
 

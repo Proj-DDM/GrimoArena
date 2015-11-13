@@ -5,6 +5,17 @@
 #include "SampleHige.h"
 #include "../../Utility/FileIO/CharaReader.h"
 
+namespace{
+	void assignment(int* a, int* b){
+
+		for (int i = 0; i < 25; ++i){
+			a[i] = b[i];
+		}
+
+	}
+
+}
+
 
 CharacterFactory::CharacterFactory()
 {
@@ -45,6 +56,7 @@ Character* CharacterFactory::create(CharacterID id, const Parameter& param, cons
 		parameter.attackPoint = charadata.attack;
 		parameter.attribute = charadata.attribute;
 		parameter.move = charadata.move;
+		assignment(parameter.vect, charadata.vect);
 		break;
 	}
 

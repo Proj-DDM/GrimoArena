@@ -12,6 +12,8 @@ struct Parameter
 	int cost;
 	Move move;
 	int attribute;
+	int vect[25];
+
 
 	Parameter() :hp(0), attackPoint(0), speed(0)
 	{

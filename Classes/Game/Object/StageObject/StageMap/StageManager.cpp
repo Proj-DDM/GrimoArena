@@ -54,14 +54,14 @@ void StageManager::update(float at) {
 	if (mCount >= 99) { mCount = 99; }
 
 	//パネルを塗り替えるラムダ式を登録
-	auto func = [this](int number){
+	/*auto func = [this](int number){
 		auto panel = this->getPanel(number);
 		if (!panel) return;
 		auto panelSprite = (Sprite*)panel->getChildByName(panel->getName());
 		panelSprite->setColor(cocos2d::Color3B::BLUE);
-	};
+	};*/
 
-	manager->update(func);
+	//manager->update(func);
 
 }
 

@@ -3,6 +3,7 @@
 Character::Character(const Parameter& param)
 	:parameter(param)
 {
+	
 }
 
 Character::Character() : parameter(0,0,0)
@@ -30,4 +31,10 @@ Character* Character::create(const Parameter& param, const cocos2d::Vec2& positi
 
 	CC_SAFE_DELETE(chara);
 	return nullptr;
+}
+
+Parameter Character::getParameter(){
+
+	return this->parameter;
+
 }
