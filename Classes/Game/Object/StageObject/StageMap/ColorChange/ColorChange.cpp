@@ -11,14 +11,14 @@ ColorChange::ColorChange() {}
 
 ColorChange::~ColorChange() {}
 
-void ColorChange::changeColor(Node* node, int value) {
+void ColorChange::changeColor(Node* node, int value, PanelContainer container) {
 	mCount = 0;
 	mBaseLine = Vec2(0,0);
 	mCharaLine = Vec2(0,0);
-	setPanel(node, value);
+	setPanel(node, value, container);
 }
 
-void ColorChange::setPanel(Node* node, int value) {
+void ColorChange::setPanel(Node* node, int value, PanelContainer container) {
 	//仮のキャラデータ
 	mTestArray = {0, 0, 0, 0, 0,
 				  0, 1, 0, 1, 0,
@@ -38,61 +38,44 @@ void ColorChange::setPanel(Node* node, int value) {
 		}
 	}
 	mCount = 0;
-	checkColor(node, value);
-	/*for (int i = 0; i < testArray.size(); ++i){
-		CCLOG("%i", testArray[i]);
-		if (testArray[i] == 1){
-			colorChangePoint = i;
-			CCLOG("%i", colorChangePoint);
-		}
-		if (testArray[i] == 2){
-			mCharaPos = i;
-			CCLOG("%i", mCharaPos);
-		}
-		if (mCharaPos != 0) {
-			mDifferenceCount = mCharaPos - colorChangePoint;
-			mDifferenceCount = abs(mDifferenceCount);
-		}
-		//基本1~11
-		if (mCharaPos > colorChangePoint) {
-			mColorChangePosition = value + mDifferenceCount;
-			setColor(node, mColorChangePosition);
-		}
-		//基本13~24
-		if (mCharaPos < colorChangePoint) {
-			mColorChangePosition = value - mDifferenceCount;
-			setColor(node, mColorChangePosition);
-		}
-	}*/
+	checkColor(node, value, container);
 }
 
-void ColorChange::checkColor(Node* node, int value) {
-	if (mCount >= mTestArray.size()) return;
-	mPanelLine = Vec2(0,0);
+void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
+	
+	mPanelLine = Vec2(0, 0);
+
 	mChangePanelNum = value;
-	if (mTestArray[mCount] == 1){
-		mPanelLine.x = mCount % 5 - mBaseLine.x;
-		mPanelLine.y = (MAX_ARRAY - mCount) / 5 - mBaseLine.y;
-		CCLOG("%i", (int)mPanelLine.x);
-	}
-	int test_x = value % 9 + mPanelLine.x;
 
-	if (test_x >= 0 && test_x < 9){
-		mChangePanelNum += mPanelLine.x + mPanelLine.y * 9;
-		setColor(node, mChangePanelNum);
-	}
+	for (int i = 0; i < mTestArray.size(); ++i){
+		
+		if (mTestArray[i] >= 1 ){
+			mPanelLine.x = i % 5 - mBaseLine.x;
+			mPanelLine.y = (MAX_ARRAY - i) / 5 - mBaseLine.y;
+			CCLOG("%i", (int)mPanelLine.x);
 
-	++mCount;
-	checkColor(node, value);
+			int test_x = value % 9 + mPanelLine.x;
+
+			if (test_x >= 0 && test_x < 9){																																																																																																																																																																																																																																																																																//ago
+				mChangePanelNum =  value + mPanelLine.x + mPanelLine.y * 9;
+
+
+				if (mChangePanelNum < 0) continue;
+
+				if (mChangePanelNum > 98) return;
+
+				StagePanel* obj = container[mChangePanelNum];
+
+				setColor(obj, mChangePanelNum);
+			}
+		}
+	}
 }
 
-void ColorChange::setColor(Node* node, int value) {
-	if (value < 0 || value > 98) return;
-	auto panel = (Sprite*)node->getChildren().at(value);
-	auto panelSprite = (Sprite*)panel->getChildByName(panel->getName());
+void ColorChange::setColor(StagePanel* node, int value) {	
 	//ターン制が完成したら変える
-	if (panelSprite->getColor() == Color3B::WHITE){
-		panelSprite->setColor(Color3B::BLUE);
+	if (node->sprite->getColor() == Color3B::WHITE){
+		node->sprite->setColor(Color3B::BLUE);
 	}
 }
 

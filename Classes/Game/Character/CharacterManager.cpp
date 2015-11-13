@@ -31,8 +31,8 @@ void CharacterManager::update(test_FUNC func)
 		std::for_each(container.begin(), container.end(), [func](Character* obj){
 			obj->setPositionY(obj->getPositionY() + 64);
 			
-			cocos2d::Vec2 pos = obj->getPosition();
-			int number = (((int)obj->getPositionX() - 32) / 64)  + (((int)obj->getPositionY() - 32) / 64 * 9);
+			cocos2d::Vec2 pos = obj->getPosition() - cocos2d::Vec2(0,19);
+			int number = (((int)obj->getPositionX() - 32) / 64)  + (((int)obj->getPositionY() - 160) / 64 * 9);
 			func(number);
 		});
 

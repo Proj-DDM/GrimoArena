@@ -2,6 +2,7 @@
 #define _COLOR_CHENGE_H_
 
 #include "cocos2d.h"
+#include "../PanelCore.h"
 #include <array>
 
 class ColorChange{
@@ -9,12 +10,12 @@ public:
 	ColorChange();
 	~ColorChange();
 public:
-	void changeColor(cocos2d::Node* node, int value);
-	void setPanel(cocos2d::Node* node, int value);
-	void posCast(cocos2d::Node* node, int value);
+	void changeColor(cocos2d::Node* node, int value, PanelContainer container);
+	void setPanel(cocos2d::Node* node, int value, PanelContainer container);
+	void posCast(cocos2d::Node* node, int value, PanelContainer container);
 	//êFïœÇ¶é¿çs
-	void setColor(cocos2d::Node* node, int value);
-	void checkColor(cocos2d::Node* node, int value);
+	void checkColor(cocos2d::Node* node, int value, PanelContainer container);
+	void setColor(StagePanel* node, int value);
 	void allClear();
 public:
 	int mCount;

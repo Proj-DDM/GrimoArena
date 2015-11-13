@@ -4,6 +4,9 @@
 #include "cocos2d.h"
 #include "PanelData.h"
 
+
+#define PANELSIZE 64
+
 enum class ObjectType : int;
 
 namespace {
@@ -15,9 +18,8 @@ protected:
 	
 	StagePanel();
 	
-	~StagePanel();
-	
 public:
+	~StagePanel();
 	
 	static StagePanel* create(const std::string& nodeName);
 	
@@ -26,8 +28,11 @@ public:
 	void createPanel();
 	void touch(cocos2d::Point);
 	void chengeColor();
+
+	void setTouchPos();
 public:
 	bool mIsChengeColor;
+	Sprite* sprite;
 };
 
 #endif

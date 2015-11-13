@@ -1,27 +1,33 @@
 #include "StageFactory.h"
 #include "StagePanel.h"
 
+namespace {
+#define MAXSTAGEX 9
+#define MAXSTAGEY 11
+}
+
 using namespace cocos2d;
 
 StageFactory::StageFactory(){}
 
 StageFactory::~StageFactory(){}
 
-void StageFactory::createPanel(Node* parentNode) {
+void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 
 	Vec2 createPosCount(0,0);
 	//縦横枚数　そのうち外部から
-	Vec2 createSize(9, 11);
+	Vec2 createSize(MAXSTAGEX, MAXSTAGEY);
 	Vec2 createPos(0,0);
-	int panelSize = 64;
+	int panelSize = PANELSIZE;
 	int createCount = createSize.x * createSize.y;
 	int changeCount = 0;
 	int count = 0;
 
 	for (int i = 0; i < createCount; ++i) {
 		auto panel = StagePanel::create("StagePanel" + std::to_string(i));
-		panel->setContentSize(Size(64, 64));
-		parentNode->addChild(panel);
+		panel->setContentSize(Size(panelSize, panelSize));
+		node->addChild(panel);
+		container->push_back(panel);
 		//ビルボード
 		/*auto camera = new cocos2d::ActionCamera();
 
@@ -39,8 +45,8 @@ void StageFactory::createPanel(Node* parentNode) {
 		++changeCount;
 		++count;
 
-		createPos.x = createPosCount.x * panelSize;
-		createPos.y = createPosCount.y * panelSize;
+		createPos.x = createPosCount.x * panelSize + 16;
+		createPos.y = createPosCount.y * panelSize + 124;
 		panel->setPosition(Vec2(
 			createPos.x + panelSize, createPos.y + panelSize));
 

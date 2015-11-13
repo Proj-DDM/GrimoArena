@@ -17,13 +17,14 @@ bool Player::init(const cocos2d::Vec2& position)
 {
 	parameter = Parameter(500, 0, 0);
 	sprite = Sprite::create("player.png");
-	sprite->setScale(0.5f);
+	sprite->setScale(0.06f);
 	addChild(sprite);
 	setPosition(position);
+	
 	return true;
 }
 
-Player* Player::create( const cocos2d::Vec2& position)
+Player* Player::create( const cocos2d::Vec2& position,int number)
 {
 	auto chara = new Player();
 
@@ -35,4 +36,8 @@ Player* Player::create( const cocos2d::Vec2& position)
 
 	CC_SAFE_DELETE(chara);
 	return nullptr;
+}
+
+void Player::setPosition(const cocos2d::Vec2& position){
+	sprite->setPosition(Vec2(position.x - 32,position.y - 32));
 }

@@ -6,9 +6,9 @@
 
 using namespace cocos2d;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
+static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(320, 480);
+static cocos2d::Size mediumResolutionSize = cocos2d::Size(768 * 0.8, 1024 * 0.8);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
 
 AppDelegate::AppDelegate() {
@@ -55,15 +55,15 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setDisplayStats( true );
 	director->setAnimationInterval( 1.f / 60.f );
 
-	glview->setDesignResolutionSize(mediumResolutionSize.width, mediumResolutionSize.height, ResolutionPolicy::NO_BORDER);
+	glview->setDesignResolutionSize(mediumResolutionSize.width, mediumResolutionSize.height, ResolutionPolicy::SHOW_ALL);
 	Size frameSize = glview->getFrameSize();
 
-	if (frameSize.height > mediumResolutionSize.height) {
-		director->setContentScaleFactor(MIN(largeResolutionSize.height / designResolutionSize.height, largeResolutionSize.width / designResolutionSize.width));
+	if (frameSize.width > mediumResolutionSize.width) {
+		director->setContentScaleFactor(MIN(largeResolutionSize.width / designResolutionSize.width, largeResolutionSize.height / designResolutionSize.height));
 	}
 
-	else if (frameSize.height > smallResolutionSize.height) {
-		director->setContentScaleFactor(MIN(smallResolutionSize.height / designResolutionSize.height, smallResolutionSize.width / designResolutionSize.width));
+	else if (frameSize.width > smallResolutionSize.width) {
+		director->setContentScaleFactor(MIN(smallResolutionSize.width / designResolutionSize.width, smallResolutionSize.height / designResolutionSize.height));
 	}
 
 	register_all_packages;

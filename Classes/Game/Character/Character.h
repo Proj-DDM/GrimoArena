@@ -15,6 +15,7 @@ public:
 protected:
 	Parameter parameter;
 	cocos2d::Sprite* sprite;
+	int indexNumber;
 };
 
 

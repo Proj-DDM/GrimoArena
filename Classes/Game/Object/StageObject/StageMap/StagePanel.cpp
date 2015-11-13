@@ -32,21 +32,26 @@ bool StagePanel::init(const std::string& nodeName) {
 }
 
 void StagePanel::createPanel() {
-	auto sprite = Sprite::create();
+
+	sprite = Sprite::create();
 	sprite->setTextureRect(Rect(0, 0, 64, 64));
 	sprite->setColor(Color3B::WHITE);
 	sprite->setName(this->getName());
 	sprite->setOpacity(50);
+
 	this->addChild(sprite);
 }
 
 void StagePanel::touch(Point touchPos) {
-	auto sprite = (Sprite*)this->getChildByName(this->getName());
-	bool isTouch = false;
+	//auto sprite = (Sprite*)this->getChildByName(this->getName());
+	//bool isTouch = false;
 }
 
 void StagePanel::chengeColor() {
-	auto sprite = (Sprite*)this->getChildByName(this->getName());
-	sprite->setColor(Color3B::RED);
+	//auto sprite = (Sprite*)this->getChildByName(this->getName());
+	sprite->setColor(Color3B::BLUE);
 	CCLOG("F‚Ì•ÏX‚ªÀs‚³‚ê‚Ü‚µ‚½");
+}
+
+void StagePanel::setTouchPos(){
 }

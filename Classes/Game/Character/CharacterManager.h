@@ -2,6 +2,7 @@
 #define _CHARACTERMANAGER_H_
 
 #include "cocos2d.h"
+#include "Player.h"
 
 class Character;
 
@@ -20,6 +21,8 @@ public:
 private:
 	using CharacterContainer = std::vector < Character* > ;
 	CharacterContainer container;
+	Player* player;
+
 };
 
 

@@ -21,7 +21,9 @@ public:
 	bool init(const cocos2d::Vec2& position)override;
 
 	//インスタンスの生成
-	static Player* create(const cocos2d::Vec2& position);
+	static Player* create(const cocos2d::Vec2& position, int number);
+
+	void setPosition(const cocos2d::Vec2& position);
 
 
 private:
