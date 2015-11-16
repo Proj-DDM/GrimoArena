@@ -1,5 +1,6 @@
 #include "SequenceManager.h"
 
+#define MAXTURN 5
 
 SequenceManager::SequenceManager():m_Turn(1)
 {
@@ -10,18 +11,123 @@ SequenceManager::~SequenceManager()
 {
 }
 
+//インスタンス初期化
+SequenceManager* SequenceManager::GetInstance()
+{
+	static SequenceManager instance;
+	return &instance;
+}
 
-void SequenceManager::update(float at){
+//初期化
+void SequenceManager::init(){
+	while (!m_SequenceStack.empty())
+	{
+		currentSequence = m_SequenceStack.top();
+		delete currentSequence;
+		currentSequence = NULL;
+		m_SequenceStack.pop();
+	}
 
-	auto sequence = m_SequenceQueue.front();
+	m_Turn = 1;
+}
 
-	if (sequence->update(at) == S_NULL){
-		pop();
+//更新
+bool SequenceManager::update(float at){
+
+	currentSequence = m_SequenceStack.top();
+
+	if (currentSequence->update(at) == S_NULL){
+		
+		if (currentSequence != NULL){
+			delete currentSequence;
+			m_SequenceStack.pop();
+			currentSequence = NULL;
+		}
+		// スタックに積むことが予約されたシーン
+		if (NULL != nextSequence)
+		{
+			// スタックを積む
+			m_SequenceStack.push(nextSequence);
+			nextSequence = NULL;
+		}
+	}
+
+	return (m_Turn >= MAXTURN);
+
+}
+
+//シーケンス追加（使うことないかな？）
+void SequenceManager::push(ISequence* sequence){
+	m_SequenceStack.push(sequence);
+}
+
+//シーケンスの解放
+void SequenceManager::pop(){
+	
+	delete	currentSequence;
+	m_SequenceStack.pop();
+}
+
+//次のターンへ
+void SequenceManager::addTurn(){
+	m_Turn++;
+}
+
+//次のシーンの予約
+void SequenceManager::nextScene(ISequence* sequence){
+
+	/*while (!m_SequenceStack.empty())
+	{
+		currentSequence = m_SequenceStack.top();
+		delete currentSequence;
+		currentSequence = NULL;
+		m_SequenceStack.pop();
+	}
+
+	m_SequenceStack.push(sequence);*/
+
+	if (m_SequenceStack.empty()){
+		m_SequenceStack.push(sequence);
+		return;
+	}
+
+	if (nextSequence){
+		delete nextSequence;
+	}
+
+	nextSequence = sequence;
+
+}
+
+//解放
+void SequenceManager::Release(){
+	while (!m_SequenceStack.empty())
+	{
+		ISequence* ptr = m_SequenceStack.top();
+		delete ptr;
+		ptr = NULL;
+		m_SequenceStack.pop();
+	}
+	if (NULL != nextSequence)
+	{
+		delete nextSequence;
 	}
 }
 
-void SequenceManager::pop(){
+//タッチ初め
+bool SequenceManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
+
+	if (!currentSequence) return false;
+
+	return currentSequence->onTouchBegan(touch, event);
+ 
+}
+
+//タッチ終わり
+bool SequenceManager::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 	
-	delete m_SequenceQueue.front();
-	m_SequenceQueue.pop();
+	if (!currentSequence) return false;
+
+	return currentSequence->onTouchEnded(touch, event);
+
 }

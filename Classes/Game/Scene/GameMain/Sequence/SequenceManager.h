@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ISequence.h"
-#include <queue>
+#include <stack>
 #include "cocos2d.h"
 
 enum GAMESEQUENCE{
@@ -11,21 +11,47 @@ enum GAMESEQUENCE{
 	NULL_SEQUENCE
 };
 
-class SequenceManager : public cocos2d::Node
+class SequenceManager 
 {
-public:
+private:
 	SequenceManager();
 	~SequenceManager();
 
-	void update(float at);
+	SequenceManager& operator=(const SequenceManager&);
 
-	void push();
+public:
+	void init();
+
+	bool update(float at);
+
+	void push(ISequence* sequence);
 
 	void pop();
 
+	void nextScene(ISequence* sequence);
+
+	static SequenceManager* GetInstance();
+
+	void Release();
+
+	void addTurn();
+
+	/*----------------------------------------------------------------------
+	|	・タッチ始め
+	----------------------------------------------------------------------*/
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+
+	/*----------------------------------------------------------------------
+	|	・タッチ終わり
+	----------------------------------------------------------------------*/
+	bool onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+
+
 private:
 
-	std::queue<ISequence*> m_SequenceQueue;
+	std::stack<ISequence*> m_SequenceStack;
+	ISequence* currentSequence;
+	ISequence* nextSequence;
 	int m_Turn;
 	GAMESEQUENCE m_Sequence;
 

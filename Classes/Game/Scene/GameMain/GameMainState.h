@@ -6,7 +6,6 @@
 #include "Game/Object/StageObject/StageMap/StageManager.h"
 
 
-
 class GameMainState : public IScene {
 public:
 	/*-------------------------------------------------------------------

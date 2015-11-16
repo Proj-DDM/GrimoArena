@@ -3,6 +3,8 @@
 #include "Game/Test/TestScene.h"
 #include "Game/Object/StageObject/StageMap/StagePanel.h"
 #include "../../../Utility/FileIO/CharaReader.h"
+#include "Game/Scene/GameMain/Sequence/SequenceManager.h"
+#include "Game/Scene/GameMain/Sequence/OperationSequence.h"
 
 using namespace cocos2d;
 
@@ -34,10 +36,6 @@ bool GameMainState::init(Layer* layer){
 
 	camera = new cocos2d::ActionCamera();
 	camera->autorelease();
-	/*camera->setTarget(layer);
-	auto eye = camera->getEye();
-	eye.y = -0.0000003;
-	camera->setEye(eye);*/
 	camera->startWithTarget(layer);
 
 	return true;
@@ -61,11 +59,16 @@ void GameMainState::fadeOut(float at){
 }
 
 void GameMainState::mainStart(float at){
+	SequenceManager::GetInstance()->init();
+	SequenceManager::GetInstance()->nextScene(new OperationSequence(mStageManager));
+
 	mUpdateState = UPDATELOOP;
 }
 
 void GameMainState::mainLoop(float at){
 	mStageManager;
+
+	if (SequenceManager::GetInstance()->update(at)) mUpdateState = UPDATEEND;
 }
 
 void GameMainState::mainEnd(float at){
@@ -76,13 +79,12 @@ void GameMainState::mainEnd(float at){
 
 bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 
-	Vec2 touchPoint = touch->getLocation();
-	
-	mStageManager->onTouchBegan(touchPoint);
+	SequenceManager::GetInstance()->onTouchBegan(touch, event);
 	
 	return true;
 }
 
 void GameMainState::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 
+	SequenceManager::GetInstance()->onTouchEnded(touch, event);
 }
