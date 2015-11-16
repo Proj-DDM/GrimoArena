@@ -131,3 +131,7 @@ bool SequenceManager::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 	return currentSequence->onTouchEnded(touch, event);
 
 }
+
+TURN_PLAYER SequenceManager::getTurnPlayer() const{
+	return m_TrunPlayer;
+}

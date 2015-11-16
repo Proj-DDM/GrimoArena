@@ -41,10 +41,17 @@ bool StageManager::init() {
 
 	addChild(manager);
 
-	auto pos = this->getPanel(0)->getPosition();
-	player = Player::create(pos, 0);
+	auto pos = this->getPanel(4)->getPosition();
 
-	addChild(player);
+	//プレイヤーマネージャーの実装（予定）
+	playerManager = PlayerManager::create();
+	auto pos1 = this->getPanel(4)->getPosition();
+	auto pos2 = this->getPanel(94)->getPosition();
+
+	playerManager->setPlayer(this, pos1, pos2);
+
+
+	addChild(playerManager);
 
 	return true;
 }

@@ -153,6 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Game\Character\HP.cpp" />
     <ClCompile Include="..\Classes\Game\Character\Player.cpp" />
     <ClCompile Include="..\Classes\Game\Character\PlayerDeck.cpp" />
+    <ClCompile Include="..\Classes\Game\Character\PlayerManager.cpp" />
     <ClCompile Include="..\Classes\Game\Character\SampleHige.cpp" />
     <ClCompile Include="..\Classes\Game\Character\SampleKamata.cpp" />
     <ClCompile Include="..\Classes\Game\Layer\UILayer.cpp" />
@@ -197,6 +198,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Game\Character\HP.h" />
     <ClInclude Include="..\Classes\Game\Character\Player.h" />
     <ClInclude Include="..\Classes\Game\Character\PlayerDeck.h" />
+    <ClInclude Include="..\Classes\Game\Character\PlayerManager.h" />
     <ClInclude Include="..\Classes\Game\Character\SampleHige.h" />
     <ClInclude Include="..\Classes\Game\Character\SampleKamata.h" />
     <ClInclude Include="..\Classes\Game\Layer\UILayer.h" />

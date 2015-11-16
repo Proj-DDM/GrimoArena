@@ -8,6 +8,7 @@
 #include "../../../Character/CharacterFactory.h"
 #include "../../../Character/CharacterManager.h"
 #include "../../../Character/Player.h"
+#include "../../../Character/PlayerManager.h"
 
 class StagePanel;
 
@@ -48,9 +49,11 @@ private:
 	PanelContainer m_Container;
 	CharacterFactory factory;
 	CharacterManager* manager;
-	Player*            player;
+	PlayerManager* playerManager;
+
+
 public:
-	int mCount;
+	int				   mCount;
 	int				   touchIdx;
 
 };

@@ -11,6 +11,12 @@ enum GAMESEQUENCE{
 	NULL_SEQUENCE
 };
 
+enum TURN_PLAYER{
+	PLAYER1 = 0,
+	PLAYER2,
+	NULL_PLAYER
+};
+
 class SequenceManager 
 {
 private:
@@ -47,6 +53,8 @@ public:
 	bool onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
 
+	TURN_PLAYER getTurnPlayer() const;
+
 private:
 
 	std::stack<ISequence*> m_SequenceStack;
@@ -54,6 +62,7 @@ private:
 	ISequence* nextSequence;
 	int m_Turn;
 	GAMESEQUENCE m_Sequence;
+	TURN_PLAYER m_TrunPlayer { PLAYER1 };
 
 	// P1
 	// P2

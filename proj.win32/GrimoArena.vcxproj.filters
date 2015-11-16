@@ -82,6 +82,9 @@
     <Filter Include="Classes\Game\Chara\Test">
       <UniqueIdentifier>{7bd443a7-8c7d-4515-a796-cfa6640ce38d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Game\Chara\Player">
+      <UniqueIdentifier>{24e8aab7-c48b-4e10-aec8-c4b151a18e14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,9 +153,6 @@
     <ClCompile Include="..\Classes\Game\Character\HP.cpp">
       <Filter>Classes\Game\Chara</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\PlayerDeck.cpp">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Game\Layer\UILayer.cpp">
       <Filter>Classes\Game\Layer</Filter>
     </ClCompile>
@@ -170,9 +170,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\ColorChange\ColorChange.cpp">
       <Filter>Classes\Game\Object\StageObject\StageMap\ColorChange</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\Player.cpp">
-      <Filter>Classes\Game\Chara</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Character\CharacterIDConverter.cpp">
       <Filter>Classes\Game\Chara</Filter>
@@ -203,6 +200,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Test\HigePanel.cpp">
       <Filter>Classes\Game\Chara\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\PlayerDeck.cpp">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Player.cpp">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\PlayerManager.cpp">
+      <Filter>Classes\Game\Chara\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +293,6 @@
     <ClInclude Include="..\Classes\Game\Character\HP.h">
       <Filter>Classes\Game\Chara</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\PlayerDeck.h">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Layer\UILayer.h">
       <Filter>Classes\Game\Layer</Filter>
     </ClInclude>
@@ -307,9 +310,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\ColorChange\ColorChange.h">
       <Filter>Classes\Game\Object\StageObject\StageMap\ColorChange</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\Player.h">
-      <Filter>Classes\Game\Chara</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\CharacterIDConverter.h">
       <Filter>Classes\Game\Chara</Filter>
@@ -352,6 +352,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\DeleteContainer.h">
       <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\PlayerDeck.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Player.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\PlayerManager.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
