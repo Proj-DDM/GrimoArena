@@ -3,8 +3,11 @@
 
 #include "cocos2d.h"
 #include "CharacterType.h"
+#include "CharacterParameter.h"
 
 class CharacterPanel;
+class Character;
+
 
 
 class PlayerDeck : public cocos2d::Node
@@ -23,19 +26,25 @@ public:
 		return nowCharacterID;
 	}
 
+	Parameter getParameter()const
+	{
+		return nowParameter;
+	}
+
 protected:
 	PlayerDeck();
 	~PlayerDeck();
 
 private:
-	void add(CharacterPanel* panel, float positionX);
+	void add(Character* panel);
 	void deckInit();
 
 private:
-	using Deck = std::vector < CharacterPanel* > ;
+	using Deck = std::vector < Character* > ;
 	Deck deck;
 
 	CharacterID nowCharacterID;
+	Parameter nowParameter;
 };
 
 

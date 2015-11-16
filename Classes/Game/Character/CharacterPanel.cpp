@@ -36,7 +36,7 @@ CharacterPanel* CharacterPanel::create()
 bool CharacterPanel::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	auto target = mSprite;
-	Point touchPoint = touch->getLocation();	//タッチ座標の取得
+	Point touchPoint = touch->getLocation();	//タッチ座標
 	Rect rect = target->getBoundingBox();
 
 	if (rect.containsPoint(touchPoint))
