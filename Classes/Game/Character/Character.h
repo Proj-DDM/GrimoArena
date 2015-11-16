@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "CharacterParameter.h"
+#include "CharacterType.h"
 
 class Character : public cocos2d::Node
 {
@@ -11,12 +12,28 @@ public:
 	Character();
 	~Character();
 	virtual bool init(const cocos2d::Vec2& position);
-	virtual Character* create(const Parameter& param, const cocos2d::Vec2& position);
 	Parameter getParameter();		//キャラのパラメータ
+
+	Character* create(const Parameter& param, const cocos2d::Vec2& position);
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+
+	CharacterID getCharacterID() const
+	{
+		return id;
+	}
+
+	bool IsTouch()
+	{
+		return isTouch;
+	}
+
 
 protected:
 	Parameter parameter;
 	cocos2d::Sprite* sprite;
+	CharacterID id;
+	bool isTouch;
 };
 
 

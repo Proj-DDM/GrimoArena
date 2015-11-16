@@ -15,7 +15,7 @@ struct Parameter
 	int vect[25];
 
 
-	Parameter() :hp(0), attackPoint(0), speed(0)
+	Parameter() :hp(0), attackPoint(0), speed(0), cost(0), attribute(0)
 	{
 
 	}

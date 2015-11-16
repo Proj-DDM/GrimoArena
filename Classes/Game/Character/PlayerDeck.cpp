@@ -3,6 +3,8 @@
 #include "../Test/SamplePanel.h"
 #include "../Test/HigePanel.h"
 #include "../../Utility/cocosAssistant/ListenerAssistant.h"
+#include "Character.h"
+#include "SampleHige.h"	
 
 using namespace cocos2d;
 
@@ -56,10 +58,9 @@ PlayerDeck* PlayerDeck::create()
 	return nullptr;
 }
 
-void PlayerDeck::add(CharacterPanel* panel,float positionX)
+void PlayerDeck::add(Character* panel)
 {
 	addChild(panel);
-	panel->setPosition(positionX,60);
 	deck.push_back(panel);
 }
 
@@ -69,12 +70,12 @@ void PlayerDeck::deckInit()
 	//PositionX positionX{ 46, 118, 192, 266, 336, 406 };
 	int positionX[] = { 46, 118, 192, 266, 336, 406 };
 	
-	add(KamataPanel::create(), positionX[0]);
-	add(CharacterPanel::create(), positionX[1]);
-	add(HigePanel::create(), positionX[2]);
-	add(CharacterPanel::create(), positionX[3]);
-	add(CharacterPanel::create(), positionX[4]);
-	add(CharacterPanel::create(), positionX[5]);
+	add(Hige::create(Vec2(positionX[0], 60)));
+	add(Hige::create(Vec2(positionX[1], 60)));
+	add(Hige::create(Vec2(positionX[2], 60)));
+	add(Hige::create(Vec2(positionX[3], 60)));
+	add(Hige::create(Vec2(positionX[4], 60)));
+	add(Hige::create(Vec2(positionX[5], 60)));
 }
 
 void PlayerDeck::update(float deltaTime)
@@ -83,8 +84,11 @@ void PlayerDeck::update(float deltaTime)
 	{
 		if (panel->IsTouch())
 		{
-			if (nowCharacterID == panel->getCharacterID()) return;
+			if (nowCharacterID == panel->getCharacterID()) 
+				return;
 			nowCharacterID = panel->getCharacterID();
+
+			nowParameter = panel->getParameter();
 		}
 	}
 }
