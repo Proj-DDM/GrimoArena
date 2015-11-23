@@ -48,7 +48,11 @@ void CharacterManager::add(Character* character)
 }
 
 std::array<int, MAX_ARRAY> CharacterManager::getContainer(int id) {
+	
 	std::array<int, MAX_ARRAY> charavect{};
+
+	if (container.empty() || container.size() < id ) return charavect;
+	
 	for (int i = 0; i < MAX_ARRAY; ++i) {
 		//charavect[i] = container[id]->getParameter().vect[i];
 		CCLOG("%i", (int)container[0]->getParameter().vect[i]);

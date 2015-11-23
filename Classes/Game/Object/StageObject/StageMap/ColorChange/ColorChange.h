@@ -5,11 +5,6 @@
 #include "../PanelCore.h"
 #include <array>
 
-enum PkayerInitPos {
-	PLAYER1 = 4,
-	PLAYER2 = 94,
-};
-
 class ColorChange{
 public:
 	ColorChange();

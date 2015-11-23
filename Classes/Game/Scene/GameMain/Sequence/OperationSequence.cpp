@@ -62,6 +62,8 @@ bool OperationSequence::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* even
 }
 
 bool OperationSequence::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
+	
+	mStageManager->onTouchEnd(touch->getLocation());
 
 	return true;
 }

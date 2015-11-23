@@ -8,6 +8,18 @@
 
 using PanelContainer = std::vector<StagePanel*>;
 
+enum PLAYERINITPOS {
+	P1POS = 4,
+	P2POS = 94,
+};
+
+namespace PanelCore{
+
+	static	bool isCreate(int number){
+		return (number != P1POS && number != P2POS);
+	}
+
+}
 
 
 #endif

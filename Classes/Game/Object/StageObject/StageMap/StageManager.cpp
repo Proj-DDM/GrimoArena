@@ -76,6 +76,8 @@ int StageManager::onTouchBegan(cocos2d::Point pos) {
 	mParam = Parameter(10, 10, 10);
 	//CCLOG("%i", (int)player->getParameter().vect[1]);
 	int vectData[25];
+
+	this->touchPos(pos);
 }
 
 void StageManager::onTouchMove(cocos2d::Point pos) {}
@@ -85,9 +87,20 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 	mIsChengeColor = true;
 
 	int panelNumber = this->touchPos(pos);
-	if (panelNumber >= 0){
+
+	auto test = PanelCore::isCreate(panelNumber);
+
+	if (panelNumber >= 0 && PanelCore::isCreate(panelNumber)){
 		Vec2 pos = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
 		manager->add(factory.create(mId, mParam, pos));
+
+		StagePanel* panel = getPanel(panelNumber);
+		if (mIsChengeColor == true) {
+			auto changer = std::make_shared< ColorChange >();
+			changer->changeColor(panel->getChildByName(panel->getName()), panelNumber, m_Container, mTestTrun);
+			mIsChengeColor = false;
+			++mTestTrun;
+		}
 	}
 	manager->getContainer((int)mId);
 }
@@ -108,12 +121,6 @@ int StageManager::touchPos(cocos2d::Point pos){
 			node->getContentSize().width, node->getContentSize().height);
 
 		if (targetBox.containsPoint(pos)){
-			if (mIsChengeColor == true) {
-				auto changer = std::make_shared< ColorChange >();
-				changer->changeColor(node->getChildByName(node->getName()), i, m_Container, mTestTrun);
-				mIsChengeColor = false;
-				++mTestTrun;
-			}
 			return i;
 		}
 		i++;

@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include <array>
 #include <stdlib.h>
+#include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 
 #define MAX_ARRAY  24
 
@@ -25,7 +26,7 @@ void ColorChange::setPanel(Node* node, int value, PanelContainer container, int 
 				  0, 0, 2, 0, 0,
 				  0, 1, 0, 1, 0,
 				  0, 0, 0, 0, 0 };
-	if (mTestTrun % 2 == 0) {
+	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2) {
 		std::reverse(mTestArray.begin(), mTestArray.end());
 	}
 
@@ -66,9 +67,9 @@ void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
 
 				if (mChangePanelNum > 98) return;
 
-				if (mChangePanelNum == PLAYER1) return;
+				if (mChangePanelNum == P1POS) continue;
 
-				if (mChangePanelNum == PLAYER2) return;
+				if (mChangePanelNum == P2POS) continue;
 
 				StagePanel* obj = container[mChangePanelNum];
 
@@ -82,7 +83,7 @@ void ColorChange::setColor(StagePanel* node, int value) {
 	//ƒ^[ƒ“§‚ªŠ®¬‚µ‚½‚ç•Ï‚¦
 	//if (node->sprite->getColor() == Color3B::WHITE){
 	//}
-	if (mTestTrun % 2 == 0) {
+	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER1) {
 		node->sprite->setColor(Color3B::BLUE);
 	} else {
 		node->sprite->setColor(Color3B::RED);

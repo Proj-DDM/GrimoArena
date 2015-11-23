@@ -7,6 +7,7 @@
 
 #define PANELSIZE 64
 
+
 enum class ObjectType : int;
 
 namespace {
