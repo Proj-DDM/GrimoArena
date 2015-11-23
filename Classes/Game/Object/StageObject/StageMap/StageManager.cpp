@@ -74,7 +74,7 @@ int StageManager::onTouchBegan(cocos2d::Point pos) {
 	auto uiLayer = getParent()->getParent()->getChildByTag(1);
 	mId = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
 	mParam = Parameter(10, 10, 10);
-	CCLOG("%i", (int)player->getParameter().vect[1]);
+	//CCLOG("%i", (int)player->getParameter().vect[1]);
 	int vectData[25];
 }
 
