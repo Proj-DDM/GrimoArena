@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include <vector>
 #include <string>
+#include <array>
 #include "StageFactory.h"
 #include "../../../Character/CharacterFactory.h"
 #include "../../../Character/CharacterManager.h"
@@ -49,9 +50,15 @@ private:
 	CharacterFactory factory;
 	CharacterManager* manager;
 	Player*            player;
+	Parameter mParam;
+	CharacterID mId;
+	int mTestTrun;
+	std::array<int, 25> mTestArray;
+
 public:
 	int mCount;
 	int				   touchIdx;
+	bool mIsChengeColor;
 
 };
 
