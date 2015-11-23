@@ -1,6 +1,8 @@
 #include "CharacterManager.h"
 #include "Character.h"
 
+#define MAX_ARRAY  25
+
 CharacterManager::CharacterManager()
 {
 	container.clear();
@@ -39,11 +41,20 @@ void CharacterManager::update(test_FUNC func)
 	}
 }
 
-
 void CharacterManager::add(Character* character)
 {
 	addChild(character);
 	container.push_back(character);
+}
+
+std::array<int, MAX_ARRAY> CharacterManager::getContainer(int id) {
+	std::array<int, MAX_ARRAY> charavect{};
+	for (int i = 0; i < MAX_ARRAY; ++i) {
+		//charavect[i] = container[id]->getParameter().vect[i];
+		CCLOG("%i", (int)container[0]->getParameter().vect[i]);
+	}
+	return charavect;
+	//charavect;
 }
 
 CharacterManager* CharacterManager::create()
