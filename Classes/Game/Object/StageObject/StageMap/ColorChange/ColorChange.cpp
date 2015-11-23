@@ -11,20 +11,23 @@ ColorChange::ColorChange() {}
 
 ColorChange::~ColorChange() {}
 
-void ColorChange::changeColor(Node* node, int value, PanelContainer container) {
-	mCount = 0;
+void ColorChange::changeColor(Node* node, int value, PanelContainer container, int trun) {
 	mBaseLine = Vec2(0,0);
 	mCharaLine = Vec2(0,0);
-	setPanel(node, value, container);
+	mTestTrun = trun;
+	setPanel(node, value, container, trun);
 }
 
-void ColorChange::setPanel(Node* node, int value, PanelContainer container) {
+void ColorChange::setPanel(Node* node, int value, PanelContainer container, int trun) {
 	//仮のキャラデータ
 	mTestArray = {0, 0, 0, 0, 0,
-				  0, 1, 0, 1, 0,
+				  0, 0, 1, 0, 0,
 				  0, 0, 2, 0, 0,
 				  0, 1, 0, 1, 0,
 				  0, 0, 0, 0, 0 };
+	if (mTestTrun % 2 == 0) {
+		std::reverse(mTestArray.begin(), mTestArray.end());
+	}
 
 	for (int i = 0; i < mTestArray.size(); ++i) {
 		if (mTestArray[i] == 2){
@@ -34,10 +37,9 @@ void ColorChange::setPanel(Node* node, int value, PanelContainer container) {
 			mBaseLine.y = mCharaLine.y;
 			mCharaLine.x = 0;
 			mCharaLine.y = 0;
-			CCLOG("%i", (int)mBaseLine.x);
+			//CCLOG("%i", (int)mBaseLine.x);
 		}
 	}
-	mCount = 0;
 	checkColor(node, value, container);
 }
 
@@ -52,17 +54,21 @@ void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
 		if (mTestArray[i] >= 1 ){
 			mPanelLine.x = i % 5 - mBaseLine.x;
 			mPanelLine.y = (MAX_ARRAY - i) / 5 - mBaseLine.y;
-			CCLOG("%i", (int)mPanelLine.x);
+			//CCLOG("%i", (int)mPanelLine.x);
 
 			int test_x = value % 9 + mPanelLine.x;
 
-			if (test_x >= 0 && test_x < 9){																																																																																																																																																																																																																																																																																//ago
+			if (test_x >= 0 && test_x < 9){
 				mChangePanelNum =  value + mPanelLine.x + mPanelLine.y * 9;
 
 
 				if (mChangePanelNum < 0) continue;
 
 				if (mChangePanelNum > 98) return;
+
+				if (mChangePanelNum == PLAYER1) return;
+
+				if (mChangePanelNum == PLAYER2) return;
 
 				StagePanel* obj = container[mChangePanelNum];
 
@@ -72,10 +78,14 @@ void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
 	}
 }
 
-void ColorChange::setColor(StagePanel* node, int value) {	
-	//ターン制が完成したら変える
-	if (node->sprite->getColor() == Color3B::WHITE){
+void ColorChange::setColor(StagePanel* node, int value) {
+	//ターン制が完成したら変え
+	//if (node->sprite->getColor() == Color3B::WHITE){
+	//}
+	if (mTestTrun % 2 == 0) {
 		node->sprite->setColor(Color3B::BLUE);
+	} else {
+		node->sprite->setColor(Color3B::RED);
 	}
 }
 

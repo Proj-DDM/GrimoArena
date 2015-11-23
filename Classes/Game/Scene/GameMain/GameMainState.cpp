@@ -87,4 +87,7 @@ bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 void GameMainState::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 
 	SequenceManager::GetInstance()->onTouchEnded(touch, event);
+	Vec2 touchPoint = touch->getLocation();
+
+	mStageManager->onTouchEnd(touchPoint);
 }
