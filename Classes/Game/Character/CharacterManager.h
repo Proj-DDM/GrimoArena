@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Player.h"
+#include <array>
 
 class Character;
 
@@ -16,7 +17,9 @@ public:
 	bool init()override;
 	void update(test_FUNC func);
 	void add(Character* character);
+	void findPara(int id);
 	static CharacterManager* create();
+	std::array<int, 25> getContainer(int id);
 
 private:
 	using CharacterContainer = std::vector < Character* > ;

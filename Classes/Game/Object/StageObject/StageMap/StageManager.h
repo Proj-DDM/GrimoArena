@@ -1,9 +1,10 @@
-#ifndef _STAGE_MANAGER_H_
+﻿#ifndef _STAGE_MANAGER_H_
 #define _STAGE_MANAGER_H_
 
 #include "cocos2d.h"
 #include <vector>
 #include <string>
+#include <array>
 #include "StageFactory.h"
 #include "../../../Character/CharacterFactory.h"
 #include "../../../Character/CharacterManager.h"
@@ -52,11 +53,16 @@ private:
 	CharacterFactory factory;
 	CharacterManager* manager;
 	PlayerManager* playerManager;
-
+	Player*            player;
+	Parameter mParam;
+	CharacterID mId;
+	int mTestTrun;
+	std::array<int, 25> mTestArray;
 
 public:
 	int				   mCount;
 	int				   touchIdx;
+	bool mIsChengeColor;
 
 };
 

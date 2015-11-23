@@ -32,6 +32,7 @@ bool StageManager::init() {
 
 	this->schedule(schedule_selector(StageManager::update));
 	mCount = 0;
+	mTestTrun = 1;
 	
 	auto fac = std::make_shared< StageFactory >();
 	fac->createPanel(&m_Container,this);
@@ -69,22 +70,27 @@ void StageManager::changeColor(Node* node) {
 }
 
 int StageManager::onTouchBegan(cocos2d::Point pos) {
-	
 	if (pos.y <= 120) return false;
 	auto uiLayer = getParent()->getParent()->getChildByTag(1);
-	auto id = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
-	auto param = Parameter(10, 10, 10);
-
-	int panelNumber = this->touchPos(pos);
-	if (panelNumber >= 0){
-		Vec2 pos = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
-		manager->add(factory.create(id, param, pos));
-	}
+	mId = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
+	mParam = Parameter(10, 10, 10);
+	//CCLOG("%i", (int)player->getParameter().vect[1]);
+	int vectData[25];
 }
 
 void StageManager::onTouchMove(cocos2d::Point pos) {}
 
-void StageManager::onTouchEnd(cocos2d::Point pos) {}
+void StageManager::onTouchEnd(cocos2d::Point pos) {
+	if (pos.y <= 120) return;
+	mIsChengeColor = true;
+
+	int panelNumber = this->touchPos(pos);
+	if (panelNumber >= 0){
+		Vec2 pos = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
+		manager->add(factory.create(mId, mParam, pos));
+	}
+	manager->getContainer((int)mId);
+}
 
 StagePanel* StageManager::getPanel(int number){
 	if (!m_Container[number]) return nullptr;
@@ -102,14 +108,16 @@ int StageManager::touchPos(cocos2d::Point pos){
 			node->getContentSize().width, node->getContentSize().height);
 
 		if (targetBox.containsPoint(pos)){
-			auto changer = std::make_shared< ColorChange >();
-			changer->changeColor(node->getChildByName(node->getName()), i, m_Container);
+			if (mIsChengeColor == true) {
+				auto changer = std::make_shared< ColorChange >();
+				changer->changeColor(node->getChildByName(node->getName()), i, m_Container, mTestTrun);
+				mIsChengeColor = false;
+				++mTestTrun;
+			}
 			return i;
 		}
-
 		i++;
 	}
-
 	return -1;
 }
 
