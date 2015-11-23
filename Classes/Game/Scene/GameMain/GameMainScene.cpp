@@ -40,6 +40,13 @@ bool GameMainScene::init(){
 
 	this->scheduleUpdate();
 
+	auto endButton = cocos2d::MenuItemImage::create("CloseNormal.png", "CloseSelected.png",CC_CALLBACK_0(GameMainScene::onEndButton,this));
+
+	endButton->setPosition(cocos2d::Vec2(50, 750));
+	auto menu = cocos2d::Menu::create(endButton,nullptr);
+	menu->setPosition(cocos2d::Point::ZERO);
+	this->addChild(menu);
+
 	return true;
 }
 
@@ -54,4 +61,8 @@ bool GameMainScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 
 void GameMainScene::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 	mState->onTouchEnded(touch, event);
+}
+
+void GameMainScene::onEndButton(){
+	mState->onEndButton();
 }

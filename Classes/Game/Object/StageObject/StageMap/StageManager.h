@@ -45,6 +45,8 @@ public:
 	StagePanel* getPanel(int number);
 
 	int touchPos(cocos2d::Point pos);
+
+	Player* getTurnPlayer();
 private:
 	PanelContainer m_Container;
 	CharacterFactory factory;

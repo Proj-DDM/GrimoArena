@@ -40,4 +40,14 @@ Player* Player::create( const cocos2d::Vec2& position,int number)
 
 void Player::setPosition(const cocos2d::Vec2& position){
 	sprite->setPosition(Vec2(position.x - 32,position.y - 32));
+
+}
+
+cocos2d::Rect Player::getBoundingBox() const {
+	return sprite->getBoundingBox();
+}
+
+
+const cocos2d::Vec2& Player::getPosition() const {
+	return sprite->getPosition();
 }

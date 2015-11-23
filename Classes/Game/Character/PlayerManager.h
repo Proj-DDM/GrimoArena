@@ -24,6 +24,8 @@ public:
 
 	void setPlayer(cocos2d::Node* node, cocos2d::Vec2 p1pos, cocos2d::Vec2 p2pos);
 
+	Player* getTurnPlayer();
+
 	Players m_Players;
 
 

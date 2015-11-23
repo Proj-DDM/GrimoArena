@@ -48,6 +48,7 @@ bool SequenceManager::update(float at){
 		{
 			// スタックを積む
 			m_SequenceStack.push(nextSequence);
+
 			nextSequence = NULL;
 		}
 	}
@@ -134,4 +135,11 @@ bool SequenceManager::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 
 TURN_PLAYER SequenceManager::getTurnPlayer() const{
 	return m_TrunPlayer;
+}
+
+//終了ボタン
+void SequenceManager::setEndSequence(){
+	currentSequence->onEndSequence();
+	if (m_TrunPlayer == PLAYER1) m_TrunPlayer = PLAYER2;
+	else m_TrunPlayer = PLAYER1;
 }

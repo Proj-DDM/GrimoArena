@@ -25,6 +25,9 @@ public:
 
 	void setPosition(const cocos2d::Vec2& position);
 
+	const cocos2d::Vec2& getPosition() const override;
+
+	cocos2d::Rect getBoundingBox() const override;
 
 private:
 	

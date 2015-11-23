@@ -30,6 +30,9 @@ public:
 	void chengeColor();
 
 	void setTouchPos();
+
+	const cocos2d::Color3B& getColor(void) const override;
+
 public:
 	bool mIsChengeColor;
 	Sprite* sprite;

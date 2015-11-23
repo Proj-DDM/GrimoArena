@@ -112,3 +112,9 @@ int StageManager::touchPos(cocos2d::Point pos){
 
 	return -1;
 }
+
+Player* StageManager::getTurnPlayer(){
+
+	return playerManager->getTurnPlayer();
+
+}

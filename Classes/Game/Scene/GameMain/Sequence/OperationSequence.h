@@ -3,8 +3,18 @@
 
 #include "ISequence.h"
 
+class Player;
+
 class OperationSequence : public ISequence
 {
+	enum MOVE_STATUS{
+		TOUCH,
+		MOVE,
+		MOVE_END,
+		NULL_MOVE
+	};
+
+
 public:
 	OperationSequence(StageManager* stageManager);
 	~OperationSequence();
@@ -17,6 +27,12 @@ public:
 
 	void end(float at) override;						//シークエンス終わり
 
+	void onEndSequence() override;					    //シークエンス終了ボタンが押されたとき
+
+	void isTouch(cocos2d::Vec2 touchPos);				//フィールドへのタッチ処理
+
+	void move(cocos2d::Vec2 touchPos);					//プレイヤーの移動
+
 	/*----------------------------------------------------------------------
 	|	・タッチ始め
 	----------------------------------------------------------------------*/
@@ -26,6 +42,13 @@ public:
 	|	・タッチ終わり
 	----------------------------------------------------------------------*/
 	bool onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event) override;
+
+private:
+
+	Player* mTurnPlayer;
+
+	MOVE_STATUS isPlayerMove { TOUCH };
+
 };
 
 #endif

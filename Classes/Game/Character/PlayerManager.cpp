@@ -1,5 +1,6 @@
 #include "PlayerManager.h"
 #include "Player.h"
+#include "../Scene/GameMain/Sequence/SequenceManager.h"
 
 
 #define PLAYER1_START_NUM 4
@@ -64,4 +65,8 @@ void PlayerManager::push(cocos2d::Vec2 pos, int number, std::string name){
 	player->setName(name);
 
 	m_Players.push_back(player);
+}
+
+Player* PlayerManager::getTurnPlayer(){
+	return m_Players.at(SequenceManager::GetInstance()->getTurnPlayer());
 }

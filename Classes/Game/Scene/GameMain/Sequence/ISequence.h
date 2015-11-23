@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 
 class StageManager;
-
 enum S_STATUS{
 	S_START = 0,
 	S_MAIN,
@@ -32,6 +31,8 @@ public:
 
 	virtual void end(float at) = 0;					//シークエンス終わり
 
+	virtual void onEndSequence() = 0;			    //シークエンス終了設定
+
 	/*----------------------------------------------------------------------
 	|	・タッチ始め
 	----------------------------------------------------------------------*/
@@ -48,6 +49,7 @@ protected:
 
 	S_STATUS mState;												 //シークエンスの状態
 	StageManager* mStageManager;								     //各オブジェクトの管理者
+
 };
 
 #endif

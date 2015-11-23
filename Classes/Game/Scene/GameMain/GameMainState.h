@@ -60,6 +60,11 @@ public:
 	----------------------------------------------------------------------*/
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
+	/*----------------------------------------------------------------------
+	|	・シークエンス終了ボタン
+	----------------------------------------------------------------------*/
+	void onEndButton();
+
 private:
 	/*------------------------------------------------------------------
 	|	メインループ始め
@@ -78,6 +83,8 @@ private:
 
 
 	void cameraControl(cocos2d::Touch* touch, cocos2d::Event* user_event);
+
+
 private:
 	StageManager* mStageManager;
 	cocos2d::ActionCamera* camera;

@@ -42,6 +42,8 @@ public:
 
 	void addTurn();
 
+	void setEndSequence();
+
 	/*----------------------------------------------------------------------
 	|	・タッチ始め
 	----------------------------------------------------------------------*/
@@ -62,8 +64,7 @@ private:
 	ISequence* nextSequence;
 	int m_Turn;
 	GAMESEQUENCE m_Sequence;
-	TURN_PLAYER m_TrunPlayer { PLAYER1 };
-
+	TURN_PLAYER m_TrunPlayer{ PLAYER1 };
 	// P1
 	// P2
 };

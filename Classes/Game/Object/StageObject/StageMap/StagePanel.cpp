@@ -55,3 +55,8 @@ void StagePanel::chengeColor() {
 
 void StagePanel::setTouchPos(){
 }
+
+
+const Color3B& StagePanel::getColor(void) const {
+	return sprite->getColor();
+}

@@ -53,3 +53,7 @@ bool EndSequence::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 
 	return true;
 }
+
+
+void EndSequence::onEndSequence(){
+}

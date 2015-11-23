@@ -50,3 +50,7 @@ bool BattelSequence::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 
 	return true;
 }
+
+void BattelSequence::onEndSequence(){
+
+}
