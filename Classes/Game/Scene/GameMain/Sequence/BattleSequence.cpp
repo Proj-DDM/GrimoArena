@@ -41,7 +41,7 @@ bool BattelSequence::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 
 	cocos2d::Vec2 touchPoint = touch->getLocation();
 
-	mStageManager->onTouchBegan(touchPoint);
+	mStageManager->onTouchBegan(touch,event);
 
 	return true;
 }

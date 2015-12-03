@@ -15,7 +15,7 @@ HP::~HP()
 
 bool HP::isDead()
 {
-	return (hp < 0);
+	return (hp <= 0);
 }
 
 HP& HP::operator-=(int point)
@@ -28,6 +28,24 @@ HP& HP::operator+=(int point)
 {
 	this->hp += point;
 	return *this;
+}
+
+bool HP::operator==(const HP& hp)
+{
+	if (this->hp == hp.getHp())
+	{
+		return true;
+	}
+	return false;
+}
+
+bool HP::operator!=(const HP& hp)
+{
+	if (this->hp != hp.getHp())
+	{
+		return true;
+	}
+	return false;
 }
 
 int HP::getHp()const
