@@ -111,6 +111,7 @@ bool PlayerDeck::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 			addChild(character);
 			auto view = dynamic_cast<ParameterView*>(getParent()->getChildByName("View"));
 			view->setParameter(panel->getParameter());
+			this->nowCharacterID = panel->getCharacterID();
 			continue;
 		}
 	}

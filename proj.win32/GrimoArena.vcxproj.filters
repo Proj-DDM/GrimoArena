@@ -85,6 +85,12 @@
     <Filter Include="Classes\Game\Chara\Player">
       <UniqueIdentifier>{24e8aab7-c48b-4e10-aec8-c4b151a18e14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Utility\Modal">
+      <UniqueIdentifier>{9822656b-7082-4c7c-a1a9-7343a9b38c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Scene\Result">
+      <UniqueIdentifier>{03559d25-9232-47fb-806e-76a701aacc2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -210,8 +216,20 @@
     <ClCompile Include="..\Classes\Game\Character\PlayerManager.cpp">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Game\UI\ParameterView.cpp">
-      <Filter>Classes\Game\Chara\Player</Filter>
+    <ClCompile Include="..\Classes\Utility\Modal\ModalLayer.cpp">
+      <Filter>Classes\Utility\Modal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Scene\Title\TitleScene.cpp">
+      <Filter>Classes\Game\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Scene\Title\TitleState.cpp">
+      <Filter>Classes\Game\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Scene\Result\ResultScene.cpp">
+      <Filter>Classes\Game\Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Scene\Result\ResultState.cpp">
+      <Filter>Classes\Game\Scene\Result</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,9 +347,6 @@
     <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\EndSequence.h">
       <Filter>Classes\Game\Scene\GameMain\Sequence\End</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.h">
-      <Filter>Classes\Game\Scene\GameMain\Sequence\Operation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\SequenceManager.h">
       <Filter>Classes\Game\Scene\GameMain\Sequence\Etc</Filter>
     </ClInclude>
@@ -353,9 +368,6 @@
     <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\PanelCore.h">
       <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Utility\DeleteContainer.h">
-      <Filter>Classes\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\PlayerDeck.h">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
@@ -365,11 +377,26 @@
     <ClInclude Include="..\Classes\Game\Character\PlayerManager.h">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\UI\ParameterPtr.h">
-      <Filter>Classes\Game\Chara\Player</Filter>
+    <ClInclude Include="..\Classes\Utility\Modal\ModalLayer.h">
+      <Filter>Classes\Utility\Modal</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\UI\ParameterView.h">
-      <Filter>Classes\Game\Chara\Player</Filter>
+    <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.h">
+      <Filter>Classes\Game\Scene\GameMain\Sequence\Operation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Scene\Title\TitleScene.h">
+      <Filter>Classes\Game\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Scene\Title\TitleState.h">
+      <Filter>Classes\Game\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Scene\Result\ResultScene.h">
+      <Filter>Classes\Game\Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Scene\Result\ResultState.h">
+      <Filter>Classes\Game\Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\DeleteContainer.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

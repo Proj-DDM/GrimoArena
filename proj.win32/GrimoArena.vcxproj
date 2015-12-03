@@ -170,6 +170,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.cpp" />
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\SequenceManager.cpp" />
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\StandbyPhase.cpp" />
+    <ClCompile Include="..\Classes\Game\Scene\Result\ResultScene.cpp" />
+    <ClCompile Include="..\Classes\Game\Scene\Result\ResultState.cpp" />
+    <ClCompile Include="..\Classes\Game\Scene\Title\TitleScene.cpp" />
+    <ClCompile Include="..\Classes\Game\Scene\Title\TitleState.cpp" />
     <ClCompile Include="..\Classes\Game\Test\HigePanel.cpp" />
     <ClCompile Include="..\Classes\Game\Test\SampleHashigo.cpp" />
     <ClCompile Include="..\Classes\Game\Test\SamplePanel.cpp" />
@@ -181,6 +185,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Utility\cocosAssistant\SpriteCreator.cpp" />
     <ClCompile Include="..\Classes\Utility\FileIO\CharaReader.cpp" />
     <ClCompile Include="..\Classes\Utility\FileIO\PlistReader.cpp" />
+    <ClCompile Include="..\Classes\Utility\Modal\ModalLayer.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\FadeScene.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\IScene.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\SceneCreator.cpp" />
@@ -221,6 +226,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.h" />
     <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\SequenceManager.h" />
     <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\StandbyPhase.h" />
+    <ClInclude Include="..\Classes\Game\Scene\Result\ResultScene.h" />
+    <ClInclude Include="..\Classes\Game\Scene\Result\ResultState.h" />
+    <ClInclude Include="..\Classes\Game\Scene\Title\TitleScene.h" />
+    <ClInclude Include="..\Classes\Game\Scene\Title\TitleState.h" />
     <ClInclude Include="..\Classes\Game\Test\HigePanel.h" />
     <ClInclude Include="..\Classes\Game\Test\SampleHashigo.h" />
     <ClInclude Include="..\Classes\Game\Test\SamplePanel.h" />
@@ -235,6 +244,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\FileIO\CharaReader.h" />
     <ClInclude Include="..\Classes\Utility\FileIO\PlistReader.h" />
     <ClInclude Include="..\Classes\Utility\DeleteContainer.h" />
+    <ClInclude Include="..\Classes\Utility\Modal\ModalLayer.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\FadeScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\IScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\SceneCreator.h" />
