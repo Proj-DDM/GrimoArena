@@ -30,6 +30,8 @@ public:
 
 	HP& operator -= (int);
 	HP& operator += (int);
+	bool operator == (const HP& hp);
+	bool operator != (const HP& hp);
 private:
 	int hp;
 };

@@ -29,7 +29,7 @@ public:
 
 	void touchStage();
 
-	int onTouchBegan(cocos2d::Point pos);
+	int onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 
 	void onTouchMove(cocos2d::Point pos);
 

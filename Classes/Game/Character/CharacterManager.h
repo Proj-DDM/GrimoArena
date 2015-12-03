@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "Player.h"
+#include "CharacterParameter.h"
 
 class Character;
 
@@ -16,12 +17,18 @@ public:
 	bool init()override;
 	void update(test_FUNC func);
 	void add(Character* character);
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	static CharacterManager* create();
+	Parameter getParameter()const
+	{
+		return parameter;
+	}
 
 private:
 	using CharacterContainer = std::vector < Character* > ;
 	CharacterContainer container;
 	Player* player;
+	Parameter parameter;
 
 };
 

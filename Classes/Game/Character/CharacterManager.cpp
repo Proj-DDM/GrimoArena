@@ -1,6 +1,8 @@
 #include "CharacterManager.h"
 #include "Character.h"
 
+using namespace cocos2d;
+
 CharacterManager::CharacterManager()
 {
 	container.clear();
@@ -58,4 +60,18 @@ CharacterManager* CharacterManager::create()
 
 	CC_SAFE_DELETE(instance);
 	return nullptr;
+}
+
+bool CharacterManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	if (container.empty())return false;
+	for (auto& panel : container)
+	{
+		if (panel->onTouchBegan(touch, event))
+		{
+			parameter = panel->getParameter();
+			return true;
+		}
+	}
+	return false;
 }

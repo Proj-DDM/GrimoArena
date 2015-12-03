@@ -5,6 +5,7 @@
 #include "Utility/DeleteContainer.h"
 #include "StagePanel.h"
 #include "../../../Character/PlayerDeck.h"
+#include "../../../UI/ParameterView.h"
 
 using namespace cocos2d;
 
@@ -72,23 +73,30 @@ void StageManager::changeColor(Node* node) {
 
 }
 
-int StageManager::onTouchBegan(cocos2d::Point pos) {
-	
-	if (pos.y <= 120) return false;
-	auto uiLayer = getParent()->getParent()->getChildByTag(1);
-	auto id = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
-	auto param = Parameter(10, 10, 10);
-
-	int panelNumber = this->touchPos(pos);
-	if (panelNumber >= 0){
-		Vec2 pos = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
-		manager->add(factory.create(id, param, pos));
+int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
+	if (manager->onTouchBegan(touch, event))
+	{
+		auto ui = dynamic_cast<ParameterView*>(getParent()->getParent()->getChildByTag(1)->getChildByName("View"));
+		ui->setParameter(manager->getParameter());
 	}
+	return 0;
 }
 
-void StageManager::onTouchMove(cocos2d::Point pos) {}
+void StageManager::onTouchMove(cocos2d::Point pos) {
 
-void StageManager::onTouchEnd(cocos2d::Point pos) {}
+}
+
+void StageManager::onTouchEnd(cocos2d::Point pos) {
+	auto uiLayer = getParent()->getParent()->getChildByTag(1);
+	auto deck = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"));
+
+	if (!deck->getIsSummons())return;
+	int panelNumber = this->touchPos(pos);
+	if (panelNumber >= 0) {
+		Vec2 pos = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
+		manager->add(factory.create(deck->getCharacterID(), pos));
+	}
+}
 
 StagePanel* StageManager::getPanel(int number){
 	if (!m_Container[number]) return nullptr;
