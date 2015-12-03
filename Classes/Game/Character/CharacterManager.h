@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include <array>
+#include "CharacterParameter.h"
 
 class Character;
 
@@ -21,10 +22,19 @@ public:
 	static CharacterManager* create();
 	std::array<int, 25> getContainer(int id);
 
+	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
+	static CharacterManager* create();
+	Parameter getParameter()const
+	{
+		return parameter;
+	}
+
+
 private:
 	using CharacterContainer = std::vector < Character* > ;
 	CharacterContainer container;
 	Player* player;
+	Parameter parameter;
 
 };
 
