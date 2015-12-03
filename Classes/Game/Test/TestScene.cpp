@@ -69,7 +69,7 @@ bool TestScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 	auto uiLayer = getParent()->getChildByTag(1);
 	auto id = CharacterID::WaterAttribute;
 	auto param = Parameter(10,10,10);
-	manager->add(factory.create(id, param,touchPoint));
+	manager->add(factory.create(id,touchPoint));
 	return true;
 }
 

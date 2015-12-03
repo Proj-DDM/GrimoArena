@@ -18,12 +18,15 @@ public:
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
+	void setOpacity(int alpha);
+	
+
 	CharacterID getCharacterID() const
 	{
 		return id;
 	}
 
-	bool IsTouch()
+	bool IsTouch()const
 	{
 		return isTouch;
 	}

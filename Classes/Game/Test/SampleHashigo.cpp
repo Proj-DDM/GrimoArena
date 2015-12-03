@@ -16,10 +16,10 @@ Hashigo::~Hashigo()
 
 bool Hashigo::init(const cocos2d::Vec2& position)
 {
-	sprite = Sprite::create("attack_water1.png");
-	sprite->setScale(0.1f);
+	sprite = Sprite::create("mon1_tati_r.png");
 	addChild(sprite);
-	setPosition(position);
+	id = CharacterID::Kamata;
+	sprite->setPosition(position);
 	return true;
 }
 

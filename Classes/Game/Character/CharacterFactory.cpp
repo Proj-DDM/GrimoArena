@@ -32,8 +32,8 @@ void CharacterFactory::init()
 	data = read.read("Plist/charalist.plist");//PlistÇ©ÇÁÇÃÉfÅ[É^ì«Ç›çûÇ›
 	converter.initialize();
 	add(CharacterID::FireAttribute,  [](const Parameter& param, const cocos2d::Vec2& position){ return Kamata::create(param, position); });
-	add(CharacterID::WaterAttribute, [](const Parameter& param, const cocos2d::Vec2& position){ return Hashigo::create(param, position); });
-	add(CharacterID::Kamata,		 [](const Parameter& param, const cocos2d::Vec2& position){ return Hige::create(param, position); });
+	add(CharacterID::WaterAttribute, [](const Parameter& param, const cocos2d::Vec2& position){ return Hige::create(param, position); });
+	add(CharacterID::Kamata,		 [](const Parameter& param, const cocos2d::Vec2& position){ return Hashigo::create(param, position); });
 }
 
 void CharacterFactory::add(CharacterID id, Function func)
@@ -41,7 +41,7 @@ void CharacterFactory::add(CharacterID id, Function func)
 	container[id] = func;
 }
 
-Character* CharacterFactory::create(CharacterID id, const Parameter& param, const cocos2d::Vec2& position)
+Character* CharacterFactory::create(CharacterID id, const cocos2d::Vec2& position)
 {
 	std::string name;
 	name = converter.getCharacterName(id);
@@ -50,6 +50,7 @@ Character* CharacterFactory::create(CharacterID id, const Parameter& param, cons
 	{
 		if (charadata.textureName != name)continue;
 		
+		parameter.name = charadata.textureName;
 		parameter.hp = charadata.hp;
 		parameter.speed = charadata.speed;
 		parameter.cost = charadata.cost;

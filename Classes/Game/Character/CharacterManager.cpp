@@ -1,7 +1,12 @@
 #include "CharacterManager.h"
 #include "Character.h"
 
+<<<<<<< HEAD
+
 #define MAX_ARRAY  25
+=======
+>>>>>>> origin/mega
+using namespace cocos2d;
 
 CharacterManager::CharacterManager()
 {
@@ -73,4 +78,18 @@ CharacterManager* CharacterManager::create()
 
 	CC_SAFE_DELETE(instance);
 	return nullptr;
+}
+
+bool CharacterManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	if (container.empty())return false;
+	for (auto& panel : container)
+	{
+		if (panel->onTouchBegan(touch, event))
+		{
+			parameter = panel->getParameter();
+			return true;
+		}
+	}
+	return false;
 }
