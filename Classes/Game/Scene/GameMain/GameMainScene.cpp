@@ -40,9 +40,10 @@ bool GameMainScene::init(){
 
 	this->scheduleUpdate();
 
-	auto endButton = cocos2d::MenuItemImage::create("CloseNormal.png", "CloseSelected.png",CC_CALLBACK_0(GameMainScene::onEndButton,this));
+	auto endButton = cocos2d::MenuItemImage::create("turnend.png", "turnend.png",CC_CALLBACK_0(GameMainScene::onEndButton,this));
 
-	endButton->setPosition(cocos2d::Vec2(50, 750));
+	endButton->setPosition(cocos2d::Vec2(endButton->getContentSize().width, 750));
+	endButton->setScale(0.5f);
 	auto menu = cocos2d::Menu::create(endButton,nullptr);
 	menu->setPosition(cocos2d::Point::ZERO);
 	this->addChild(menu);

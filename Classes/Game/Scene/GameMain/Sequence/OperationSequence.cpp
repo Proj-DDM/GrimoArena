@@ -30,6 +30,10 @@ void OperationSequence::start(float at){
 	mState = S_MAIN;
 
 	isPlayerMove = TOUCH;
+
+	mStageManager->setUI();
+
+	mTurnPlayer->mathMana(6);
 }
 
 void OperationSequence::main(float at){

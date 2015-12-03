@@ -26,6 +26,7 @@ void ColorChange::setPanel(Node* node, int value, PanelContainer container, int 
 				  0, 0, 2, 0, 0,
 				  0, 1, 0, 1, 0,
 				  0, 0, 0, 0, 0 };
+
 	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2) {
 		std::reverse(mTestArray.begin(), mTestArray.end());
 	}

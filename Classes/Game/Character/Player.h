@@ -29,7 +29,13 @@ public:
 
 	cocos2d::Rect getBoundingBox() const override;
 
+	void mathMana(const int value);
+
+	const int getMana() { return this->mana; }
+
 private:
+
+	int mana { 0 };
 	
 };
 

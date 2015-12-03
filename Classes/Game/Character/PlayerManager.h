@@ -28,6 +28,7 @@ public:
 
 	Players m_Players;
 
+	cocos2d::Sprite* createIcon();
 
 private:
 	void push(cocos2d::Vec2 pos,int number,std::string name);

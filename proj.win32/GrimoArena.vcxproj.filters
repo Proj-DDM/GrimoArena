@@ -91,6 +91,9 @@
     <Filter Include="Classes\Game\Scene\Result">
       <UniqueIdentifier>{03559d25-9232-47fb-806e-76a701aacc2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Utility\Math">
+      <UniqueIdentifier>{af999775-759e-4d15-8001-edafb229dc05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\Result\ResultState.cpp">
       <Filter>Classes\Game\Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\UI\ParameterView.cpp">
+      <Filter>Classes\Game\Chara\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +403,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\DeleteContainer.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\UI\ParameterPtr.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\UI\ParameterView.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\Math\MyMath.h">
+      <Filter>Classes\Utility\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

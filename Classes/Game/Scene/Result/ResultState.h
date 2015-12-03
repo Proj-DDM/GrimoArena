@@ -73,6 +73,10 @@ private:
 	------------------------------------------------------------------*/
 	void mainEnd(float at)   override;
 
+	void onPushYesButton();
+
+	void onPushNoButton();
+
 private:
 	int mCount;
 };

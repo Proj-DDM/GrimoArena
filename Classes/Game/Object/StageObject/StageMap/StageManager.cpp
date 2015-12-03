@@ -63,6 +63,12 @@ bool StageManager::init() {
 void StageManager::update(float at) {
 	if (mCount <= 0) { mCount = 0; }
 	if (mCount >= 99) { mCount = 99; }
+
+	auto uiLayer = this->getParent()->getParent()->getChildByTag(1);
+	if (!uiLayer->getChildByTag(NUMBERTAG)) return;
+	int mana = playerManager->getTurnPlayer()->getMana();
+	dynamic_cast<Sprite*>(uiLayer->getChildByTag(NUMBERTAG))->setTextureRect(Rect(32 * mana, 0, 32, 32));
+
 }
 
 void StageManager::focusPanel(Node* node) {
@@ -101,8 +107,14 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 	auto test = PanelCore::isCreate(panelNumber);
 
 	if (panelNumber >= 0 && PanelCore::isCreate(panelNumber) && deck->getIsSummons()){
-		Vec2 pos = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
-		manager->add(factory.create(deck->getCharacterID(), pos));
+		Vec2 addPosition = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
+		auto obj = factory.create(deck->getCharacterID(), addPosition);
+
+		if (playerManager->getTurnPlayer()->getMana() < obj->getParameter().cost) return;
+
+		playerManager->getTurnPlayer()->mathMana(-(obj->getParameter().cost));
+
+		manager->add(obj);
 
 		StagePanel* panel = getPanel(panelNumber);
 
@@ -149,4 +161,61 @@ Player* StageManager::getTurnPlayer(){
 
 const cocos2d::Color3B& StageManager::getTurnPlayerColor(){
 	return playerColorArray[SequenceManager::GetInstance()->getTurnPlayer()];
+}
+
+//namespace{
+//	void setSprite(Node* node, const Vec2& pos, const std::string& name, int tag){
+//
+//	}
+//}
+
+void StageManager::setUI()
+{
+	auto uiLayer = this->getParent()->getParent()->getChildByTag(1);
+
+	if (uiLayer->getChildByTag(ICONTAG)) uiLayer->removeChildByTag(ICONTAG);
+	if (uiLayer->getChildByTag(MANATAG)) uiLayer->removeChildByTag(MANATAG);
+	if (uiLayer->getChildByTag(NUMBERTAG)) uiLayer->removeChildByTag(NUMBERTAG);
+
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	auto action = FadeIn::create(2);
+
+	//プレイヤーアイコン
+	auto icon = playerManager->createIcon();
+	icon->setPosition(Vec2(visibleSize.width - icon->getContentSize().width / 2, icon->getContentSize().height / 2));
+	icon->setOpacity(0);
+	icon->setTag(ICONTAG);
+	icon->runAction(action);
+	uiLayer->addChild(icon);
+
+	//マナ画像
+	auto action2 = FadeIn::create(2);
+	auto manaImage = Sprite::create("mana.png");
+	manaImage->setPosition(Vec2(visibleSize.width - manaImage->getContentSize().width * 5, manaImage->getContentSize().height * 2));
+	manaImage->setOpacity(0);
+	manaImage->setTag(MANATAG);
+	manaImage->runAction(action2);
+	uiLayer->addChild(manaImage);
+
+
+	//数字
+	auto action3 = FadeIn::create(2);
+	int mana = playerManager->getTurnPlayer()->getMana();
+	auto numberImage = Sprite::create("number.png", Rect(0 * mana, 0 , 0 * mana + 32, 32));
+	numberImage->setPosition(Vec2(visibleSize.width - numberImage->getContentSize().width * 4, numberImage->getContentSize().height * 2));
+	numberImage->setOpacity(0);
+	numberImage->setTag(NUMBERTAG);
+	numberImage->runAction(action3);
+	uiLayer->addChild(numberImage);
+
+	////フェイズ表記
+	//auto action4 = FadeIn::create(2);
+	//auto PhaseImage = Sprite::create("MAINPHASE.png");
+	//PhaseImage->setScale(0.2f);
+	//PhaseImage->setPosition(Vec2(PhaseImage->getContentSize().width, visibleSize.height - PhaseImage->getContentSize().height));
+	//PhaseImage->setOpacity(0);
+	//PhaseImage->setTag(PHASETAG);
+	//PhaseImage->runAction(action4);
+	//uiLayer->addChild(PhaseImage);
+
 }

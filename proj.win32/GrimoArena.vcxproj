@@ -244,6 +244,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\FileIO\CharaReader.h" />
     <ClInclude Include="..\Classes\Utility\FileIO\PlistReader.h" />
     <ClInclude Include="..\Classes\Utility\DeleteContainer.h" />
+    <ClInclude Include="..\Classes\Utility\Math\MyMath.h" />
     <ClInclude Include="..\Classes\Utility\Modal\ModalLayer.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\FadeScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\IScene.h" />

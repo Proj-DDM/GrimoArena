@@ -5,9 +5,14 @@ USING_NS_CC;
 
 ModalLayer* ModalLayer::create(EventListener* listener){
 
+	return ModalLayer::create(listener, "Window.png", "Ok.png", "No.png");
+}
+
+ModalLayer* ModalLayer::create(EventListener* listener, const std::string& window, const std::string& okButton, const std::string& NoButton){
+
 	auto obj = new ModalLayer();
 
-	if (obj && obj->init(listener)){
+	if (obj && obj->init(listener, window, okButton, NoButton)){
 		obj->retain();
 		obj->autorelease();
 		return obj;
@@ -15,9 +20,10 @@ ModalLayer* ModalLayer::create(EventListener* listener){
 
 	CC_SAFE_DELETE(obj);
 	return nullptr;
+
 }
 
-bool ModalLayer::init(EventListener* listener)
+bool ModalLayer::init(EventListener* listener, const std::string& windowImage, const std::string& okButton, const std::string& NoButton)
 {
 	if (!Layer::init()){
 		return false;
@@ -29,15 +35,15 @@ bool ModalLayer::init(EventListener* listener)
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	auto window = cocos2d::Sprite::create("Window.png");
+	auto window = cocos2d::Sprite::create(windowImage);
 
 	window->setPosition(cocos2d::Director::getInstance()->getWinSize() / 2);
 
 	this->addChild(window);
 
-	this->addButton(window, "Ok.png", "Ok.png", CC_CALLBACK_1(ModalLayer::onYesButton, this), YES);
+	this->addButton(window, okButton, okButton, CC_CALLBACK_1(ModalLayer::onYesButton, this), YES);
 
-	this->addButton(window, "No.png", "No.png", CC_CALLBACK_1(ModalLayer::onNoButton,this),NO);
+	this->addButton(window, NoButton, NoButton, CC_CALLBACK_1(ModalLayer::onNoButton, this), NO);
 
 	this->listner = listener;
 	

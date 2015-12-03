@@ -15,8 +15,12 @@ class StagePanel;
 
 class StageManager : public cocos2d::Node {
 	
-protected:
-	
+#define ICONTAG   1111
+#define MANATAG   1112
+#define NUMBERTAG 1113
+#define PHASETAG  1114
+
+protected:	
 	StageManager() = default;
 	
 	~StageManager();
@@ -51,12 +55,13 @@ public:
 
 	const cocos2d::Color3B& getTurnPlayerColor();
 
+	void setUI();
+
 private:
 	PanelContainer m_Container;
 	CharacterFactory factory;
 	CharacterManager* manager;
 	PlayerManager* playerManager;
-	Player*            player;
 	Parameter mParam;
 	CharacterID mId;
 	int mTestTrun;

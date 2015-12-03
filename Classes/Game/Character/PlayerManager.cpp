@@ -70,3 +70,17 @@ void PlayerManager::push(cocos2d::Vec2 pos, int number, std::string name){
 Player* PlayerManager::getTurnPlayer(){
 	return m_Players.at(SequenceManager::GetInstance()->getTurnPlayer());
 }
+
+cocos2d::Sprite* PlayerManager::createIcon()
+{
+	if (SequenceManager::GetInstance()->getTurnPlayer() == PLAYER1)
+	{
+		return cocos2d::Sprite::create("playericon.png");
+	}
+	else
+	{
+		return cocos2d::Sprite::create("player2icon.png");
+	}
+
+	return nullptr;
+}

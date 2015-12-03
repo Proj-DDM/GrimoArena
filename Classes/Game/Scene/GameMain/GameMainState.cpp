@@ -5,6 +5,7 @@
 #include "../../../Utility/FileIO/CharaReader.h"
 #include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 #include "Game/Scene/GameMain/Sequence/OperationSequence.h"
+#include "Game/Scene/Result/ResultScene.h"
 
 using namespace cocos2d;
 
@@ -43,7 +44,10 @@ bool GameMainState::init(Layer* layer){
 
 void GameMainState::update(float at){
 
-	(this->*updateFunc[mSceneState])(at);
+	if (mSceneState <= SCENEEND)
+	{
+		(this->*updateFunc[mSceneState])(at);
+	}
 }
 
 void GameMainState::fadeIn(float at){
@@ -55,7 +59,12 @@ void GameMainState::sceneMain(float at){
 }
 
 void GameMainState::fadeOut(float at){	
-	mSceneState = FADEIN;	
+	mSceneState = SCENEEND;	
+
+	auto nextScene = SceneCreator::createScene(ResultScene::create());
+	auto scene = TransitionFade::create(1.5f, nextScene, Color3B::BLACK);
+
+	Director::getInstance()->replaceScene(scene);
 }
 
 void GameMainState::mainStart(float at){

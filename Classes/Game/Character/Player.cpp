@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Utility/Math/MyMath.h"
 using namespace cocos2d;
 
 
@@ -50,4 +51,9 @@ cocos2d::Rect Player::getBoundingBox() const {
 
 const cocos2d::Vec2& Player::getPosition() const {
 	return sprite->getPosition();
+}
+
+void Player::mathMana(const int value){
+	this->mana += value;
+	this->mana = MyMath::clamp(this->mana, 0, 6);
 }

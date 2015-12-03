@@ -34,8 +34,10 @@ public:
 	//¶¬
 	static ModalLayer* create(EventListener* listener);
 
+	static ModalLayer* create(EventListener* listener,const std::string& window,const std::string& okButton,const std::string& NoButton);
+
 	//‰Šú‰»
-	virtual bool init(EventListener* listener);
+	virtual bool init(EventListener* listener, const std::string& window, const std::string&  okButton, const std::string& NoButton);
 
 	//‰æ–Ê‚ªƒ^ƒbƒ`‚³‚ê‚½
 	virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event); 
