@@ -31,7 +31,11 @@ public:
 
 	void isTouch(cocos2d::Vec2 touchPos);				//フィールドへのタッチ処理
 
-	void move(cocos2d::Vec2 touchPos);					//プレイヤーの移動
+	void move(const cocos2d::Vec2& touchPos);					//プレイヤーの移動
+
+	void onPushYesButton();
+
+	void onPushNoButton();
 
 	/*----------------------------------------------------------------------
 	|	・タッチ始め
@@ -48,6 +52,8 @@ private:
 	Player* mTurnPlayer;
 
 	MOVE_STATUS isPlayerMove { TOUCH };
+
+	cocos2d::Vec2 touchPos;
 
 };
 

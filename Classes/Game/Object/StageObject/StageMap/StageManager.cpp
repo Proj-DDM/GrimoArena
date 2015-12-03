@@ -5,6 +5,7 @@
 #include "Utility/DeleteContainer.h"
 #include "StagePanel.h"
 #include "../../../Character/PlayerDeck.h"
+#include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 
 using namespace cocos2d;
 
@@ -132,4 +133,8 @@ Player* StageManager::getTurnPlayer(){
 
 	return playerManager->getTurnPlayer();
 
+}
+
+const cocos2d::Color3B& StageManager::getTurnPlayerColor(){
+	return playerColorArray[SequenceManager::GetInstance()->getTurnPlayer()];
 }

@@ -2,8 +2,6 @@
 #define TITLESCENE_H
 
 #include "TitleState.h"
-#include "Utility/Audio/ADX2Player.h"
-
 
 class TitleScene : public cocos2d::Layer
 {
@@ -28,9 +26,6 @@ public:
 	|	・タッチ終わり
 	----------------------------------------------------------------------*/
 	virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
-    
-    ADX2Player* ply;
-
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include "SequenceManager.h"
 #include "BattleSequence.h"
 #include "Game\Object\StageObject\StageMap/StageManager.h"
+#include "Utility/Modal/ModalLayer.h"
 
 OperationSequence::OperationSequence(StageManager* stageManager) : ISequence(stageManager)
 {
@@ -39,7 +40,7 @@ void OperationSequence::end(float at){
 	
 	SequenceManager::GetInstance()->nextScene(new BattelSequence(mStageManager));
 
-	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER1){
+	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2){
 		mState = S_START;
 		return;
 	}
@@ -83,15 +84,35 @@ void OperationSequence::isTouch(cocos2d::Vec2 touchPos){
 	move(touchPos);
 }
 
-void OperationSequence::move(cocos2d::Vec2 touchPos){
+void OperationSequence::move(const cocos2d::Vec2& touchPos){
 
-	if (isPlayerMove != MOVE) return;
+
+	int number = (((int)touchPos.x - 32) / 64) + (((int)touchPos.y - 128) / 64 * 9);
+
+	if (isPlayerMove != MOVE || mStageManager->getPanel(number)->getColor() != mStageManager->getTurnPlayerColor()) return;
+
+	this->touchPos = touchPos;
+
+	ModalLayer::EventListener* listener = ModalLayer::EventListener::create();
+	listener->onButtonYes = CC_CALLBACK_0(OperationSequence::onPushYesButton, this);
+	listener->onButtonNo = CC_CALLBACK_0(OperationSequence::onPushNoButton, this);
+
+	auto modalLayer = ModalLayer::create(listener);
+	auto isScene = cocos2d::Director::getInstance()->getRunningScene();
+
+	isScene->addChild(modalLayer);
+}
+
+void OperationSequence::onEndSequence()
+{
+	mState = S_END;
+}
+
+void OperationSequence::onPushYesButton(){
 
 	int number = (((int)touchPos.x - 32) / 64) + (((int)touchPos.y - 128) / 64 * 9);
 
 	auto sprite = mStageManager->getPanel(number)->getColor();
-
-	if (mStageManager->getPanel(number)->getColor() != cocos2d::Color3B::BLUE) return ;
 
 	if (mStageManager->getPanel(number)->getPosition() == mTurnPlayer->getPosition()) return;
 
@@ -100,7 +121,7 @@ void OperationSequence::move(cocos2d::Vec2 touchPos){
 	isPlayerMove = NULL_MOVE;
 }
 
-void OperationSequence::onEndSequence()
-{
-	mState = S_END;
+void OperationSequence::onPushNoButton(){
+	
+	isPlayerMove = TOUCH;
 }

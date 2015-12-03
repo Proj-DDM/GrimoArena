@@ -48,6 +48,9 @@ public:
 	int touchPos(cocos2d::Point pos);
 
 	Player* getTurnPlayer();
+
+	const cocos2d::Color3B& getTurnPlayerColor();
+
 private:
 	PanelContainer m_Container;
 	CharacterFactory factory;
@@ -58,6 +61,7 @@ private:
 	CharacterID mId;
 	int mTestTrun;
 	std::array<int, 25> mTestArray;
+	std::array<cocos2d::Color3B, 2> playerColorArray { { cocos2d::Color3B::BLUE, cocos2d::Color3B::RED } };
 
 public:
 	int				   mCount;
