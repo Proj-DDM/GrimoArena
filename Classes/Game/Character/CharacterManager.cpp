@@ -1,8 +1,11 @@
 #include "CharacterManager.h"
 #include "Character.h"
 
+<<<<<<< HEAD
 
 #define MAX_ARRAY  25
+=======
+>>>>>>> origin/mega
 using namespace cocos2d;
 
 CharacterManager::CharacterManager()

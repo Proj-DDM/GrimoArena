@@ -124,11 +124,6 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 }
 
 
-
-void StageManager::onTouchEnd(cocos2d::Point pos) {
-	
-}
-
 StagePanel* StageManager::getPanel(int number){
 	if (!m_Container[number]) return nullptr;
 
