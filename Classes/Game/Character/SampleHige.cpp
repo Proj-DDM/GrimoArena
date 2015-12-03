@@ -16,7 +16,7 @@ Hige::~Hige()
 
 bool Hige::init(const cocos2d::Vec2& position)
 {
-	sprite = Sprite::create("mon3_tati_r.png");
+	sprite = Sprite::create("chara_03.png");
 	//sprite->setScale(0.1f);
 	id = CharacterID::WaterAttribute;
 	addChild(sprite);

@@ -18,7 +18,7 @@ public:
 	void update(float deltaTime);
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
-	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
 	CharacterID getCharacterID()const
@@ -29,11 +29,6 @@ public:
 	Parameter getParameter()const
 	{
 		return nowParameter;
-	}
-
-	bool getIsSummons()const
-	{
-		return isSummons;
 	}
 
 protected:
@@ -50,7 +45,6 @@ private:
 
 	CharacterID nowCharacterID;
 	Parameter nowParameter;
-	bool isSummons;
 };
 
 

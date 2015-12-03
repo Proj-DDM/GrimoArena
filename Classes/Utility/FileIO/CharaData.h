@@ -7,13 +7,6 @@ struct Move
 {
 	int x;
 	int y;
-
-	bool operator != (const Move& move)
-	{
-		if (this->x != move.x)return true;
-		if (this->y != move.y) return true;
-		return false;
-	}
 };
 
 struct CharaData

@@ -61,8 +61,3 @@ void Character::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 
 }
-
-void Character::setOpacity(int alpha)
-{
-	sprite->setOpacity(alpha);
-}

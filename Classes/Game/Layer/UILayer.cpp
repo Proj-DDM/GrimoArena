@@ -2,7 +2,6 @@
 #include "../../Utility/cocosAssistant/ListenerAssistant.h"
 #include "../Character/PlayerDeck.h"
 #include "../Character/CharacterPanel.h"
-#include "../UI/ParameterView.h"
 
 using namespace cocos2d;
 
@@ -19,16 +18,13 @@ bool UILayer::init()
 
 	auto onTouchBegan = CC_CALLBACK_2(UILayer::onTouchBegan, this);
 	auto onTouchEnd = CC_CALLBACK_2(UILayer::onTouchEnded, this);
-	auto onTouchMoved = CC_CALLBACK_2(UILayer::onTouchMoved, this);
 
-	ListenerAssistant::setupSingleTouchListener(this, false, onTouchBegan, onTouchMoved, onTouchEnd, nullptr);
+	ListenerAssistant::setupSingleTouchListener(this, false, onTouchBegan, nullptr, onTouchEnd, nullptr);
 	playerDeck = PlayerDeck::create();
 	this->addChild(playerDeck);
 	this->schedule(schedule_selector(UILayer::update));
 	this->scheduleUpdate();
-	view = ParameterView::create();
-	addChild(view);
-	view->setVisible(false);
+
 	setTag(1);
 
 
@@ -42,24 +38,15 @@ void UILayer::update(float deltaTime)
 }
 
 bool UILayer::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
-	//auto touch = getParent()->getChildByName("");
-	if (!playerDeck->onTouchBegan(touch, event))
-	{
-		view->setVisible(false);
-		return false;
-	}
-	
+	/*auto sprite = Sprite::create("kamata.JPG");
+	sprite->setScale(.2f);
+	sprite->setPosition(300, 300);
+	this->addChild(sprite);*/
 	return true;
 }
 
-void UILayer::onTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event)
-{
-	playerDeck->onTouchMoved(touch,event);
-}
+void UILayer::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 
-void UILayer::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
-{
-	playerDeck->onTouchEnded(touch, event);
 }
 
 UILayer* UILayer::create()

@@ -5,13 +5,10 @@
 #include "../../Utility/cocosAssistant/ListenerAssistant.h"
 #include "Character.h"
 #include "SampleHige.h"	
-#include "SampleKamata.h"
-#include "CharacterFactory.h"
-#include "../UI/ParameterView.h"
 
 using namespace cocos2d;
 
-PlayerDeck::PlayerDeck() :nowCharacterID(CharacterID::Length),isSummons(false)
+PlayerDeck::PlayerDeck() :nowCharacterID(CharacterID::FireAttribute)
 {
 
 }
@@ -36,6 +33,10 @@ bool PlayerDeck::init()
 	sprite->setColor(Color3B::GREEN);
 	setName("Deck");
 
+	auto onTouchBegan = CC_CALLBACK_2(PlayerDeck::onTouchBegan, this);
+	auto onTouchEnd = CC_CALLBACK_2(PlayerDeck::onTouchEnded, this);
+
+	ListenerAssistant::setupSingleTouchListener(this, false, onTouchBegan, nullptr, onTouchEnd, nullptr);
 
 	sprite->setPosition(Director::getInstance()->getWinSize().width / 2, 60);
 	addChild(sprite);
@@ -69,14 +70,12 @@ void PlayerDeck::deckInit()
 	//PositionX positionX{ 46, 118, 192, 266, 336, 406 };
 	int positionX[] = { 46, 118, 192, 266, 336, 406 };
 	
-	CharacterFactory factory;
-	factory.init();
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0],60)));
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 60)));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 60)));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[3], 60)));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[4], 60)));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 60)));
+	add(Hige::create(Vec2(positionX[0], 60)));
+	add(Hige::create(Vec2(positionX[1], 60)));
+	add(Hige::create(Vec2(positionX[2], 60)));
+	add(Hige::create(Vec2(positionX[3], 60)));
+	add(Hige::create(Vec2(positionX[4], 60)));
+	add(Hige::create(Vec2(positionX[5], 60)));
 }
 
 void PlayerDeck::update(float deltaTime)
@@ -96,38 +95,14 @@ void PlayerDeck::update(float deltaTime)
 
 bool PlayerDeck::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	isSummons = false;
-	
 	for (auto& panel : deck)
 	{
-		if (panel->onTouchBegan(touch, event))
-		{
-			isSummons = true;
-			CharacterFactory factory;
-			factory.init();
-			auto character = factory.create(panel->getCharacterID(),touch->getLocation());
-			character->setName("summon");
-			character->setOpacity(80);
-			addChild(character);
-			auto view = dynamic_cast<ParameterView*>(getParent()->getChildByName("View"));
-			view->setParameter(panel->getParameter());
-			continue;
-		}
+		panel->onTouchBegan(touch,event);
 	}
-	if (isSummons) return true;
-	return false;
-}
-
-void PlayerDeck::onTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event)
-{
-	Node* sprite = getChildByName("summon");
-	Vec2 delta = touch->getDelta();
-	Vec2 position = sprite->getPosition();
-	Vec2 newPosition = position + delta;
-	sprite->setPosition(newPosition);
+	return true;
 }
 
 void PlayerDeck::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	removeChildByName("summon");
+
 }
