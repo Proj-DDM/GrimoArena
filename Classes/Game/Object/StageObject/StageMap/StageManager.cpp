@@ -70,8 +70,8 @@ void StageManager::changeColor(Node* node) {
 
 }
 
-int StageManager::onTouchBegan(cocos2d::Point pos) {
-	if (pos.y <= 120) return false;
+int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
+	if (touch->getLocation().y <= 120) return false;
 	auto uiLayer = getParent()->getParent()->getChildByTag(1);
 	mId = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
 	mParam = Parameter(10, 10, 10);
@@ -83,7 +83,7 @@ int StageManager::onTouchBegan(cocos2d::Point pos) {
 		ui->setParameter(manager->getParameter());
 	}
 
-	this->touchPos(pos);
+	this->touchPos(touch->getLocation());
 }
 
 void StageManager::onTouchMove(cocos2d::Point pos) {}
@@ -104,13 +104,11 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 
 	mIsChengeColor = true;
 
-	int panelNumber = this->touchPos(pos);
-
 	auto test = PanelCore::isCreate(panelNumber);
 
 	if (panelNumber >= 0 && PanelCore::isCreate(panelNumber)){
 		Vec2 pos = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
-		manager->add(factory.create(mId, mParam, pos));
+		manager->add(factory.create(mId, pos));
 
 		StagePanel* panel = getPanel(panelNumber);
 		if (mIsChengeColor == true) {

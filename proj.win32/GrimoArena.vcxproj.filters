@@ -210,6 +210,9 @@
     <ClCompile Include="..\Classes\Game\Character\PlayerManager.cpp">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Game\UI\ParameterView.cpp">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -360,6 +363,12 @@
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\PlayerManager.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\UI\ParameterPtr.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\UI\ParameterView.h">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
   </ItemGroup>
