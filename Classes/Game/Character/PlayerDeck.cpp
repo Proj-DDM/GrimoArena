@@ -60,6 +60,7 @@ PlayerDeck* PlayerDeck::create()
 void PlayerDeck::add(Character* panel)
 {
 	addChild(panel);
+	panel->setScale(0.4f);
 	deck.push_back(panel);
 }
 
@@ -67,16 +68,16 @@ void PlayerDeck::deckInit()
 {
 	//using PositionX = std::vector < int > ;
 	//PositionX positionX{ 46, 118, 192, 266, 336, 406 };
-	int positionX[] = { 46, 118, 192, 266, 336, 406 };
+	int positionX[] = { 128, 400 , 286, 700, 950, 1200 };
 	
 	CharacterFactory factory;
 	factory.init();
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0],60)));
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 60)));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 60)));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[3], 60)));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[4], 60)));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 60)));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 150)));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 150)));
+	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 150)));
+	add(factory.create(CharacterID::Kamata,			Vec2(positionX[3], 150)));
+	add(factory.create(CharacterID::FireAttribute,	Vec2(positionX[4], 150)));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 150)));
 }
 
 void PlayerDeck::update(float deltaTime)

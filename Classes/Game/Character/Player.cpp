@@ -57,3 +57,7 @@ void Player::mathMana(const int value){
 	this->mana += value;
 	this->mana = MyMath::clamp(this->mana, 0, 6);
 }
+
+cocos2d::Sprite* Player::setIcon(std::string textureName){
+	return nullptr;
+}

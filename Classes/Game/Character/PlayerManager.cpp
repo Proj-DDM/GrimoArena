@@ -1,11 +1,16 @@
 #include "PlayerManager.h"
 #include "Player.h"
 #include "../Scene/GameMain/Sequence/SequenceManager.h"
-
+#include <array>
 
 #define PLAYER1_START_NUM 4
 #define PLAYER2_START_NUM 94
 
+namespace
+{
+	std::array< std::string, 2 > iconNames = { "playericon.png" , "player2icon.png" };
+
+}
 
 PlayerManager::PlayerManager()
 {
@@ -73,14 +78,12 @@ Player* PlayerManager::getTurnPlayer(){
 
 cocos2d::Sprite* PlayerManager::createIcon()
 {
-	if (SequenceManager::GetInstance()->getTurnPlayer() == PLAYER1)
+	if (SequenceManager::GetInstance()->getTurnPlayer() < PLAYER2)
 	{
-		return cocos2d::Sprite::create("playericon.png");
+		return cocos2d::Sprite::create(iconNames.at(SequenceManager::GetInstance()->getTurnPlayer()));
 	}
 	else
 	{
-		return cocos2d::Sprite::create("player2icon.png");
+		return nullptr;
 	}
-
-	return nullptr;
 }

@@ -33,9 +33,13 @@ public:
 
 	const int getMana() { return this->mana; }
 
+	cocos2d::Sprite* setIcon(std::string textureName);
+
 private:
 
 	int mana { 0 };
+
+	cocos2d::Sprite* icon;
 	
 };
 
