@@ -16,7 +16,7 @@ Kamata::~Kamata()
 
 bool Kamata::init(const cocos2d::Vec2& position)
 {
-	sprite = Sprite::create("mon2_tati_r.png");
+	sprite = Sprite::create("Chara/fairy_blue.png");
 	//sprite->setScale(0.1f);
 	addChild(sprite);
 	id = CharacterID::FireAttribute;
