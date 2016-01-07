@@ -191,6 +191,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Utility\SceneSupport\SceneCreator.cpp" />
     <ClCompile Include="..\Classes\Utility\Timer\Timer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mana.cpp" />
+    <ClCompile Include="PlayerUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
@@ -250,7 +252,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\SceneSupport\IScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\SceneCreator.h" />
     <ClInclude Include="..\Classes\Utility\Timer\Timer.h" />
+    <ClInclude Include="CharactorCore.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="Mana.h" />
+    <ClInclude Include="PlayerUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

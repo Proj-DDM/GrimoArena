@@ -138,9 +138,6 @@
     <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageManager.cpp">
       <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.cpp">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Utility\SceneSupport\FadeScene.cpp">
       <Filter>Classes\Utility\SceneSupport</Filter>
     </ClCompile>
@@ -237,6 +234,11 @@
     <ClCompile Include="..\Classes\Game\UI\ParameterView.cpp">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.cpp">
+      <Filter>Classes\Game\Object\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp" />
+    <ClCompile Include="Mana.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -413,6 +415,11 @@
     <ClInclude Include="..\Classes\Utility\Math\MyMath.h">
       <Filter>Classes\Utility\Math</Filter>
     </ClInclude>
+    <ClInclude Include="CharactorCore.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h" />
+    <ClInclude Include="Mana.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

@@ -33,6 +33,8 @@ bool GameMainScene::init(){
 	auto onTouchBegan = CC_CALLBACK_2(GameMainScene::onTouchBegan, this);
 	auto onTouchEnd = CC_CALLBACK_2(GameMainScene::onTouchEnded, this);
 
+	auto size = cocos2d::Director::getInstance()->getVisibleSize();
+
 	ListenerAssistant::setupSingleTouchListener(this, true, onTouchBegan, nullptr, onTouchEnd, nullptr);
 
     auto node = Node::create();
@@ -42,7 +44,7 @@ bool GameMainScene::init(){
 
 	auto endButton = cocos2d::MenuItemImage::create("turnend.png", "turnend.png",CC_CALLBACK_0(GameMainScene::onEndButton,this));
 
-	endButton->setPosition(cocos2d::Vec2(endButton->getContentSize().width, 750));
+	endButton->setPosition(cocos2d::Vec2(endButton->getContentSize().width / 4, size.height - endButton->getContentSize().height / 2));
 	endButton->setScale(0.5f);
 	auto menu = cocos2d::Menu::create(endButton,nullptr);
 	menu->setPosition(cocos2d::Point::ZERO);

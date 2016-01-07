@@ -5,7 +5,7 @@
 #include "PanelData.h"
 
 
-#define PANELSIZE 64
+#define PANELSIZE 120
 
 
 enum class ObjectType : int;

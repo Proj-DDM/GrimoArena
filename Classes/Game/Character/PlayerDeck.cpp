@@ -9,6 +9,7 @@
 #include "CharacterFactory.h"
 #include "../UI/ParameterView.h"
 
+
 using namespace cocos2d;
 
 PlayerDeck::PlayerDeck() :nowCharacterID(CharacterID::Length),isSummons(false)
@@ -31,13 +32,13 @@ bool PlayerDeck::init()
 {
 	if ( !Node::init() ) return false;
 	deck.clear();
-	auto sprite = Sprite::create();
-	sprite->setTextureRect(Rect(0, 0, 1024, 100));
-	sprite->setColor(Color3B::GREEN);
+	auto sprite = Sprite::create("ui_party_frame.png");
+	//sprite->setTextureRect(Rect(0, 0, 1024, 400));
+	//sprite->setColor(Color3B::GREEN);
 	setName("Deck");
 
 
-	sprite->setPosition(Director::getInstance()->getWinSize().width / 2, 60);
+	sprite->setPosition(Director::getInstance()->getWinSize().width / 2, sprite->getContentSize().height / 2);
 	addChild(sprite);
 	deckInit();
 	return true;
@@ -60,7 +61,6 @@ PlayerDeck* PlayerDeck::create()
 void PlayerDeck::add(Character* panel)
 {
 	addChild(panel);
-	panel->setScale(0.4f);
 	deck.push_back(panel);
 }
 
@@ -68,16 +68,18 @@ void PlayerDeck::deckInit()
 {
 	//using PositionX = std::vector < int > ;
 	//PositionX positionX{ 46, 118, 192, 266, 336, 406 };
-	int positionX[] = { 128, 400 , 286, 700, 950, 1200 };
-	
+	int positionX[] = { ICONSIZE / 2, positionX[0] + ICONSIZE, positionX[1] + ICONSIZE, 
+				positionX[2] + ICONSIZE, positionX[3] + ICONSIZE, positionX[4] + ICONSIZE };
+	auto ui = this->getChildByName("Deck");
+
 	CharacterFactory factory;
 	factory.init();
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 150)));
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 150)));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 150)));
-	add(factory.create(CharacterID::Kamata,			Vec2(positionX[3], 150)));
-	add(factory.create(CharacterID::FireAttribute,	Vec2(positionX[4], 150)));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 150)));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], ICON_RENDER_HEIGHT)));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], ICON_RENDER_HEIGHT)));
+	add(factory.create(CharacterID::Kamata,			Vec2(positionX[2], ICON_RENDER_HEIGHT)));
+	add(factory.create(CharacterID::Kamata,			Vec2(positionX[3], ICON_RENDER_HEIGHT)));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[4], ICON_RENDER_HEIGHT)));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], ICON_RENDER_HEIGHT)));
 }
 
 void PlayerDeck::update(float deltaTime)

@@ -32,7 +32,6 @@ bool UILayer::init()
 	setTag(1);
 
 
-
 	return true;
 }
 

@@ -14,9 +14,10 @@ struct Parameter
 	Move move;
 	int attribute;
 	int vect[25];
+	int stock { -1 };
 
 
-	Parameter() :hp(0), attackPoint(0), speed(0), cost(0), attribute(0),name("")
+	Parameter() :hp(0), attackPoint(0), speed(0), cost(0), attribute(0), name(""), stock( 3 )
 	{
 
 	}

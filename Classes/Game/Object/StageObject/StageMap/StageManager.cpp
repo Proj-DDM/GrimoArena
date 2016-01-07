@@ -9,6 +9,7 @@
 #include "../../../UI/ParameterView.h"
 
 
+
 using namespace cocos2d;
 
 StageManager::~StageManager(){
@@ -45,9 +46,7 @@ bool StageManager::init() {
 
 	addChild(manager);
 
-	auto pos = this->getPanel(4)->getPosition();
-
-	//プレイヤーマネージャーの実装（予定）
+	//プレイヤーマネージャー
 	playerManager = PlayerManager::create();
 	auto pos1 = this->getPanel(4)->getPosition();
 	auto pos2 = this->getPanel(94)->getPosition();
@@ -96,7 +95,7 @@ int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
 void StageManager::onTouchMove(cocos2d::Point pos) {}
 
 void StageManager::onTouchEnd(cocos2d::Point pos) {
-	if (pos.y <= 120) return;
+	//if (pos.y <= this->getPanel(0)->getPositionY() - this->getPanel(0)->getContentSize().height / 2) return;
 
 	auto uiLayer = getParent()->getParent()->getChildByTag(1);
 	auto deck = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"));
@@ -104,20 +103,15 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 	int panelNumber = this->touchPos(pos);
 	mIsChengeColor = true;
 
-	auto test = PanelCore::isCreate(panelNumber);
-
 	if (panelNumber >= 0 && PanelCore::isCreate(panelNumber) && deck->getIsSummons()){
-		Vec2 addPosition = Vec2((panelNumber % 9 + 1) * 64 - 16, (panelNumber / 9 + 1) * 64 + 96);
-		auto obj = factory.create(deck->getCharacterID(), addPosition);
+		
+		//召喚予定パネルを取得
+		StagePanel* panel = this->getPanel(panelNumber);
 
-		if (playerManager->getTurnPlayer()->getMana() < obj->getParameter().cost) return;
+		//召喚
+		 if(!summon(deck->getCharacterID(), panel->getPosition())) return;
 
-		playerManager->getTurnPlayer()->mathMana(-(obj->getParameter().cost));
-
-		manager->add(obj);
-
-		StagePanel* panel = getPanel(panelNumber);
-
+		//色変更が可能なら
 		if (mIsChengeColor == true) {
 			auto changer = std::make_shared< ColorChange >();
 			changer->changeColor(panel->getChildByName(panel->getName()), panelNumber, m_Container, mTestTrun);
@@ -142,7 +136,7 @@ int StageManager::touchPos(cocos2d::Point pos){
 	for (auto& node : m_Container){
 
 		Rect targetBox = node->getBoundingBox();
-		targetBox.setRect(targetBox.getMinX() - 32, targetBox.getMinY() - 32,
+		targetBox.setRect(targetBox.getMinX() - PANELSIZE / 2, targetBox.getMinY() - PANELSIZE / 2,
 			node->getContentSize().width, node->getContentSize().height);
 
 		if (targetBox.containsPoint(pos)){
@@ -163,50 +157,51 @@ const cocos2d::Color3B& StageManager::getTurnPlayerColor(){
 	return playerColorArray[SequenceManager::GetInstance()->getTurnPlayer()];
 }
 
-//namespace{
-//	void setSprite(Node* node, const Vec2& pos, const std::string& name, int tag){
-//
-//	}
-//}
-
 void StageManager::setUI()
 {
 	auto uiLayer = this->getParent()->getParent()->getChildByTag(1);
 
-	if (uiLayer->getChildByTag(ICONTAG)) uiLayer->removeChildByTag(ICONTAG);
-	if (uiLayer->getChildByTag(MANATAG)) uiLayer->removeChildByTag(MANATAG);
-	if (uiLayer->getChildByTag(NUMBERTAG)) uiLayer->removeChildByTag(NUMBERTAG);
+	if (uiLayer->getChildByTag(ICONTAG))		 uiLayer->removeChildByTag(ICONTAG);
+	if (uiLayer->getChildByTag(NUMBERTAG))		 uiLayer->removeChildByTag(NUMBERTAG);
+	if (uiLayer->getChildByTag(ICONBACK))		 uiLayer->removeChildByTag(ICONBACK);
+	if (uiLayer->getChildByTag(PLAYER_HP_FRAME)) uiLayer->removeChildByTag(PLAYER_HP_FRAME);
+	if (uiLayer->getChildByTag(PLAYER_HP_BACK))  uiLayer->removeChildByTag(PLAYER_HP_BACK);
+	if (uiLayer->getChildByTag(HP_FRAME_BACK))	 uiLayer->removeChildByTag(HP_FRAME_BACK);
 
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	auto action = FadeIn::create(2);
 
+	//アイコン背景
+	auto iconBack = Sprite::create("UI/Player/UI_PlayerFrame.png");
+	iconBack->setPosition(Vec2(iconBack->getContentSize().width / 2.8f, iconBack->getContentSize().height * 1.25));
+	iconBack->setTag(ICONBACK);
+	uiLayer->addChild(iconBack);
+
 	//プレイヤーアイコン
 	auto icon = playerManager->createIcon();
-	icon->setPosition(Vec2(visibleSize.width - icon->getContentSize().width / 2, icon->getContentSize().height / 2));
-	icon->setOpacity(0);
+	icon->setPosition(Vec2(icon->getContentSize().width / 1.85, icon->getContentSize().height * 2.1));
 	icon->setTag(ICONTAG);
-	icon->runAction(action);
 	uiLayer->addChild(icon);
 
-	//マナ画像
-	auto action2 = FadeIn::create(2);
-	auto manaImage = Sprite::create("mana.png");
-	manaImage->setPosition(Vec2(visibleSize.width - manaImage->getContentSize().width * 5, manaImage->getContentSize().height * 2));
-	manaImage->setOpacity(0);
-	manaImage->setTag(MANATAG);
-	manaImage->runAction(action2);
-	uiLayer->addChild(manaImage);
+	//HPバックバー
+	auto hpBackBar = Sprite::create("UI/Player/hp_framebg.png");
+	hpBackBar->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, hpBackBar->getContentSize().height * 4.8));
+	hpBackBar->setTag(ICONTAG);
+	uiLayer->addChild(hpBackBar);
 
+	//HPバー
+	auto hpBar = Sprite::create("UI/Player/p_player.png");
+	hpBar->setPosition(Vec2(hpBackBar->getPositionX() + 50, hpBackBar->getPositionY()));
+	hpBar->setTag(ICONTAG);
+	uiLayer->addChild(hpBar);
 
-	//数字
-	auto action3 = FadeIn::create(2);
-	int mana = playerManager->getTurnPlayer()->getMana();
-	auto numberImage = Sprite::create("number.png", Rect(0 * mana, 0 , 0 * mana + 32, 32));
-	numberImage->setPosition(Vec2(visibleSize.width - numberImage->getContentSize().width * 4, numberImage->getContentSize().height * 2));
-	numberImage->setOpacity(0);
-	numberImage->setTag(NUMBERTAG);
-	numberImage->runAction(action3);
-	uiLayer->addChild(numberImage);
+	//HPフレーム
+	auto hpFrame = Sprite::create("UI/Player/hp_frame.png");
+	hpFrame->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, hpFrame->getContentSize().height * 4.8));
+	hpFrame->setTag(PLAYER_HP_FRAME);
+	uiLayer->addChild(hpFrame);
+
+	uiLayer->addChild(playerManager->createManaDisplay());
 
 	////フェイズ表記
 	//auto action4 = FadeIn::create(2);
@@ -217,5 +212,21 @@ void StageManager::setUI()
 	//PhaseImage->setTag(PHASETAG);
 	//PhaseImage->runAction(action4);
 	//uiLayer->addChild(PhaseImage);
+
+}
+
+bool StageManager::summon(const CharacterID& id,const Vec2& position)
+{
+	auto obj = factory.create(id, position  - Vec2(PANELSIZE / 2, PANELSIZE / 2));
+
+	//召喚コスト分のマナがあるなら召喚
+	if (playerManager->getTurnPlayer()->getMana() < obj->getParameter().cost) return false;
+
+	//マナを消費
+	playerManager->mathMana(-(obj->getParameter().cost));
+
+	manager->add(obj);
+
+	return true;
 
 }

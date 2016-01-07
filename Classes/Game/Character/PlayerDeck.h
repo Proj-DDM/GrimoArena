@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "CharacterType.h"
 #include "CharacterParameter.h"
+#include <array>
 
 class CharacterPanel;
 class Character;

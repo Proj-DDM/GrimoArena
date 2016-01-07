@@ -33,10 +33,10 @@ void CharacterManager::update(test_FUNC func)
 	//コールバックで移動先のパネルの色を変えます
 	if (i % 60 == 0){
 		std::for_each(container.begin(), container.end(), [func](Character* obj){
-			obj->setPositionY(obj->getPositionY() + 64);
+			obj->setPositionY(obj->getPositionY() + 120);
 			
 			cocos2d::Vec2 pos = obj->getPosition() - cocos2d::Vec2(0,19);
-			int number = (((int)obj->getPositionX() - 32) / 64)  + (((int)obj->getPositionY() - 160) / 64 * 9);
+			int number = (((int)obj->getPositionX() - 32) / 120)  + (((int)obj->getPositionY() - 160) / 120 * 9);
 			func(number);
 		});
 
