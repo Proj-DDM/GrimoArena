@@ -5,6 +5,7 @@
 #include "CharacterParameter.h"
 #include "CharacterType.h"
 #include <vector>
+#include "CharactorCore.h"
 
 class Character : public cocos2d::Node
 {

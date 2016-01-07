@@ -38,6 +38,11 @@ bool GameMainState::init(Layer* layer){
 	camera = new cocos2d::ActionCamera();
 	camera->autorelease();
 	camera->startWithTarget(layer);
+	//camera->retain();
+
+	//camera->setCenter(Vec3(camera->getCenter().x + 0.1f, camera->getCenter().y, camera->getCenter().z));
+
+	//camera->setEye(Vec3(camera->getEye().x + 0.1f, camera->getEye().y, camera->getEye().z));
 
 	return true;
 }
@@ -59,6 +64,9 @@ void GameMainState::sceneMain(float at){
 }
 
 void GameMainState::fadeOut(float at){	
+	
+	camera->release();
+
 	mSceneState = SCENEEND;	
 
 	auto nextScene = SceneCreator::createScene(ResultScene::create());

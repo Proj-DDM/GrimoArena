@@ -1,7 +1,6 @@
 ﻿#include "BattleSequence.h"
 #include "SequenceManager.h"
-#include
- "EndSequence.h"
+#include "EndSequence.h"
 #include <array>
 #include <math.h>
 #include <Windows.h>

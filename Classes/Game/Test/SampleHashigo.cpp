@@ -16,10 +16,10 @@ Hashigo::~Hashigo()
 
 bool Hashigo::init(const cocos2d::Vec2& position)
 {
-	sprite = Sprite::create("Chara/fairy_red.png");
+	sprite = Sprite::create("gaea.png");
 	addChild(sprite);
 	id = CharacterID::Kamata;
-	sprite->setPosition(position);
+	sprite->setPosition(position); 
 	return true;
 }
 

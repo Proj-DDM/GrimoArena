@@ -28,14 +28,7 @@ void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 		panel->setContentSize(Size(panelSize, panelSize));
 		node->addChild(panel);
 		container->push_back(panel);
-		//ビルボード
-		/*auto camera = new cocos2d::ActionCamera();
 
-		camera->autorelease();
-		camera->setTarget(block);
-		auto eye = camera->getEye();
-		eye.y = 0.00000003;
-		camera->setEye(eye);*/
 
 		if (changeCount == createSize.x) {
 			++createPosCount.y;
@@ -46,7 +39,7 @@ void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 		++count;
 
 		createPos.x = createPosCount.x * panelSize + 16;
-		createPos.y = createPosCount.y * panelSize + 124;
+		createPos.y = createPosCount.y * panelSize + 350;
 		panel->setPosition(Vec2(
 			createPos.x + panelSize, createPos.y + panelSize));
 
