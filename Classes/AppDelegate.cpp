@@ -7,11 +7,6 @@
 
 using namespace cocos2d;
 
-static cocos2d::Size designResolutionSize = cocos2d::Size(320, 480);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(320, 480);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(768 * 0.8, 1024 * 0.8);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
-
 AppDelegate::AppDelegate() {
 
 }
@@ -45,7 +40,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	if (!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-		glview = GLViewImpl::createWithRect("GrimoArena", Rect(0, 0, mediumResolutionSize.width, mediumResolutionSize.height));
+		glview = GLViewImpl::createWithRect("GrimoArena", Rect(0, 0, 360,640));
 #else
 		glview = GLViewImpl::create("GrimoArena");
 #endif
@@ -56,16 +51,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setDisplayStats( true );
 	director->setAnimationInterval( 1.f / 60.f );
 
-	glview->setDesignResolutionSize(mediumResolutionSize.width, mediumResolutionSize.height, ResolutionPolicy::SHOW_ALL);
+
+	glview->setDesignResolutionSize(720.0f, 1280.0f, ResolutionPolicy::SHOW_ALL);
 	Size frameSize = glview->getFrameSize();
-
-	if (frameSize.width > mediumResolutionSize.width) {
-		director->setContentScaleFactor(MIN(largeResolutionSize.width / designResolutionSize.width, largeResolutionSize.height / designResolutionSize.height));
-	}
-
-	else if (frameSize.width > smallResolutionSize.width) {
-		director->setContentScaleFactor(MIN(smallResolutionSize.width / designResolutionSize.width, smallResolutionSize.height / designResolutionSize.height));
-	}
 
 	register_all_packages;
 
