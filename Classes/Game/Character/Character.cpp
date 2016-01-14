@@ -1,6 +1,7 @@
 #include "Character.h"
 #include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 using namespace cocos2d;
+#include "Utility/Camera/Camera.h"
 
 Character::Character(const Parameter& param)
 :parameter(param), isTouch(false)

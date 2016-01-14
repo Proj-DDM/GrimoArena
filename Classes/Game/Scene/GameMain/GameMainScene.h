@@ -5,13 +5,16 @@
 
 class GameMainScene : public cocos2d::Layer
 {
+private:
+	cocos2d::Layer* uiLayer;
+
 public:
 	GameMainScene();
 	~GameMainScene();
 
-	static GameMainScene* create();
+	static GameMainScene* create(cocos2d::Layer* layer);
 
-	bool init();
+	bool init(cocos2d::Layer* layer);
 
 	GameMainState* mState;
 
@@ -19,15 +22,21 @@ public:
 
 	void onEndButton();
 
+	void onViewButton();
+
 	/*----------------------------------------------------------------------
 	|	・タッチ始め
 	----------------------------------------------------------------------*/
 	virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 
+	//タッチ中
+	virtual void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+
 	/*----------------------------------------------------------------------
 	|	・タッチ終わり
 	----------------------------------------------------------------------*/
 	virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
+
 };
 
 #endif

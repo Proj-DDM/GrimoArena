@@ -1,25 +1,52 @@
-#ifndef CAMERA_H
-#define CAMERA_H
+#ifndef CUSTOMCAMERA_H
+#define CUSTOMCAMERA_H
 
-#include "Common.h"
+#include  "cocos2d.h"
 
-NS_BEGIN(Util)
+USING_NS_CC;
 
-class Camera : public Node
+#include "Utility/Template/Singleton.h"
+//#include "Utility/Action/Follow/CustomFollow.h"
+
+class CustomCamera : public Singleton<CustomCamera>
 {
 public:
-	CREATE_FUNC(Camera);
 
-public:
-	Camera();
-	~Camera();
+	~CustomCamera();
 
-	bool init();
+	void createCamera();
 
+	void setTargetLayer(Layer* layer);
+
+	void setFollowTarget(Node* node);
+
+	void startLayer();
+
+	void stopLayer();
+
+	void removeTarget();
+
+	void removeTargetLayer();
+
+	void stopFollwTarget();
+
+	void againFollowTaget();
+
+	void setEye(const Vec3& eye);
+
+	void moveEye(const Vec3& eye);
+
+	void setPosition(const Vec3& position);
 
 private:
+	Node* target{ nullptr };
+	Layer* layer;
+	//CustomAction::CustomFollow* follow{ nullptr };
+	ActionCamera* camera{ nullptr };
 
+	CustomCamera();
+
+	friend class Singleton< CustomCamera >;
 };
 
-NS_END
 #endif //end_of Camera.h

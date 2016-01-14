@@ -55,6 +55,8 @@ public:
 	----------------------------------------------------------------------*/
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 
+	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
+
 	/*----------------------------------------------------------------------
 	|	・タッチ終わり
 	----------------------------------------------------------------------*/
@@ -64,6 +66,9 @@ public:
 	|	・シークエンス終了ボタン
 	----------------------------------------------------------------------*/
 	void onEndButton();
+
+	//カメラ切り替え
+	void onViewButton();
 
 private:
 	/*------------------------------------------------------------------
@@ -89,6 +94,8 @@ private:
 	StageManager* mStageManager;
 	cocos2d::ActionCamera* camera;
 	int mCount;
+	cocos2d::Vec2  movePos;
+	bool    isView{ false };
 };
 
 #endif

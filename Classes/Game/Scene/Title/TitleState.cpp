@@ -60,7 +60,8 @@ void TitleState::fadeOut(float at){
 	mSceneState = SCENEEND;
 
 	//シーン切り替え
-	auto firstScene = SceneCreator::createScene(GameMainScene::create(), UILayer::create());
+	auto uiLayer = UILayer::create();
+	auto firstScene = SceneCreator::createScene(GameMainScene::create(uiLayer),uiLayer );
 	auto scene = TransitionFade::create(1.5f, firstScene, Color3B::BLACK);
 
 	Director::getInstance()->replaceScene(scene);

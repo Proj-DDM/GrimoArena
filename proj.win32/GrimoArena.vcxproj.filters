@@ -94,6 +94,12 @@
     <Filter Include="Classes\Utility\Math">
       <UniqueIdentifier>{af999775-759e-4d15-8001-edafb229dc05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Utility\Camera">
+      <UniqueIdentifier>{07a9b1e3-4810-4784-be19-693bd8c3ccad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Utility\Template">
+      <UniqueIdentifier>{89138386-1f3f-4b17-8db8-ba7832d2bfd5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -239,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="PlayerUI.cpp" />
     <ClCompile Include="Mana.cpp" />
+    <ClCompile Include="..\Classes\Utility\Camera\Camera.cpp">
+      <Filter>Classes\Utility\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -420,6 +429,15 @@
     </ClInclude>
     <ClInclude Include="PlayerUI.h" />
     <ClInclude Include="Mana.h" />
+    <ClInclude Include="Common.h">
+      <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\Template\Singleton.h">
+      <Filter>Classes\Utility\Template</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\Camera\Camera.h">
+      <Filter>Classes\Utility\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

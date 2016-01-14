@@ -39,6 +39,7 @@ public:
 		return isTouch;
 	}
 
+	cocos2d::Sprite* getSprite(){ return this->sprite; };
 
 protected:
 	Parameter parameter;

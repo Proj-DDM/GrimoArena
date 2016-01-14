@@ -90,7 +90,9 @@ void ResultState::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 
 void ResultState::onPushYesButton(){
 
-	auto firstScene = SceneCreator::createScene(GameMainScene::create(), UILayer::create());
+	auto uiLayer = UILayer::create();
+
+	auto firstScene = SceneCreator::createScene(GameMainScene::create(uiLayer),uiLayer);
 	auto scene = TransitionFade::create(1.5f, firstScene, Color3B::BLACK);
 
 	Director::getInstance()->replaceScene(scene);
