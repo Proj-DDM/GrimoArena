@@ -6,6 +6,7 @@
 #include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 #include "Game/Scene/GameMain/Sequence/OperationSequence.h"
 #include "Game/Scene/Result/ResultScene.h"
+#include "Utility/Camera/Camera.h"
 
 using namespace cocos2d;
 
@@ -35,14 +36,9 @@ bool GameMainState::init(Layer* layer){
 
 	mCount = 0;
 
-	camera = new cocos2d::ActionCamera();
-	camera->autorelease();
-	camera->startWithTarget(layer);
-	//camera->retain();
-
-	//camera->setCenter(Vec3(camera->getCenter().x + 0.1f, camera->getCenter().y, camera->getCenter().z));
-
-	//camera->setEye(Vec3(camera->getEye().x + 0.1f, camera->getEye().y, camera->getEye().z));
+	CustomCamera::getInstance().createCamera();
+	CustomCamera::getInstance().setTargetLayer(this->parentLayer);
+	CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer());
 
 	return true;
 }
@@ -97,7 +93,18 @@ bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 
 	SequenceManager::GetInstance()->onTouchBegan(touch, event);
 	
+	if (isView) this->movePos = touch->getLocation();
+
 	return true;
+}
+
+void GameMainState::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	if (!isView) return;
+
+	CustomCamera::getInstance().moveEye(Vec3(this->movePos.x - touch->getLocation().x, this->movePos.y - touch->getLocation().y, 0));
+
+	this->movePos = touch->getLocation();
 }
 
 void GameMainState::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
@@ -106,5 +113,24 @@ void GameMainState::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 }
 
 void GameMainState::onEndButton(){
+	CustomCamera::getInstance().removeTarget();
+
 	SequenceManager::GetInstance()->setEndSequence();
+
+	CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
+}
+
+void GameMainState::onViewButton(){
+	if (this->isView)
+	{
+		CustomCamera::getInstance().removeTarget();
+		CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
+	}
+	else
+	{
+		CustomCamera::getInstance().removeTarget();
+		CustomCamera::getInstance().startLayer();
+	}
+
+	this->isView = !this->isView;
 }

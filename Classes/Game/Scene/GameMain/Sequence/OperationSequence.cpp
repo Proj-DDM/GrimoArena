@@ -3,6 +3,7 @@
 #include "BattleSequence.h"
 #include "Game\Object\StageObject\StageMap/StageManager.h"
 #include "Utility/Modal/ModalLayer.h"
+#include "Utility/Camera/Camera.h"
 
 OperationSequence::OperationSequence(StageManager* stageManager) : ISequence(stageManager)
 {
@@ -57,7 +58,7 @@ bool OperationSequence::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* even
 	if (mState != S_MAIN ) return false;
 
 
-	cocos2d::Vec2 touchPoint = touch->getLocation();
+	cocos2d::Vec2 touchPoint = touch->getLocation() - CustomCamera::getInstance().getLayerPos();
 
 	mStageManager->onTouchBegan(touch,event);
 

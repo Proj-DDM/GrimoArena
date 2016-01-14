@@ -6,7 +6,7 @@
 USING_NS_CC;
 
 //–¼‘O‹óŠÔ‚ð‚Â‚¯‚é‚±‚Æ‚É‚æ‚Á‚Ä “Ç‚Ý‚Ã‚ç‚­‚È‚é‚Ì‚ð‰ñ”ð‚·‚éˆ×
-#define NS_BEGIN(type) namespace type {
+#define NS_BEGIN(_type_) namespace _type_ {
 #define NS_END }
 
 

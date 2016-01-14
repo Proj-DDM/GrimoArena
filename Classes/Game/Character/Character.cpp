@@ -1,5 +1,6 @@
 #include "Character.h"
 using namespace cocos2d;
+#include "Utility/Camera/Camera.h"
 
 Character::Character(const Parameter& param)
 	:parameter(param), isTouch(false)
