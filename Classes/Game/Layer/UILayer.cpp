@@ -74,3 +74,8 @@ UILayer* UILayer::create()
 	CC_SAFE_DELETE(layer);
 	return nullptr;
 }
+
+bool UILayer::isSummon() const
+{
+	return this->playerDeck->getIsSummons();
+}

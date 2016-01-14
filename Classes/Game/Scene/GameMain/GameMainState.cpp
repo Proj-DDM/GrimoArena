@@ -1,4 +1,6 @@
 ﻿#include "GameMainState.h"
+#include "GameMainScene.h"
+
 #include "Utility/SceneSupport/SceneCreator.h"
 #include "Game/Test/TestScene.h"
 #include "Game/Object/StageObject/StageMap/StagePanel.h"
@@ -7,6 +9,8 @@
 #include "Game/Scene/GameMain/Sequence/OperationSequence.h"
 #include "Game/Scene/Result/ResultScene.h"
 #include "Utility/Camera/Camera.h"
+#include "Game/Layer/UILayer.h"
+
 
 using namespace cocos2d;
 
@@ -100,7 +104,7 @@ bool GameMainState::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
 
 void GameMainState::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 {
-	if (!isView) return;
+	if (!isView || dynamic_cast<UILayer*>(dynamic_cast<GameMainScene*>(this->parentLayer)->uiLayer)->isSummon()) return;
 
 	CustomCamera::getInstance().moveEye(Vec3(this->movePos.x - touch->getLocation().x, this->movePos.y - touch->getLocation().y, 0));
 

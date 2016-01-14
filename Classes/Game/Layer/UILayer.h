@@ -10,10 +10,11 @@ class UILayer:public cocos2d::Layer
 {
 public:
 	
-
 	static UILayer* create();
 
 	virtual bool init()override;
+
+	bool isSummon() const;
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);

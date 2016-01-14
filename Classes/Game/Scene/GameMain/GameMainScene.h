@@ -5,10 +5,10 @@
 
 class GameMainScene : public cocos2d::Layer
 {
-private:
+public:
+
 	cocos2d::Layer* uiLayer;
 
-public:
 	GameMainScene();
 	~GameMainScene();
 

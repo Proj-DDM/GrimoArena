@@ -1,5 +1,7 @@
 ﻿#include "GameMainScene.h"
 #include "Utility/CocosAssistant/ListenerAssistant.h"
+#include "Game/Layer/UILayer.h"
+
 
 GameMainScene::GameMainScene() {}
 
