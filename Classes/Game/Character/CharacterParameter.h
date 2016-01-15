@@ -6,17 +6,17 @@
 
 struct Parameter
 {
+	int speed;
 	std::string name;
 	HP hp;
 	int attackPoint;
-	int speed;
 	int cost;
 	Move move;
 	int attribute;
 	int vect[25];
+	int position;
 
-
-	Parameter() :hp(0), attackPoint(0), speed(0), cost(0), attribute(0),name("")
+	Parameter() :hp(0), attackPoint(0), speed(0), cost(0), attribute(0), name(""), position(0)
 	{
 
 	}

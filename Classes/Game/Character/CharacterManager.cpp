@@ -1,5 +1,6 @@
 #include "CharacterManager.h"
 #include "Character.h"
+#include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 
 #define MAX_ARRAY  25
 
@@ -26,20 +27,15 @@ bool CharacterManager::init()
 	return true;
 }
 
-void CharacterManager::update(test_FUNC func)
+void CharacterManager::update(float dt)
 {
-	static int i = 0;
-	i++;
-	//コールバックで移動先のパネルの色を変えます
-	if (i % 60 == 0){
-		std::for_each(container.begin(), container.end(), [func](Character* obj){
-			obj->setPositionY(obj->getPositionY() + 64);
-			
-			cocos2d::Vec2 pos = obj->getPosition() - cocos2d::Vec2(0,19);
-			int number = (((int)obj->getPositionX() - 32) / 64)  + (((int)obj->getPositionY() - 160) / 64 * 9);
-			func(number);
-		});
-
+	for (int i = 0; i < container.size();  ++i) {
+		if (container[i]->getParameter().hp.isDead())
+		{
+			auto act = RemoveSelf::create();
+			//container[i]->removeFromParent();
+			container[i]->runAction(act);
+		}
 	}
 }
 
@@ -53,14 +49,17 @@ std::array<int, MAX_ARRAY> CharacterManager::getContainer(int id) {
 	
 	std::array<int, MAX_ARRAY> charavect{};
 
-	if (container.empty() || container.size() < id ) return charavect;
+	//if (container.empty() || container.size() < id ) return charavect;
 	
 	for (int i = 0; i < MAX_ARRAY; ++i) {
-		//charavect[i] = container[id]->getParameter().vect[i];
+		charavect[i] = getParameter().vect[i];
 		CCLOG("%i", (int)container[0]->getParameter().vect[i]);
 	}
 	return charavect;
-	//charavect;
+}
+
+std::vector < Character* > CharacterManager::getCaras() {
+	return container;
 }
 
 CharacterManager* CharacterManager::create()

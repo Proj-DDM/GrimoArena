@@ -72,12 +72,12 @@ void PlayerDeck::deckInit()
 	
 	CharacterFactory factory;
 	factory.init();
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 150)));
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 150)));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 150)));
-	add(factory.create(CharacterID::Kamata,			Vec2(positionX[3], 150)));
-	add(factory.create(CharacterID::FireAttribute,	Vec2(positionX[4], 150)));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 150)));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 60), 0));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 60), 0));
+	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 60), 0));
+	add(factory.create(CharacterID::Kamata,         Vec2(positionX[3], 60), 0));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[4], 60), 0));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 60), 0));
 }
 
 void PlayerDeck::update(float deltaTime)
@@ -106,7 +106,7 @@ bool PlayerDeck::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 			isSummons = true;
 			CharacterFactory factory;
 			factory.init();
-			auto character = factory.create(panel->getCharacterID(),touch->getLocation());
+			auto character = factory.create(panel->getCharacterID(),touch->getLocation(), 0);
 			character->setName("summon");
 			character->setOpacity(80);
 			addChild(character);
@@ -126,6 +126,7 @@ void PlayerDeck::onTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event)
 	Vec2 delta = touch->getDelta();
 	Vec2 position = sprite->getPosition();
 	Vec2 newPosition = position + delta;
+	Parameter param;
 	sprite->setPosition(newPosition);
 }
 
