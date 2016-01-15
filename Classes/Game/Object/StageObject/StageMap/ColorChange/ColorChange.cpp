@@ -12,21 +12,28 @@ ColorChange::ColorChange() {}
 
 ColorChange::~ColorChange() {}
 
-void ColorChange::changeColor(Node* node, int value, PanelContainer container, int trun) {
+void ColorChange::changeColor(Node* node, int value, PanelContainer container, bool move, int user, std::array<int, 25> testarray) {
 	mBaseLine = Vec2(0,0);
 	mCharaLine = Vec2(0,0);
-	mTestTrun = trun;
-	setPanel(node, value, container, trun);
+	mUser = user;
+	mTestArray = testarray;
+	setPanel(node, value, container, move);
 }
 
-void ColorChange::setPanel(Node* node, int value, PanelContainer container, int trun) {
+void ColorChange::setPanel(Node* node, int value, PanelContainer container, bool move) {
 	//仮のキャラデータ
-	mTestArray = {0, 0, 0, 0, 0,
-				  0, 0, 1, 0, 0,
-				  0, 0, 2, 0, 0,
-				  0, 1, 0, 1, 0,
-				  0, 0, 0, 0, 0 };
+	if (move == true) {
+		mTestArray = 
+			{ 0, 0, 0, 0, 0,
+			  0, 0, 0, 0, 0,
+			  0, 0, 2, 0, 0,
+			  0, 0, 0, 0, 0,
+			  0, 0, 0, 0, 0 };
+	}
 	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2) {
+		std::reverse(mTestArray.begin(), mTestArray.end());
+	}
+	if (mUser == 3) {
 		std::reverse(mTestArray.begin(), mTestArray.end());
 	}
 
@@ -38,7 +45,6 @@ void ColorChange::setPanel(Node* node, int value, PanelContainer container, int 
 			mBaseLine.y = mCharaLine.y;
 			mCharaLine.x = 0;
 			mCharaLine.y = 0;
-			//CCLOG("%i", (int)mBaseLine.x);
 		}
 	}
 	checkColor(node, value, container);
@@ -62,13 +68,9 @@ void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
 			if (test_x >= 0 && test_x < 9){
 				mChangePanelNum =  value + mPanelLine.x + mPanelLine.y * 9;
 
-
 				if (mChangePanelNum < 0) continue;
-
 				if (mChangePanelNum > 98) return;
-
 				if (mChangePanelNum == P1POS) continue;
-
 				if (mChangePanelNum == P2POS) continue;
 
 				StagePanel* obj = container[mChangePanelNum];
@@ -80,16 +82,22 @@ void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
 }
 
 void ColorChange::setColor(StagePanel* node, int value) {
-	//ターン制が完成したら変え
-	//if (node->sprite->getColor() == Color3B::WHITE){
-	//}
-	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER1) {
+	if (mUser == 0) {
 		node->sprite->setColor(Color3B::BLUE);
-	} else {
-		node->sprite->setColor(Color3B::RED);
 	}
-}
-
-void ColorChange::allClear() {
-
+	else if (mUser == 1) {
+		node->sprite->setColor(Color3B::RED);
+	} else {
+		if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER1) {
+			node->sprite->setColor(Color3B::BLUE);
+		}
+		else {
+			node->sprite->setColor(Color3B::RED);
+		}
+	}
+	if (mUser == 3) {
+		node->sprite->setColor(Color3B::RED);
+	} else if (mUser == 4) {
+		node->sprite->setColor(Color3B::BLUE);
+	}
 }

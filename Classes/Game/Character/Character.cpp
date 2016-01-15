@@ -1,9 +1,16 @@
 #include "Character.h"
+#include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 using namespace cocos2d;
 
 Character::Character(const Parameter& param)
-	:parameter(param), isTouch(false)
+:parameter(param), isTouch(false)
 {
+	state = CharacterState::MoveWait;
+	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER1) {
+		this->user = CharacterUser::Player1;
+	} else if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2){
+		this->user = CharacterUser::Player2;
+	}
 	
 }
 
@@ -23,7 +30,6 @@ bool Character::init(const cocos2d::Vec2& position)
 Character* Character::create(const Parameter& param, const cocos2d::Vec2& position)
 {
 	auto chara = new Character(param);
-
 	if (chara && chara->init(position)){
 		chara->retain();
 		chara->autorelease();
@@ -35,9 +41,13 @@ Character* Character::create(const Parameter& param, const cocos2d::Vec2& positi
 }
 
 
-Parameter Character::getParameter(){
+Parameter& Character::getParameter(){
 
 	return this->parameter;
+}
+
+CharacterState& Character::getState() {
+	return this->state;
 }
 
 bool Character::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)

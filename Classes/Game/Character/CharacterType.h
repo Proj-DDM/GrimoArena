@@ -11,4 +11,19 @@ enum class CharacterID
 	Length
 };
 
+enum class CharacterUser {
+	Player1,
+	Player2
+};
+
+enum class CharacterState {
+	SupportWait,
+	SupportEnd,
+	MoveWait,
+	MoveEnd,
+	AttackWait,
+	AttackEnd,
+	Dead,
+};
+
 #endif

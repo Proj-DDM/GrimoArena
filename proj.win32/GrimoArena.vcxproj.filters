@@ -91,6 +91,9 @@
     <Filter Include="Classes\Game\Scene\Result">
       <UniqueIdentifier>{03559d25-9232-47fb-806e-76a701aacc2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Utility\Particle">
+      <UniqueIdentifier>{3ecda707-a049-4038-a8e8-ef675037998c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +233,10 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\Result\ResultState.cpp">
       <Filter>Classes\Game\Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\UI\ParameterView.cpp" />
+    <ClCompile Include="..\Classes\Utility\Particle\SimpleParticle.cpp">
+      <Filter>Classes\Utility\Particle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +404,14 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\DeleteContainer.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\UI\ParameterPtr.h" />
+    <ClInclude Include="..\Classes\Game\UI\ParameterView.h" />
+    <ClInclude Include="..\Classes\Game\Character\CharacterRemove.h">
+      <Filter>Classes\Game\Chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\Particle\SimpleParticle.h">
+      <Filter>Classes\Utility\Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

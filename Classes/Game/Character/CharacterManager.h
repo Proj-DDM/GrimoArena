@@ -17,11 +17,13 @@ public:
 	CharacterManager();
 	~CharacterManager();
 	bool init()override;
-	void update(test_FUNC func);
+	void update(float dt);
 	void add(Character* character);
 	void findPara(int id);
 	static CharacterManager* create();
 	std::array<int, 25> getContainer(int id);
+
+	std::vector < Character* > getCaras();
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	
@@ -31,7 +33,7 @@ public:
 	}
 
 private:
-	using CharacterContainer = std::vector < Character* > ;
+	using CharacterContainer = std::vector < Character* >;
 	CharacterContainer container;
 	Player* player;
 	Parameter parameter;

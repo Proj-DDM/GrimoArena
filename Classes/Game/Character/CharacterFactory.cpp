@@ -41,7 +41,7 @@ void CharacterFactory::add(CharacterID id, Function func)
 	container[id] = func;
 }
 
-Character* CharacterFactory::create(CharacterID id, const cocos2d::Vec2& position)
+Character* CharacterFactory::create(CharacterID id, const cocos2d::Vec2& position, int pos)
 {
 	std::string name;
 	name = converter.getCharacterName(id);
@@ -57,6 +57,7 @@ Character* CharacterFactory::create(CharacterID id, const cocos2d::Vec2& positio
 		parameter.attackPoint = charadata.attack;
 		parameter.attribute = charadata.attribute;
 		parameter.move = charadata.move;
+		parameter.position = pos;
 		assignment(parameter.vect, charadata.vect);
 		break;
 	}

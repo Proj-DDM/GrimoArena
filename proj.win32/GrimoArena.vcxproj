@@ -186,6 +186,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Utility\FileIO\CharaReader.cpp" />
     <ClCompile Include="..\Classes\Utility\FileIO\PlistReader.cpp" />
     <ClCompile Include="..\Classes\Utility\Modal\ModalLayer.cpp" />
+    <ClCompile Include="..\Classes\Utility\Particle\SimpleParticle.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\FadeScene.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\IScene.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\SceneCreator.cpp" />
@@ -200,6 +201,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Game\Character\CharacterManager.h" />
     <ClInclude Include="..\Classes\Game\Character\CharacterPanel.h" />
     <ClInclude Include="..\Classes\Game\Character\CharacterParameter.h" />
+    <ClInclude Include="..\Classes\Game\Character\CharacterRemove.h" />
     <ClInclude Include="..\Classes\Game\Character\CharacterType.h" />
     <ClInclude Include="..\Classes\Game\Character\HP.h" />
     <ClInclude Include="..\Classes\Game\Character\Player.h" />
@@ -245,6 +247,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\FileIO\PlistReader.h" />
     <ClInclude Include="..\Classes\Utility\DeleteContainer.h" />
     <ClInclude Include="..\Classes\Utility\Modal\ModalLayer.h" />
+    <ClInclude Include="..\Classes\Utility\Particle\SimpleParticle.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\FadeScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\IScene.h" />
     <ClInclude Include="..\Classes\Utility\SceneSupport\SceneCreator.h" />
