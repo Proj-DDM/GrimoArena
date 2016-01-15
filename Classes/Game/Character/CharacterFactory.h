@@ -23,7 +23,7 @@ public:
 	
 	void init();
 	void add(CharacterID id, Function);
-	Character* create(CharacterID id, const cocos2d::Vec2& position);
+	Character* create(CharacterID id, const cocos2d::Vec2& position, int pos);
 
 private:
 	Container container;

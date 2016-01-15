@@ -43,9 +43,9 @@ public:
 
 	void reset();
 
-	void changeColor(cocos2d::Node* node);
+	void checkOnPanel();
 
-	void focusPanel(cocos2d::Node* node);
+	void deadChangePanel(int user, int pos);
 
 	StagePanel* getPanel(int number);
 
@@ -56,6 +56,7 @@ public:
 	const cocos2d::Color3B& getTurnPlayerColor();
 
 	void setUI();
+	std::vector < Character* > getCaras();
 
 private:
 	PanelContainer m_Container;
@@ -65,6 +66,8 @@ private:
 	Parameter mParam;
 	CharacterID mId;
 	int mTestTrun;
+	using CharacterContainer = std::vector < Character* >;
+	CharacterContainer charaContainer;
 	std::array<int, 25> mTestArray;
 	std::array<cocos2d::Color3B, 2> playerColorArray { { cocos2d::Color3B::BLUE, cocos2d::Color3B::RED } };
 
