@@ -154,7 +154,6 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 		}
 	}
 }
-
 void StageManager::checkOnPanel() {
 	int changeNumber;
 	int charauser = 0;

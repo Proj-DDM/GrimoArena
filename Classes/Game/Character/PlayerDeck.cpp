@@ -72,7 +72,6 @@ void PlayerDeck::deckInit()
 	
 	CharacterFactory factory;
 	factory.init();
-
 	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 60), 0));
 	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 60), 0));
 	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 60), 0));

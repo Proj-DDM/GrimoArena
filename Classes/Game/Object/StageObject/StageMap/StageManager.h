@@ -56,6 +56,7 @@ public:
 	const cocos2d::Color3B& getTurnPlayerColor();
 
 	void setUI();
+
 	std::vector < Character* > getCaras();
 
 private:
