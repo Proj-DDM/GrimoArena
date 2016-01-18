@@ -55,6 +55,40 @@ static __TYPE__* create() \
     } \
 }
 
+#define CREATE_FUNC_(__TYPE__) \
+	static __TYPE__* create() \
+{ \
+	__TYPE__ *pRet = new(std::nothrow) __TYPE__(); \
+	if (pRet && pRet->init()) \
+	{ \
+	pRet->autorelease(); \
+	return pRet; \
+	} \
+	else \
+	{ \
+	delete pRet; \
+	pRet = NULL; \
+	return NULL; \
+	} \
+}
+
+#define CREATE_FUNC_PARAM1(__TYPE__,__PARAM__) \
+	static __TYPE__* create(__PARAM__ param) \
+{ \
+	__TYPE__ *pRet = new(std::nothrow) __TYPE__(); \
+	if (pRet && pRet->init(param)) \
+	{ \
+	pRet->autorelease(); \
+	return pRet; \
+	} \
+	else \
+	{ \
+	delete pRet; \
+	pRet = NULL; \
+	return NULL; \
+	} \
+}
+
 /** @def NODE_FUNC(__TYPE__)
  * Define a node function for a specific type, such as Layer.
  *

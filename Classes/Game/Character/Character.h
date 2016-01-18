@@ -5,6 +5,7 @@
 #include "CharacterParameter.h"
 #include "CharacterType.h"
 #include <vector>
+#include "CharactorCore.h"
 
 class Character : public cocos2d::Node
 {
@@ -38,6 +39,7 @@ public:
 		return isTouch;
 	}
 
+	cocos2d::Sprite* getSprite(){ return this->sprite; };
 
 protected:
 	Parameter parameter;

@@ -15,14 +15,14 @@ bool ParameterView::init()
 	
 	if (!Node::init()) return false;
 	auto backSprite = Sprite::create();
-	backSprite->setTextureRect(Rect(0, 0, 1024, 200));
+	backSprite->setTextureRect(Rect(0, 0, 1024, 300));
 	backSprite->setColor(Color3B::GREEN);
 	setName("View");
-	sprite = Sprite::create();
-	sprite->setPosition(Director::getInstance()->getWinSize().width / 2 + 200, 700);
+	sprite = Sprite::create(); 
+	sprite->setPosition(Director::getInstance()->getWinSize().width / 2 + 200, Director::getInstance()->getWinSize().height - sprite->getContentSize().height );
 	
 
-	backSprite->setPosition(Director::getInstance()->getWinSize().width / 2, 700);
+	backSprite->setPosition(Director::getInstance()->getWinSize().width / 2, Director::getInstance()->getWinSize().height - backSprite->getContentSize().height / 2);
 	addChild(backSprite);
 	addChild(sprite);
 	labelInit();

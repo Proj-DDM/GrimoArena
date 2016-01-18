@@ -12,7 +12,7 @@ void IPanel::createPanel() {
 	Vec2 createPosCount;
 
 	auto sprite = Sprite::create();
-	sprite->setTextureRect(Rect(0, 0, 50, 50));
+	sprite->setTextureRect(Rect(0, 0, 120, 120));
 	sprite->setColor(Color3B::WHITE);
 
 	createPos.x = createPosCount.x * sprite->getContentSize().width;

@@ -29,13 +29,14 @@ bool CharacterManager::init()
 
 void CharacterManager::update(float dt)
 {
-	for (int i = 0; i < container.size();  ++i) {
+	for (int i = 0; i < container.size(); ++i) {
 		if (container[i]->getParameter().hp.isDead())
 		{
 			auto act = RemoveSelf::create();
 			//container[i]->removeFromParent();
 			container[i]->runAction(act);
 		}
+
 	}
 }
 

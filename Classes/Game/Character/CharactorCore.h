@@ -1,0 +1,9 @@
+#ifndef CHARACTORCORE_H
+#define CHARACTORCORE_H
+
+#define ICONSIZE 120
+
+#define ICON_RENDER_HEIGHT 135
+
+
+#endif
