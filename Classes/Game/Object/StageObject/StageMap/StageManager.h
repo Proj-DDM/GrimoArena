@@ -50,7 +50,7 @@ public:
 
 	void checkOnPanel();
 
-	void deadChangePanel(int user, int pos);
+	void deadChangePanel(int user, int pos, std::array<int, 25> array);
 
 	StagePanel* getPanel(int number);
 

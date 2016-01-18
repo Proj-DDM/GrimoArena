@@ -145,7 +145,6 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 		 for (int i = 0; i < 25; ++i) {
 			 mTestArray[i] = charaContainer.back()->getParameter().vect[i];
 		 }
-		 mTestArray;
 
 		//色変更が可能なら
 		if (mIsChengeColor == true) {
@@ -163,22 +162,26 @@ void StageManager::checkOnPanel() {
 	for (int i = 0; i < charaContainer.size(); ++i) {
 		changeNumber = charaContainer.at(i)->getParameter().position;
 		charauser = (int)charaContainer.at(i)->getCharacterUser();
+		if (changeNumber < 0 || this->m_Container.size() < changeNumber) continue;
+
 		StagePanel* panel = getPanel(changeNumber);
 		auto changer = std::make_shared< ColorChange >();
 		changer->changeColor(panel->getChildByName(panel->getName()), changeNumber, m_Container, true, charauser, mTestArray);
 	}
 }
 
-void StageManager::deadChangePanel(int user, int pos) {
+void StageManager::deadChangePanel(int user, int pos, std::array<int, 25> array) {
 	int changeNumber;
 	int charauser = 0;
 	charaContainer = manager->getCaras();
 	for (int i = 0; i < charaContainer.size(); ++i) {
 		changeNumber = charaContainer.at(i)->getParameter().position;
 		charauser = (int)charaContainer.at(i)->getCharacterUser();
+
+		if (changeNumber < 0 || this->m_Container.size() < changeNumber) continue;
 		StagePanel* panel = getPanel(changeNumber);
 		auto changer = std::make_shared< ColorChange >();
-		changer->changeColor(panel->getChildByName(panel->getName()), pos, m_Container, false, user, mTestArray);
+		changer->changeColor(panel->getChildByName(panel->getName()), pos, m_Container, false, user, array);
 	}
 }
 

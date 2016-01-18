@@ -42,7 +42,7 @@ bool GameMainState::init(Layer* layer){
 
 	CustomCamera::getInstance().createCamera();
 	CustomCamera::getInstance().setTargetLayer(this->parentLayer);
-	CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer());
+	//CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer());
 
 	return true;
 }
@@ -64,8 +64,6 @@ void GameMainState::sceneMain(float at){
 }
 
 void GameMainState::fadeOut(float at){	
-	
-	camera->release();
 
 	mSceneState = SCENEEND;	
 
@@ -121,14 +119,14 @@ void GameMainState::onEndButton(){
 
 	SequenceManager::GetInstance()->setEndSequence();
 
-	CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
+	//CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
 }
 
 void GameMainState::onViewButton(){
 	if (this->isView)
 	{
 		CustomCamera::getInstance().removeTarget();
-		CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
+		//CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
 	}
 	else
 	{

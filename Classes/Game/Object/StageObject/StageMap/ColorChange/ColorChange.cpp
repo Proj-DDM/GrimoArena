@@ -33,7 +33,7 @@ void ColorChange::setPanel(Node* node, int value, PanelContainer container, bool
 	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2) {
 		std::reverse(mTestArray.begin(), mTestArray.end());
 	}
-	if (mUser == 3) {
+	if (mUser == 4) {
 		std::reverse(mTestArray.begin(), mTestArray.end());
 	}
 
@@ -58,7 +58,7 @@ void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
 
 	for (int i = 0; i < mTestArray.size(); ++i){
 		
-		if (mTestArray[i] >= 1 ){
+		if (mTestArray[i] >= 1){
 			mPanelLine.x = i % 5 - mBaseLine.x;
 			mPanelLine.y = (MAX_ARRAY - i) / 5 - mBaseLine.y;
 			//CCLOG("%i", (int)mPanelLine.x);
@@ -96,8 +96,8 @@ void ColorChange::setColor(StagePanel* node, int value) {
 		}
 	}
 	if (mUser == 3) {
-		node->sprite->setColor(Color3B::RED);
-	} else if (mUser == 4) {
 		node->sprite->setColor(Color3B::BLUE);
+	} else if (mUser == 4) {
+		node->sprite->setColor(Color3B::RED);
 	}
 }
