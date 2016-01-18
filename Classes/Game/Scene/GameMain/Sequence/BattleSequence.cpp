@@ -189,7 +189,13 @@ void  BattelSequence::deadCheck() {
 				CCLOG("dead : %i", i);
 				int pos = 0;
 				pos = container.at(i)->getParameter().position;
-				mStageManager->deadChangePanel(charauser + 2, pos);
+
+				std::array<int, 25> charavect{};
+				for (int k = 0; k < 25; ++k) {
+					charavect[k] = container.at(i)->getParameter().vect[k];
+				}
+
+				mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 			}
 		}
 		mStageManager->checkOnPanel();
@@ -223,7 +229,7 @@ void BattelSequence::move(int id, int user) {
 	if (container.at(id)->getCharacterUser() == CharacterUser::Player2) {
 		moveCount = -1 * moveCount;
 	}
-	moveVelocity = charaPosY + moveCount * 64;
+	moveVelocity = charaPosY + moveCount * PANELSIZE;
 	correctionCount = container.at(id)->getParameter().move.y * 9;
 	if (container.at(id)->getCharacterUser() == CharacterUser::Player2) {
 		correctionCount = -1 * correctionCount;
@@ -233,8 +239,7 @@ void BattelSequence::move(int id, int user) {
 			correctionCount / container.at(id)->getParameter().move.y;
 	}
 	for (int i = 0; i < container.size(); ++i) {
-		if (container.at(id)->getParameter().position + correctionCount ==
-			container.at(i)->getParameter().position ||
+		if (container.at(id)->getParameter().position + correctionCount == container.at(i)->getParameter().position ||
 			stopCount == container.at(i)->getParameter().position) {
 			container.at(id)->getState() = CharacterState::MoveEnd;
 			return;
@@ -301,7 +306,14 @@ void BattelSequence::checkPos(int pos) {
 				if (container.at(i)->getParameter().hp.isDead() == true) {
 					int pos;
 					pos = container.at(i)->getParameter().position;
-					mStageManager->deadChangePanel(charauser + 2, pos);
+
+
+					std::array<int, 25> charavect{};
+					for (int k = 0; k < 25; ++k) {
+						charavect[k] = container.at(i)->getParameter().vect[k];
+					}
+
+					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 				}
 			}
 			if (charauser == 2) {
@@ -311,7 +323,13 @@ void BattelSequence::checkPos(int pos) {
 				if (container.at(i)->getParameter().hp.isDead() == true) {
 					int pos;
 					pos = container.at(i)->getParameter().position;
-					mStageManager->deadChangePanel(charauser + 2, pos);
+
+					std::array<int, 25> charavect{};
+					for (int k = 0; k < 25; ++k) {
+						charavect[k] = container.at(i)->getParameter().vect[k];
+					}
+
+					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 				}
 			}
 		}
