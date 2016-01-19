@@ -100,15 +100,24 @@
     <Filter Include="Classes\Utility\Template">
       <UniqueIdentifier>{89138386-1f3f-4b17-8db8-ba7832d2bfd5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Game\Chara\Player\UI">
+      <UniqueIdentifier>{067c0257-fd8e-49aa-acb9-3ba4f9b90c2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Chara\Util">
+      <UniqueIdentifier>{f42a0ad0-e125-40c5-be33-95d2e161bff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Chara\Other">
+      <UniqueIdentifier>{c5244d9e-970d-4fe5-b5ca-f1236d89e2be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Object\StageObject\StageMap\Util">
+      <UniqueIdentifier>{50edcc9a-5a5e-43e2-b436-62d1fe5d6985}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\GameMain\GameMainScene.cpp">
@@ -138,32 +147,11 @@
     <ClCompile Include="..\Classes\Utility\Timer\Timer.cpp">
       <Filter>Classes\Utility\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageFactory.cpp">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageManager.cpp">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Utility\SceneSupport\FadeScene.cpp">
       <Filter>Classes\Utility\SceneSupport</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Utility\FileIO\CharaReader.cpp">
       <Filter>Classes\Utility\FileIO</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\Character.cpp">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\CharacterFactory.cpp">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\CharacterManager.cpp">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\CharacterPanel.cpp">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\HP.cpp">
-      <Filter>Classes\Game\Chara</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Layer\UILayer.cpp">
       <Filter>Classes\Game\Layer</Filter>
@@ -183,9 +171,6 @@
     <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\ColorChange\ColorChange.cpp">
       <Filter>Classes\Game\Object\StageObject\StageMap\ColorChange</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Game\Character\CharacterIDConverter.cpp">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\StandbyPhase.cpp">
       <Filter>Classes\Game\Scene\GameMain\Sequence\Phase</Filter>
     </ClCompile>
@@ -197,9 +182,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\EndSequence.cpp">
       <Filter>Classes\Game\Scene\GameMain\Sequence\End</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.cpp">
-      <Filter>Classes\Game\Scene\GameMain\Sequence\Operation</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\SequenceManager.cpp">
       <Filter>Classes\Game\Scene\GameMain\Sequence\Etc</Filter>
@@ -243,10 +225,41 @@
     <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.cpp">
       <Filter>Classes\Game\Object\StageObject</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerUI.cpp" />
-    <ClCompile Include="Mana.cpp" />
     <ClCompile Include="..\Classes\Utility\Camera\Camera.cpp">
       <Filter>Classes\Utility\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Mana.cpp">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp">
+      <Filter>Classes\Game\Chara\Player\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\CharacterFactory.cpp">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\CharacterIDConverter.cpp">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\HP.cpp">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Character.cpp">
+      <Filter>Classes\Game\Chara\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\CharacterManager.cpp">
+      <Filter>Classes\Game\Chara\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\CharacterPanel.cpp">
+      <Filter>Classes\Game\Chara\Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageFactory.cpp">
+      <Filter>Classes\Game\Object\StageObject\StageMap\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\StageManager.cpp">
+      <Filter>Classes\Game\Object\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.cpp">
+      <Filter>Classes\Game\Scene\GameMain\Sequence\Etc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,9 +267,6 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Object\StageObject\ObjectType.h">
@@ -292,15 +302,6 @@
     <ClInclude Include="..\Classes\Utility\Timer\Timer.h">
       <Filter>Classes\Utility\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageFactory.h">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageManager.h">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.h">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Utility\SceneSupport\FadeScene.h">
       <Filter>Classes\Utility\SceneSupport</Filter>
     </ClInclude>
@@ -309,27 +310,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\FileIO\CharaReader.h">
       <Filter>Classes\Utility\FileIO</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\Character.h">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\CharacterFactory.h">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\CharacterManager.h">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\CharacterPanel.h">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\CharacterParameter.h">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\CharacterType.h">
-      <Filter>Classes\Game\Chara</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\HP.h">
-      <Filter>Classes\Game\Chara</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Layer\UILayer.h">
       <Filter>Classes\Game\Layer</Filter>
@@ -348,9 +328,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\ColorChange\ColorChange.h">
       <Filter>Classes\Game\Object\StageObject\StageMap\ColorChange</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\CharacterIDConverter.h">
-      <Filter>Classes\Game\Chara</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Scene\GameMain\Sequence\StandbyPhase.h">
       <Filter>Classes\Game\Scene\GameMain\Sequence\Phase</Filter>
@@ -382,9 +359,6 @@
     <ClInclude Include="..\Classes\Game\Test\HigePanel.h">
       <Filter>Classes\Game\Chara\Test</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\PanelCore.h">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\PlayerDeck.h">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
@@ -412,9 +386,6 @@
     <ClInclude Include="..\Classes\Game\Scene\Result\ResultState.h">
       <Filter>Classes\Game\Scene\Result</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Utility\DeleteContainer.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\UI\ParameterPtr.h">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
@@ -424,19 +395,62 @@
     <ClInclude Include="..\Classes\Utility\Math\MyMath.h">
       <Filter>Classes\Utility\Math</Filter>
     </ClInclude>
-    <ClInclude Include="CharactorCore.h">
-      <Filter>Classes\Game\Chara\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerUI.h" />
-    <ClInclude Include="Mana.h" />
-    <ClInclude Include="Common.h">
-      <Filter>Classes\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Utility\Template\Singleton.h">
       <Filter>Classes\Utility\Template</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\Camera\Camera.h">
       <Filter>Classes\Utility\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Mana.h">
+      <Filter>Classes\Game\Chara\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h">
+      <Filter>Classes\Game\Chara\Player\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterFactory.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterIDConverter.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterParameter.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="CharactorCore.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterType.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\HP.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Character.h">
+      <Filter>Classes\Game\Chara\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterManager.h">
+      <Filter>Classes\Game\Chara\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterPanel.h">
+      <Filter>Classes\Game\Chara\Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\PanelCore.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageFactory.h">
+      <Filter>Classes\Game\Object\StageObject\StageMap\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\DeleteContainer.h">
+      <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\Common.h">
+      <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StageManager.h">
+      <Filter>Classes\Game\Object\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.h">
+      <Filter>Classes\Game\Object\StageObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

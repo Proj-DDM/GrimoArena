@@ -1,94 +1,70 @@
 #include "Camera.h"
 
-void CustomCamera::createCamera()
+NS_BEGIN(gremo)
+
+namespace
 {
-	if (this->camera) return;
-
-	this->camera = new ActionCamera();
+	#define CAMERAS	Director::getInstance()->getRunningScene()->getCameras()
+	#define POSITIONZ -300
 }
 
-void CustomCamera::setTargetLayer(Layer* layer)
+void Camera::setLookAt(const Vec2& eye)
 {
-	if (this->layer) this->removeTargetLayer();
+	auto setPoint = Vec3(eye.x, eye.y, POSITIONZ);
 
-	this->layer = layer;
+	this->camera->setPosition3D(setPoint);
 
-	this->startLayer();
+	this->lookAt = setPoint;
 }
 
-void CustomCamera::startLayer()
+void Camera::moveLookAt(const Vec2& eye)
 {
-	this->followTargetEye = Vec3::ZERO;
+	auto movePoint = Vec3(this->lookAt.x + eye.x, this->lookAt.y + eye.y, POSITIONZ);
 
-	this->camera->startWithTarget(this->layer);
+	this->camera->setPosition3D(movePoint);
 
+	this->lookAt = movePoint;
 }
 
-void CustomCamera::stopLayer()
+void Camera::movePosition(const Vec2& position)
 {
-	this->camera->stop();
-	delete this->camera;
-	this->camera = new ActionCamera();
-	this->layer->stopAllActions();
+	auto cameraPos = this->getCameraPosition();
+	this->camera->setPosition3D(Vec3(cameraPos.x + position.x, cameraPos.y + position.y, POSITIONZ));
+
+	this->moveLookAt(position);
 }
 
-void CustomCamera::setFollowTarget(Node* node)
+void Camera::setPosition(const Vec2& position)
 {
-	this->layer->stopAllActions();
+	this->camera->setPosition3D(Vec3(position.x, position.y, POSITIONZ));
 
-	this->follow = CustomAction::CustomFollow::create(node);
-
-	this->layer->runAction(this->follow);
-
-	this->target = node;
-	
-	this->moveEye(-this->followTargetEye);
-
+	this->setLookAt(position);
 }
 
-void CustomCamera::removeTarget()
+const Vec2& Camera::getCameraPosition()
 {
-	this->layer->stopAction(this->follow);
-	this->target = nullptr;
+	auto position = this->camera->getPosition3D();
 
-}
+	return Vec2(position.x, position.y);
+};
 
-void CustomCamera::removeTargetLayer()
+const Vec2& Camera::convertTouchPosition(Touch* touch)
 {
-	this->camera->stop();
-	this->layer->stopAllActions();
-	this->layer = nullptr;
-
+	return this->camera->convertTouchToNodeSpace(touch);
 }
 
-void CustomCamera::stopFollwTarget()
+void Camera::setUseCamera(const CameraFlag& flag)
 {
-	this->layer->stopAction(this->follow);
-	this->follow = nullptr;
+	auto scene = Director::getInstance()->getRunningScene();
+	auto test = scene->getCameras();
+
+	for (cocos2d::Camera* camera : CAMERAS)
+	{
+		if (camera->getCameraFlag() == flag)
+		{
+			this->camera = camera;
+		}
+	}
 }
 
-void CustomCamera::againFollowTaget()
-{
-	this->camera->setEye(this->followTargetEye);
-
-	this->follow = CustomAction::CustomFollow::create(this->target);
-
-	this->layer->runAction(this->follow);
-
-}
-
-void CustomCamera::setEye(const Vec3& eye)
-{
-	this->camera->setEye(eye);
-
-	this->camera->setCenter(Vec3(this->camera->getEye().x, this->camera->getEye().y, 0));
-}
-
-void CustomCamera::moveEye(const Vec3& eye){
-
-	this->followTargetEye += eye;
-
-	this->camera->setEye(Vec3(this->camera->getEye().x + eye.x, this->camera->getEye().y + eye.y, 10));
-
-	this->camera->setCenter(Vec3(this->camera->getEye().x, this->camera->getEye().y,0));
-}
+NS_END

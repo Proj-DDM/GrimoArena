@@ -7,50 +7,37 @@ USING_NS_CC;
 
 #include "Utility/Template/Singleton.h"
 #include "Utility/Action/Follow/CustomFollow.h"
+#include "Utility/Common.h"
 
-class CustomCamera : public Singleton<CustomCamera>
+NS_BEGIN(gremo)
+
+class Camera : public Singleton<Camera>
 {
 public:
 
-	~CustomCamera() = default;
+	~Camera() = default;
 
-	void createCamera();
+	void setLookAt(const Vec2& eye);
 
-	void setTargetLayer(Layer* layer);
+	void moveLookAt(const Vec2& eye);
 
-	void setFollowTarget(Node* node);
+	void movePosition(const Vec2& position);
+	
+	void setPosition(const Vec2& position);
 
-	void startLayer();
+	const Vec2& getCameraPosition();
 
-	void stopLayer();
+	const Vec2& convertTouchPosition(Touch* touch);
 
-	void removeTarget();
-
-	void removeTargetLayer();
-
-	void stopFollwTarget();
-
-	void againFollowTaget();
-
-	void setEye(const Vec3& eye);
-
-	void moveEye(const Vec3& eye);
-
-	void setPosition(const Vec3& position);
-
-	const Vec2& getLayerPos() { return this->layer->getPosition(); };
+	void setUseCamera(const CameraFlag& flag);
 
 private:
-	Node* target{ nullptr };
-	Layer* layer{ nullptr };
-	CustomAction::CustomFollow* follow{ nullptr };
-	ActionCamera* camera{ nullptr };
-	Vec3 followTargetEye{ Vec3::ZERO };
-	Vec2 followTargetPos{ Vec2::ZERO };
-
-	CustomCamera() = default;
-
-	friend class Singleton< CustomCamera >;
+	Camera() = default;
+	Vec3 lookAt{ Vec3::ZERO };
+	cocos2d::Camera* camera{ nullptr };
+	friend class Singleton< Camera >;
 };
+
+NS_END
 
 #endif //end_of Camera.h

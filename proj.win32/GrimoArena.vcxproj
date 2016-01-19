@@ -179,7 +179,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Game\Test\SamplePanel.cpp" />
     <ClCompile Include="..\Classes\Game\Test\TestScene.cpp" />
     <ClCompile Include="..\Classes\Game\UI\ParameterView.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\Utility\Action\Follow\CustomFollow.cpp" />
     <ClCompile Include="..\Classes\Utility\Camera\Camera.cpp" />
     <ClCompile Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.cpp" />
@@ -239,11 +238,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Game\Test\TestScene.h" />
     <ClInclude Include="..\Classes\Game\UI\ParameterPtr.h" />
     <ClInclude Include="..\Classes\Game\UI\ParameterView.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\Utility\Action\Follow\CustomFollow.h" />
     <ClInclude Include="..\Classes\Utility\Camera\Camera.h" />
     <ClInclude Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.h" />
     <ClInclude Include="..\Classes\Utility\cocosAssistant\SpriteCreator.h" />
+    <ClInclude Include="..\Classes\Utility\Common.h" />
     <ClInclude Include="..\Classes\Utility\FileIO\CharaData.h" />
     <ClInclude Include="..\Classes\Utility\FileIO\CharaReader.h" />
     <ClInclude Include="..\Classes\Utility\FileIO\PlistReader.h" />
@@ -256,7 +255,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\Template\Singleton.h" />
     <ClInclude Include="..\Classes\Utility\Timer\Timer.h" />
     <ClInclude Include="CharactorCore.h" />
-    <ClInclude Include="Common.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Mana.h" />
     <ClInclude Include="PlayerUI.h" />

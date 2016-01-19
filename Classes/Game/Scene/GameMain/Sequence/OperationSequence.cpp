@@ -58,7 +58,7 @@ bool OperationSequence::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* even
 	if (mState != S_MAIN ) return false;
 
 
-	cocos2d::Vec2 touchPoint = touch->getLocation() - CustomCamera::getInstance().getLayerPos();
+	cocos2d::Vec2 touchPoint = gremo::Camera::getInstance().convertTouchPosition(touch);
 
 	mStageManager->onTouchBegan(touch,event);
 
@@ -68,8 +68,8 @@ bool OperationSequence::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* even
 }
 
 bool OperationSequence::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
-	
-	mStageManager->onTouchEnd(touch->getLocation());
+
+	mStageManager->onTouchEnd(gremo::Camera::getInstance().convertTouchPosition(touch));
 
 	return true;
 }

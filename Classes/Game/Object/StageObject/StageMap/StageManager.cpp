@@ -121,7 +121,10 @@ int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
 	return true;
 }
 
-void StageManager::onTouchMove(cocos2d::Point pos) {}
+void StageManager::onTouchMove(cocos2d::Point pos) 
+{
+
+}
 
 void StageManager::onTouchEnd(cocos2d::Point pos) {
 	//if (pos.y <= this->getPanel(0)->getPositionY() - this->getPanel(0)->getContentSize().height / 2) return;

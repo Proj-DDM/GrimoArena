@@ -68,6 +68,8 @@ void PlayerManager::push(cocos2d::Vec2 pos, int number, std::string name){
 
 	this->addChild(player);
 
+	player->setCameraMask((int)CameraFlag::USER1);
+
 	player->setName(name);
 
 	m_Players.push_back(player);

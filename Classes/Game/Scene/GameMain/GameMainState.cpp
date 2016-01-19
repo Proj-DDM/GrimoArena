@@ -40,11 +40,13 @@ bool GameMainState::init(Layer* layer){
 
 	mCount = 0;
 
-	CustomCamera::getInstance().createCamera();
-	CustomCamera::getInstance().setTargetLayer(this->parentLayer);
-	//CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer());
-
 	return true;
+}
+
+void GameMainState::onEnter()
+{
+	gremo::Camera::getInstance().setUseCamera(CameraFlag::USER1);
+	gremo::Camera::getInstance().setPosition(mStageManager->getTurnPlayer()->getPosition());
 }
 
 void GameMainState::update(float at){
@@ -56,6 +58,7 @@ void GameMainState::update(float at){
 }
 
 void GameMainState::fadeIn(float at){
+
 	mSceneState = MAIN;
 }
 
@@ -104,9 +107,12 @@ void GameMainState::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	if (!isView || dynamic_cast<UILayer*>(dynamic_cast<GameMainScene*>(this->parentLayer)->uiLayer)->isSummon()) return;
 
-	CustomCamera::getInstance().moveEye(Vec3(this->movePos.x - touch->getLocation().x, this->movePos.y - touch->getLocation().y, 0));
-
 	this->movePos = touch->getLocation();
+	//mStageManager->onTouchMove(gremo::Camera::getInstance().convertTouchPosition(touch));
+
+
+	auto move = touch->getPreviousLocation() - touch->getLocation();
+	gremo::Camera::getInstance().movePosition(Vec2(move.x, move.y));
 }
 
 void GameMainState::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
@@ -115,23 +121,16 @@ void GameMainState::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 }
 
 void GameMainState::onEndButton(){
-	CustomCamera::getInstance().removeTarget();
 
 	SequenceManager::GetInstance()->setEndSequence();
 
-	//CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
+	gremo::Camera::getInstance().setPosition(mStageManager->getTurnPlayer()->getPosition());
 }
 
 void GameMainState::onViewButton(){
-	if (this->isView)
+	if (!this->isView)	
 	{
-		CustomCamera::getInstance().removeTarget();
-		//CustomCamera::getInstance().setFollowTarget(mStageManager->getTurnPlayer()->getSprite());
-	}
-	else
-	{
-		CustomCamera::getInstance().removeTarget();
-		CustomCamera::getInstance().startLayer();
+		gremo::Camera::getInstance().setPosition(mStageManager->getTurnPlayer()->getPosition());
 	}
 
 	this->isView = !this->isView;

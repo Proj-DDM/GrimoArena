@@ -66,6 +66,12 @@ bool GameMainScene::init(cocos2d::Layer* layer){
 	return true;
 }
 
+void GameMainScene::onEnter()
+{
+	mState->onEnter();
+	Layer::onEnter();
+}
+
 void GameMainScene::update(float at){
 	mState->update(at);
 }

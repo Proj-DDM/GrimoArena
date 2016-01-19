@@ -26,6 +26,7 @@ void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 	for (int i = 0; i < createCount; ++i) {
 		auto panel = StagePanel::create("StagePanel" + std::to_string(i));
 		panel->setContentSize(Size(panelSize, panelSize));
+		panel->setCameraMask((int)CameraFlag::USER1);
 		node->addChild(panel);
 		container->push_back(panel);
 

@@ -75,12 +75,12 @@ void PlayerDeck::deckInit()
 	CharacterFactory factory;
 	factory.init();
 
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 60), 0));
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 60), 0));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 60), 0));
-	add(factory.create(CharacterID::Kamata,         Vec2(positionX[3], 60), 0));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[4], 60), 0));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 60), 0));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 130), 0));
+	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 130), 0));
+	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 130), 0));
+	add(factory.create(CharacterID::Kamata,         Vec2(positionX[3], 130), 0));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[4], 130), 0));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 130), 0));
 }
 
 void PlayerDeck::update(float deltaTime)

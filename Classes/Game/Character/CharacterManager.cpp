@@ -43,6 +43,7 @@ void CharacterManager::update(float dt)
 void CharacterManager::add(Character* character)
 {
 	addChild(character);
+	character->setCameraMask((int)CameraFlag::USER1);
 	container.push_back(character);
 }
 

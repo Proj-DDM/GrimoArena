@@ -1,5 +1,6 @@
 ﻿#include "TitleState.h"
 #include "Utility/SceneSupport/SceneCreator.h"
+#include "Utility/SceneSupport/FadeScene.h"
 #include "../GameMain/GameMainScene.h"
 #include "Game/Layer/UILayer.h"
 
@@ -60,9 +61,13 @@ void TitleState::fadeOut(float at){
 	mSceneState = SCENEEND;
 
 	//シーン切り替え
-	auto uiLayer = UILayer::create();
-	auto firstScene = SceneCreator::createScene(GameMainScene::create(uiLayer),uiLayer );
-	auto scene = TransitionFade::create(1.5f, firstScene, Color3B::BLACK);
+	auto func = []()
+	{
+		auto uiLayer = UILayer::create();
+		return SceneCreator::createScene(GameMainScene::create(uiLayer), uiLayer);
+	};
+
+	auto scene = FadeScene::create(1.5f, func);
 
 	Director::getInstance()->replaceScene(scene);
 }
