@@ -52,7 +52,9 @@ const Vec2& Camera::getCameraPosition()
 
 const Vec2& Camera::convertTouchPosition(Touch* touch)
 {
-	return this->camera->convertTouchToNodeSpaceAR(touch);
+	auto visibleBottomLeft = this->getCameraPosition();
+
+	return visibleBottomLeft + touch->getLocation();
 }
 
 void Camera::setUseCamera(const CameraFlag& flag)
