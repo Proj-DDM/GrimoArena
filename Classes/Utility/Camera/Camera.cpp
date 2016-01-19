@@ -12,7 +12,7 @@ void Camera::setLookAt(const Vec2& eye)
 {
 	auto setPoint = Vec3(eye.x, eye.y, POSITIONZ);
 
-	this->camera->setPosition3D(setPoint);
+	this->camera->lookAt(setPoint);
 
 	this->lookAt = setPoint;
 }
@@ -21,7 +21,7 @@ void Camera::moveLookAt(const Vec2& eye)
 {
 	auto movePoint = Vec3(this->lookAt.x + eye.x, this->lookAt.y + eye.y, POSITIONZ);
 
-	this->camera->setPosition3D(movePoint);
+	this->camera->lookAt(movePoint);
 
 	this->lookAt = movePoint;
 }
@@ -36,9 +36,11 @@ void Camera::movePosition(const Vec2& position)
 
 void Camera::setPosition(const Vec2& position)
 {
-	this->camera->setPosition3D(Vec3(position.x, position.y, POSITIONZ));
+	auto centor = position - Director::getInstance()->getVisibleSize() / 2;
 
-	this->setLookAt(position);
+	this->camera->setPosition3D(Vec3(centor.x, centor.y, POSITIONZ));
+
+	this->setLookAt(centor);
 }
 
 const Vec2& Camera::getCameraPosition()
@@ -50,7 +52,7 @@ const Vec2& Camera::getCameraPosition()
 
 const Vec2& Camera::convertTouchPosition(Touch* touch)
 {
-	return this->camera->convertTouchToNodeSpace(touch);
+	return this->camera->convertTouchToNodeSpaceAR(touch);
 }
 
 void Camera::setUseCamera(const CameraFlag& flag)
