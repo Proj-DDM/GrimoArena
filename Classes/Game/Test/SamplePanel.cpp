@@ -12,7 +12,7 @@ KamataPanel::~KamataPanel()
 
 bool KamataPanel::init()
 {
-	charaID = CharacterID::WaterAttribute;
+	//charaID = CharacterID::WaterAttribute;
 	mSprite = Sprite::create("chara_02.png");
 	//mSprite->setScale(0.025f);
 	addChild(mSprite);

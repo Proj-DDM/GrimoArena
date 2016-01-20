@@ -18,7 +18,7 @@ bool Kamata::init(const cocos2d::Vec2& position)
 {
 	sprite = Sprite::create("siva.png");
 	addChild(sprite);
-	id = CharacterID::FireAttribute;
+	//id = CharacterID::FireAttribute;
 	sprite->setPosition(position);
 	return true;
 }

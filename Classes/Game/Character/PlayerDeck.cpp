@@ -32,7 +32,7 @@ bool PlayerDeck::init()
 {
 	if ( !Node::init() ) return false;
 	deck.clear();
-	auto sprite = Sprite::create("ui_party_frame.png");
+	auto sprite = Sprite::create("UI/ui_party_frame.png");
 	//sprite->setTextureRect(Rect(0, 0, 1024, 400));
 	//sprite->setColor(Color3B::GREEN);
 	setName("Deck");
@@ -75,12 +75,12 @@ void PlayerDeck::deckInit()
 	CharacterFactory factory;
 	factory.init();
 
-	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 130), 0));
+	/*add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[0], 130), 0));
 	add(factory.create(CharacterID::WaterAttribute, Vec2(positionX[1], 130), 0));
 	add(factory.create(CharacterID::Kamata,         Vec2(positionX[2], 130), 0));
 	add(factory.create(CharacterID::Kamata,         Vec2(positionX[3], 130), 0));
 	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[4], 130), 0));
-	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 130), 0));
+	add(factory.create(CharacterID::FireAttribute,  Vec2(positionX[5], 130), 0));*/
 }
 
 void PlayerDeck::update(float deltaTime)

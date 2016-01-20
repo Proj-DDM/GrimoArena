@@ -13,7 +13,7 @@ CharacterPanel::~CharacterPanel()
 
 bool CharacterPanel::init(){
 	setName("panel");
-	charaID = CharacterID::FireAttribute;
+	//charaID = CharacterID::FireAttribute;
 	mSprite = Sprite::create("chara_01.png");
 	addChild(mSprite);
 	return true;
