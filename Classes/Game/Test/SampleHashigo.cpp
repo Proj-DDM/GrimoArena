@@ -18,7 +18,7 @@ bool Hashigo::init(const cocos2d::Vec2& position)
 {
 	sprite = Sprite::create("gaea.png");
 	addChild(sprite);
-	id = CharacterID::Kamata;
+	//id = CharacterID::Kamata;
 	sprite->setPosition(position); 
 	return true;
 }

@@ -12,7 +12,7 @@ HigePanel::~HigePanel()
 
 bool HigePanel::init()
 {
-	charaID = CharacterID::Kamata;
+	//charaID = CharacterID::Kamata;
 	mSprite = Sprite::create("chara_03.png");
 	//mSprite->setScale(0.025f);
 	addChild(mSprite);

@@ -5,9 +5,30 @@
 
 enum class CharacterID
 {
-	FireAttribute,
-	WaterAttribute,
-	Kamata,
+	Aster,
+	Cerberus,
+	Cockatrice,
+	Cyan,
+	DryArd,
+	Emerald,
+	Eta,
+	Fee,
+	Fenrir,
+	FreezingZombie,
+	Griffon,
+	Kelvin,
+	Levy,
+	Lilith,
+	Mint,
+	Myu,
+	Orthros,
+	Phoenix,
+	RottenwoodZombie,
+	Rouge,
+	Ruby,
+	Sapphire,
+	Vect,
+	Zombie,
 	Length
 };
 
