@@ -239,7 +239,7 @@ void StageManager::setUI()
 	auto action = FadeIn::create(2);
 
 	//アイコン背景
-	auto iconBack = Sprite::create("UI/Player/UI_PlayerFrame.png");
+	auto iconBack = Sprite::create("Scene/Main/UI_playerFrame.png");
 	iconBack->setPosition(Vec2(iconBack->getContentSize().width / 2.8f, iconBack->getContentSize().height * 1.25));
 	iconBack->setTag(ICONBACK);
 	uiLayer->addChild(iconBack);
@@ -251,19 +251,19 @@ void StageManager::setUI()
 	uiLayer->addChild(icon);
 
 	//HPバックバー
-	auto hpBackBar = Sprite::create("UI/Player/hp_framebg.png");
+	auto hpBackBar = Sprite::create("Scene/Main/hp_framebg.png");
 	hpBackBar->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, hpBackBar->getContentSize().height * 4.8));
 	hpBackBar->setTag(ICONTAG);
 	uiLayer->addChild(hpBackBar);
 
 	//HPバー
-	auto hpBar = Sprite::create("UI/Player/p_player.png");
+	auto hpBar = Sprite::create("Scene/Main/p_player.png");
 	hpBar->setPosition(Vec2(hpBackBar->getPositionX() + 50, hpBackBar->getPositionY()));
 	hpBar->setTag(ICONTAG);
 	uiLayer->addChild(hpBar);
 
 	//HPフレーム
-	auto hpFrame = Sprite::create("UI/Player/hp_frame.png");
+	auto hpFrame = Sprite::create("Scene/Main/hp_frame.png");
 	hpFrame->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, hpFrame->getContentSize().height * 4.8));
 	hpFrame->setTag(PLAYER_HP_FRAME);
 	uiLayer->addChild(hpFrame);

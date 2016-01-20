@@ -47,18 +47,16 @@ bool GameMainScene::init(cocos2d::Layer* layer){
 
 	this->scheduleUpdate();
 
-	auto endButton = cocos2d::MenuItemImage::create("turnend.png", "turnend.png",CC_CALLBACK_0(GameMainScene::onEndButton,this));
+	auto endButton = cocos2d::MenuItemImage::create("Scene/Main/menu_turnend.png", "Scene/Main/menu_turnend.png",CC_CALLBACK_0(GameMainScene::onEndButton,this));
 
 	endButton->setPosition(cocos2d::Vec2(endButton->getContentSize().width / 4, size.height - endButton->getContentSize().height / 2));
-	endButton->setScale(0.5f);
 	auto menu = cocos2d::Menu::create(endButton,nullptr);
 	menu->setPosition(cocos2d::Point::ZERO);
 	this->uiLayer->addChild(menu);
 
-	auto viewButton = cocos2d::MenuItemImage::create("turnend.png", "turnend.png", CC_CALLBACK_0(GameMainScene::onViewButton, this));
+	auto viewButton = cocos2d::MenuItemImage::create("Scene/Main/menu_turnend.png", "Scene/Main/menu_turnend.png", CC_CALLBACK_0(GameMainScene::onViewButton, this));
 
 	viewButton->setPosition(cocos2d::Vec2(Director::getInstance()->getVisibleSize().width - viewButton->getContentSize().width, size.height - viewButton->getContentSize().height / 2));
-	viewButton->setScale(0.5f);
 	auto viewMenu = cocos2d::Menu::create(viewButton, nullptr);
 	viewMenu->setPosition(cocos2d::Point::ZERO);
 	this->uiLayer->addChild(viewMenu);

@@ -81,7 +81,7 @@ Player* PlayerManager::getTurnPlayer(){
 
 cocos2d::Sprite* PlayerManager::createIcon()
 {
-	return cocos2d::Sprite::create("UI/Player/Core.png");
+	return cocos2d::Sprite::create("Scene/Main/core.png");
 }
 
 Mana* PlayerManager::createManaDisplay()

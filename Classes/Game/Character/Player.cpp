@@ -17,7 +17,7 @@ Player::~Player()
 bool Player::init(const cocos2d::Vec2& position)
 {
 	parameter = Parameter(500, 0, 0);
-	sprite = Sprite::create("qb.png");
+	sprite = Sprite::create("Chara/1P/mon5_icon_r.png");
 	addChild(sprite);
 	setPosition(position);
 	

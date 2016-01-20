@@ -5,7 +5,7 @@ USING_NS_CC;
 
 ModalLayer* ModalLayer::create(EventListener* listener){
 
-	return ModalLayer::create(listener, "Window.png", "Ok.png", "No.png");
+	return ModalLayer::create(listener, "Scene/Main/Window.png", "Scene/Main/Ok.png", "Scene/Main/No.png");
 }
 
 ModalLayer* ModalLayer::create(EventListener* listener, const std::string& window, const std::string& okButton, const std::string& NoButton){

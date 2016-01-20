@@ -112,6 +112,9 @@
     <Filter Include="Classes\Game\Object\StageObject\StageMap\Util">
       <UniqueIdentifier>{50edcc9a-5a5e-43e2-b436-62d1fe5d6985}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Game\Chara\Monster">
+      <UniqueIdentifier>{d2112048-7f86-4f1c-aee5-c2d67302ac3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -260,6 +263,78 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.cpp">
       <Filter>Classes\Game\Scene\GameMain\Sequence\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Aster.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Cerberus.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Cockatrice.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Cyan.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\DryArd.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Emerald.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Eta.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Fee.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Fenrir.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\FreezingZombie.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Griffon.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Kelvin.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Levy.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Lilith.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Mint.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Myu.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Orthros.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Phoenix.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\RottenwoodZombie.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Rouge.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Ruby.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Sapphire.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Vect.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Zombie.cpp">
+      <Filter>Classes\Game\Chara\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +526,84 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\CharactorCore.h">
       <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Aster.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Cerberus.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharacterRemove.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Cockatrice.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Cyan.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\DryArd.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Emerald.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Eta.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Fee.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Fenrir.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\FreezingZombie.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Griffon.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Kelvin.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Levy.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Lilith.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Mint.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Myu.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Orthros.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Phoenix.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\PlayerJudged.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\RottenwoodZombie.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Rouge.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Ruby.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Sapphire.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Vect.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Zombie.h">
+      <Filter>Classes\Game\Chara\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -20,13 +20,13 @@ bool Mana::init(int mana)
 
 	for (int i = 0; i < createCount; ++i){
 		//マナ画像
-		auto manaBack = Sprite::create("UI/Player/orb_null.png");
+		auto manaBack = Sprite::create("Scene/Main/orb_null.png");
 		manaBack->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 4 + manaBack->getContentSize().width * i, manaBack->getContentSize().height * 4.6));
 		manaBack->setTag(MANATAG);
 		this->addChild(manaBack);
 	
 		//マナ画像
-		auto manaImage = Sprite::create("UI/Player/orb_empty.png");
+		auto manaImage = Sprite::create("Scene/Main/orb_empty.png");
 		manaImage->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 4 + manaImage->getContentSize().width * i, manaImage->getContentSize().height * 4.6));
 		manaImage->setTag(MANATAG);
 		manaImage->setOpacity(0);
@@ -60,12 +60,12 @@ void Mana::setFadeAnimation(int manaCount)
 		for (int i = this->manaSpriteContainer.size() - 1; i < createCount; ++i){
 			
 			//マナ画像
-			auto manaBack = Sprite::create("UI/Player/orb_null.png");
+			auto manaBack = Sprite::create("Scene/Main/orb_null.png");
 			manaBack->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 4 + manaBack->getContentSize().width * i, manaBack->getContentSize().height * 4.6));
 			this->addChild(manaBack);
 
 			//マナ画像
-			auto manaImage = Sprite::create("UI/Player/orb_empty.png");
+			auto manaImage = Sprite::create("Scene/Main/orb_empty.png");
 			manaImage->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 4 + manaImage->getContentSize().width * i, manaImage->getContentSize().height * 4.6));
 			this->addChild(manaImage);
 			manaImage->setOpacity(0);
