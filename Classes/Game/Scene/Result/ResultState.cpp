@@ -4,6 +4,7 @@
 #include "Game/Scene/Title/TitleScene.h"
 #include "Utility/Modal/ModalLayer.h"
 #include "Game/Layer/UILayer.h"
+#include "Utility/SceneSupport/FadeScene.h"
 
 using namespace cocos2d;
 
@@ -92,8 +93,14 @@ void ResultState::onPushYesButton(){
 
 	auto uiLayer = UILayer::create();
 
-	auto firstScene = SceneCreator::createScene(GameMainScene::create(uiLayer),uiLayer);
-	auto scene = TransitionFade::create(1.5f, firstScene, Color3B::BLACK);
+	//シーン切り替え
+	auto func = []()
+	{
+		auto uiLayer = UILayer::create();
+		return SceneCreator::createScene(GameMainScene::create(uiLayer), uiLayer);
+	};
+
+	auto scene = FadeScene::create(1.5f, func);
 
 	Director::getInstance()->replaceScene(scene);
 
@@ -101,8 +108,14 @@ void ResultState::onPushYesButton(){
 
 void ResultState::onPushNoButton(){
 
-	auto nextScene = SceneCreator::createScene(TitleScene::create());
-	auto scene = TransitionFade::create(1.5f, nextScene, Color3B::WHITE);
+	//シーン切り替え
+	auto func = []()
+	{
+		auto uiLayer = UILayer::create();
+		return SceneCreator::createScene(GameMainScene::create(uiLayer), uiLayer);
+	};
+
+	auto scene = FadeScene::create(1.5f, func);
 
 	Director::getInstance()->replaceScene(scene);
 

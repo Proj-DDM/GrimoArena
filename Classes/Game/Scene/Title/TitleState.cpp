@@ -29,7 +29,7 @@ bool TitleState::init(Layer* layer){
 
 	mCount = 0;
 
-	auto title = Sprite::create("title.png");
+	auto title = Sprite::create("Scene/Title/title.png");
 	parentLayer->addChild(title);
 	title->setPosition(Director::getInstance()->getVisibleSize() / 2);
 

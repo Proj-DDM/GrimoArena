@@ -46,4 +46,10 @@ void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 
 		CCLOG("%i", i);
 	}
+
+	Sprite* background = Sprite::create("Scene/Main/stage.png");
+	background->setCameraMask((int)CameraFlag::USER1);
+	background->setPosition(Vec2(16 + background->getContentSize().width / 2, 350 + background->getContentSize().height / 2));
+	background->setOpacity(100);
+	node->addChild(background);
 }
