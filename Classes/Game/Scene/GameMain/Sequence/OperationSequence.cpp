@@ -92,7 +92,7 @@ void OperationSequence::isTouch(cocos2d::Vec2 touchPos){
 void OperationSequence::move(const cocos2d::Vec2& touchPos){
 
 
-	int number = (((int)touchPos.x - 32) / 64) + (((int)touchPos.y - 128) / 64 * 9);
+	int number = (((int)touchPos.x - 60) / 120) + (((int)touchPos.y - 360) / 120 * 9);
 
 	if (isPlayerMove != MOVE || mStageManager->getPanel(number)->getColor() != mStageManager->getTurnPlayerColor()) return;
 
@@ -115,7 +115,7 @@ void OperationSequence::onEndSequence()
 
 void OperationSequence::onPushYesButton(){
 
-	int number = (((int)touchPos.x - 32) / 64) + (((int)touchPos.y - 128) / 64 * 9);
+	int number = (((int)touchPos.x - 60) / 120) + (((int)touchPos.y - 360) / 120 * 9);
 
 	auto sprite = mStageManager->getPanel(number)->getColor();
 

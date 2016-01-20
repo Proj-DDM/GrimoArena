@@ -41,6 +41,8 @@ Player* Player::create( const cocos2d::Vec2& position,int number)
 void Player::setPosition(const cocos2d::Vec2& position){
 	sprite->setPosition(Vec2(position.x - ICONSIZE / 2, position.y - ICONSIZE / 2));
 
+	this->panelNumber = CharactorCore::convertPositonToNumber(this->sprite->getPositionX(), this->sprite->getPositionY());
+
 }
 
 cocos2d::Rect Player::getBoundingBox() const {

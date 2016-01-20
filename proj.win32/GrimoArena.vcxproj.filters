@@ -259,7 +259,7 @@
       <Filter>Classes\Game\Object\StageObject</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Scene\GameMain\Sequence\OperationSequence.cpp">
-      <Filter>Classes\Game\Scene\GameMain\Sequence\Etc</Filter>
+      <Filter>Classes\Game\Scene\GameMain\Sequence\Operation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -416,9 +416,6 @@
     <ClInclude Include="..\Classes\Game\Character\CharacterParameter.h">
       <Filter>Classes\Game\Chara\Util</Filter>
     </ClInclude>
-    <ClInclude Include="CharactorCore.h">
-      <Filter>Classes\Game\Chara\Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\CharacterType.h">
       <Filter>Classes\Game\Chara\Util</Filter>
     </ClInclude>
@@ -451,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\StagePanel.h">
       <Filter>Classes\Game\Object\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\CharactorCore.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

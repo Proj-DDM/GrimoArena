@@ -203,6 +203,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Game\Character\CharacterPanel.h" />
     <ClInclude Include="..\Classes\Game\Character\CharacterParameter.h" />
     <ClInclude Include="..\Classes\Game\Character\CharacterType.h" />
+    <ClInclude Include="..\Classes\Game\Character\CharactorCore.h" />
     <ClInclude Include="..\Classes\Game\Character\HP.h" />
     <ClInclude Include="..\Classes\Game\Character\Player.h" />
     <ClInclude Include="..\Classes\Game\Character\PlayerDeck.h" />
@@ -254,7 +255,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\SceneSupport\SceneCreator.h" />
     <ClInclude Include="..\Classes\Utility\Template\Singleton.h" />
     <ClInclude Include="..\Classes\Utility\Timer\Timer.h" />
-    <ClInclude Include="CharactorCore.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Mana.h" />
     <ClInclude Include="PlayerUI.h" />

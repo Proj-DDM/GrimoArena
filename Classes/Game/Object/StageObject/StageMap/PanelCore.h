@@ -19,6 +19,11 @@ namespace PanelCore{
 		return (number != P1POS && number != P2POS);
 	}
 
+
+	static int convertPositonToNumber(int x, int y)
+	{
+		return ((x - 60) / 120) + ((y - 360) / 120 * 9);
+	}
 }
 
 

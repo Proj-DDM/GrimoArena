@@ -14,7 +14,15 @@ namespace {
 }
 
 class StagePanel : public cocos2d::Sprite {
-	
+
+	enum SEARCHTYPE
+	{
+		NORMAL,
+		TARGET,
+		CHECKEND,
+
+	};
+
 protected:
 	
 	StagePanel();
@@ -37,6 +45,7 @@ public:
 public:
 	bool mIsChengeColor;
 	Sprite* sprite;
+
 };
 
 #endif

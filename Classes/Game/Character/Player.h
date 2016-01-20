@@ -35,10 +35,12 @@ public:
 
 	cocos2d::Sprite* setIcon(std::string textureName);
 
+	const int getPanelNumber() { return this->panelNumber; };
+
 private:
 
 	int mana { 0 };
-
+	int panelNumber { -1 };
 	cocos2d::Sprite* icon;
 	
 };

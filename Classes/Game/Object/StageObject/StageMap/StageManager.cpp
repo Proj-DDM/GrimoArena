@@ -286,6 +286,27 @@ bool StageManager::summon(const CharacterID& id, const Vec2& position,int panelN
 {
 	auto obj = factory.create(id, position  - Vec2(PANELSIZE / 2, PANELSIZE / 2),panelNumber);
 
+	//プレイヤーの周りでキャラが離されたか判定
+	auto check = [this, panelNumber, obj]()
+	{
+		for (int i = -1; i < 2; i += 2)
+		{
+			//上下左右
+			if (this->getTurnPlayer()->getPanelNumber() == panelNumber + i) return true;
+			if (this->getTurnPlayer()->getPanelNumber() == panelNumber + i * 9) return true;
+
+			//斜め
+			for (int k = -1; k < 2; k += 2)
+			{
+				if (this->getTurnPlayer()->getPanelNumber() == panelNumber + i * 9 + k) return true;
+			}
+		}
+
+		return false;
+	};
+
+	if (!check()) return false;
+
 	//召喚コスト分のマナがあるなら召喚
 	if (playerManager->getTurnPlayer()->getMana() < obj->getParameter().cost) return false;
 
