@@ -21,6 +21,8 @@ public:
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 
+	bool onTouchCheck(const cocos2d::Vec2& touchPoint);
+
 	void setOpacity(int alpha);
 	
 

@@ -1,6 +1,7 @@
 #include "CharacterManager.h"
 #include "Character.h"
 #include "Game/Scene/GameMain/Sequence/SequenceManager.h"
+#include "Utility/Camera/Camera.h"
 
 #define MAX_ARRAY  25
 
@@ -81,9 +82,12 @@ CharacterManager* CharacterManager::create()
 bool CharacterManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	if (container.empty())return false;
+	
 	for (auto& panel : container)
 	{
-		if (panel->onTouchBegan(touch, event))
+		auto convertTouchPos = gremo::Camera::getInstance().convertTouchPosition(touch);
+
+		if (panel->onTouchCheck(convertTouchPos))
 		{
 			parameter = panel->getParameter();
 			return true;

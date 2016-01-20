@@ -104,7 +104,7 @@ bool PlayerDeck::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 	
 	for (auto& panel : deck)
 	{
-		if (panel->onTouchBegan(touch, event))
+		if (panel->onTouchCheck(touch->getLocation()))
 		{
 			isSummons = true;
 			CharacterFactory factory;

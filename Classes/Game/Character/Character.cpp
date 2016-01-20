@@ -54,7 +54,7 @@ CharacterState& Character::getState() {
 bool Character::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 	auto target = sprite;
-	Point touchPoint = touch->getLocation();	//タッチ座標の取得
+	auto touchPoint = gremo::Camera::getInstance().convertTouchPosition(touch);	//タッチ座標の取得
 	Rect rect = target->getBoundingBox();
 
 	if (rect.containsPoint(touchPoint))
@@ -71,6 +71,22 @@ bool Character::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 void Character::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
 {
 
+}
+
+bool Character::onTouchCheck(const Vec2& touchPoint)
+{
+	auto target = sprite;
+	Rect rect = target->getBoundingBox();
+
+	if (rect.containsPoint(touchPoint))
+	{
+		sprite->setColor(Color3B::RED);
+		isTouch = true;
+		return true;
+	}
+	sprite->setColor(Color3B::WHITE);
+	isTouch = false;
+	return false;
 }
 
 void Character::setOpacity(int alpha)
