@@ -29,7 +29,7 @@ public:
 	/**
 		@brief	インスタンスの生成
 	 
-		@param	particleName	パーティクルの名前( ファイルパス, 拡張子不要 )
+		@param	particleName	パーティクルの名前
 		@param	createPos		パーティクルを生成する座標
 	 */
 	static ParticleSystemQuad* create( const std::string& particleName, const Vec2& createPos );
