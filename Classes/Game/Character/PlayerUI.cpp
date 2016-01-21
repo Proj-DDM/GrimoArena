@@ -2,7 +2,7 @@
 
 namespace
 {
-	#define HP_WIDTH 510 / 500
+#define HP_WIDTH 510.f / 500.f 
 }
 PlayerUI::PlayerUI()
 {

@@ -14,21 +14,21 @@ Player::~Player()
 
 
 
-bool Player::init(const cocos2d::Vec2& position)
+bool Player::init(const cocos2d::Vec2& position, const std::string& name)
 {
-	parameter = Parameter(MAX_HP, 0, 0);
-	sprite = Sprite::create("Chara/1P/mon5_icon_r.png");
+	parameter = Parameter(500, 0, 0);
+	sprite = Sprite::create(name);
 	addChild(sprite);
 	setPosition(position);
 	
 	return true;
 }
 
-Player* Player::create( const cocos2d::Vec2& position,int number)
+Player* Player::create(const cocos2d::Vec2& position, int number, const std::string& name)
 {
 	auto chara = new Player();
 
-	if (chara && chara->init(position)){
+	if (chara && chara->init(position,name)){
 		chara->retain();
 		chara->autorelease();
 		return chara;

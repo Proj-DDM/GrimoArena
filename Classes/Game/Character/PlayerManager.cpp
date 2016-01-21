@@ -9,8 +9,7 @@
 
 namespace
 {
-	//std::array< std::string, 2 > iconNames = { "UI/Player/core.png" , "player2icon.png" };
-
+	std::array< std::string, 2 > iconNames = { "Chara/1P/player1_icon.png" , "Chara/2P/player2_icon.png" };
 }
 
 PlayerManager::PlayerManager()
@@ -65,7 +64,10 @@ void PlayerManager::setPlayer(cocos2d::Node* node, cocos2d::Vec2 p1pos, cocos2d:
 }
 
 void PlayerManager::push(cocos2d::Vec2 pos, int number, std::string name){
-	auto player = Player::create(pos, number);
+	
+	int textureNumber{ 0 };
+	if ("Player2" == name) textureNumber = 1;
+	auto player = Player::create(pos, number,iconNames.at(textureNumber));
 
 	this->addChild(player);
 

@@ -18,10 +18,10 @@ public:
 	~Player();
 
 	//初期化
-	bool init(const cocos2d::Vec2& position)override;
+	bool init(const cocos2d::Vec2& position, const std::string& name);
 
 	//インスタンスの生成
-	static Player* create(const cocos2d::Vec2& position, int number);
+	static Player* create(const cocos2d::Vec2& position, int number, const std::string& name);
 
 	void setPosition(const cocos2d::Vec2& position);
 
