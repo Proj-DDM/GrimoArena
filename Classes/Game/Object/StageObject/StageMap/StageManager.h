@@ -54,6 +54,7 @@ public:
 	std::vector < Character* > getCaras();
 	bool summon(const CharacterID& id, const Vec2& position, int panelNumber);
 
+	int allCheck(int id);ト
 private:
 	using CharacterContainer = std::vector < Character* >;
 
@@ -62,6 +63,12 @@ private:
 	CharacterManager* manager;
 	PlayerManager* playerManager;
 	PanelContainer m_Container;
+	Parameter mParam;
+	CharacterID mId;
+	int mTestTrun;
+	bool isAnime;
+	Sprite* sprite;
+	using CharacterContainer = std::vector < Character* >;
 	CharacterContainer charaContainer;
 	std::array<int, 25> mTestArray;
 

@@ -7,6 +7,9 @@
 #include "../../../Character/PlayerDeck.h"
 #include "../../../UI/ParameterView.h"
 #include "Game/Layer/UILayer.h"
+#include "Utility/Particle/SimpleParticle.h"
+#include "Utility/Animation/SpriteAnimation.h"
+#include "Game/Score.h"
 
 
 using namespace cocos2d;
@@ -66,24 +69,27 @@ bool StageManager::init(Layer* layer) {
 	if ( !Node::init() ) {
 		return false;
 	}
+	isAnime = false;
 	m_Container.clear();
 
 	this->schedule(schedule_selector(StageManager::update));
 	mCount = 0;
+	mTestTrun = 1;
 	
 	auto fac = std::make_shared< StageFactory >();
 	fac->createPanel(&m_Container,this);
 	
 	factory.init();
 	manager = CharacterManager::create();
-
+	
 	addChild(manager);
 
 	//プレイヤーマネージャー
 	playerManager = PlayerManager::create(layer);
 	auto pos1 = this->getPanel(4)->getPosition();
 	auto pos2 = this->getPanel(94)->getPosition();
-
+	m_Container.at(4)->sprite->setColor(Color3B::BLUE);
+	m_Container.at(94)->sprite->setColor(Color3B::RED);
 	playerManager->setPlayer(this, pos1, pos2);
 
 	addChild(playerManager);
@@ -281,3 +287,26 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 	}
 }
 
+int StageManager::allCheck(int id) {
+	//id = 0 BRUE, id = 1 RED
+	int brue , red;
+	brue = 0, red = 0;
+	//BRUE
+	if (id == 0) {
+		for (int i = 0; i < m_Container.size(); ++i) {
+			if (m_Container.at(i)->getColor() == Color3B::BLUE) {
+				 ++brue;
+			}
+		}
+		return brue;
+	}
+	//RED
+	if (id == 1) {
+		for (int i = 0; i < m_Container.size(); ++i) {
+			if (m_Container.at(i)->getColor() == Color3B::RED) {
+				++red;
+			}
+		}
+		return red;
+	}
+}
