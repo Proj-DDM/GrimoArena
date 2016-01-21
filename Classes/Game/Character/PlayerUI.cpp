@@ -1,4 +1,5 @@
 #include "PlayerUI.h"
+#include "Utility/Particle/SimpleParticle.h"
 
 namespace
 {
@@ -26,6 +27,9 @@ bool PlayerUI::init()
 	this->icon = cocos2d::Sprite::create("Scene/Main/core.png");
 	this->icon->setPosition(Vec2(this->icon->getContentSize().width / 1.85, this->icon->getContentSize().height * 2.1));
 	this->addChild(this->icon);
+
+	auto particle = SimpleParticle::create("plist/core_effect.plist", icon->getContentSize() / 2);
+	icon->addChild(particle);
 
 	//HPƒtƒŒ[ƒ€
 	this->hpFrame = Sprite::create("Scene/Main/hp_frame.png");

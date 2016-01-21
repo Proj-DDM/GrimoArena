@@ -115,6 +115,9 @@
     <Filter Include="Classes\Game\Chara\Monster">
       <UniqueIdentifier>{d2112048-7f86-4f1c-aee5-c2d67302ac3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Utility\Particle">
+      <UniqueIdentifier>{08d4c751-2026-44a5-aa5a-d89f8f51f174}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -335,6 +338,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Character\PlayerUI.cpp">
       <Filter>Classes\Game\Chara\Player\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility\Particle\SimpleParticle.cpp">
+      <Filter>Classes\Utility\Particle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -604,6 +610,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\PlayerUI.h">
       <Filter>Classes\Game\Chara\Player\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\Particle\SimpleParticle.h">
+      <Filter>Classes\Utility\Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

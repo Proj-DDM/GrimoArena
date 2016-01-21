@@ -1,5 +1,5 @@
 #include "Mana.h"
-
+#include "Utility/Particle/SimpleParticle.h"
 #define MANATAG			1112
 
 Mana::Mana()
@@ -33,8 +33,6 @@ bool Mana::init(int mana)
 		manaImage->setTag(MANATAG);
 		manaImage->setOpacity(0);
 		this->addChild(manaImage);
-
-		manaSpriteContainer.push_back(manaImage);
 	}
 
 	this->setMana(createCount);

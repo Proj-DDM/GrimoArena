@@ -3,6 +3,7 @@
 #include "Utility/SceneSupport/FadeScene.h"
 #include "../GameMain/GameMainScene.h"
 #include "Game/Layer/UILayer.h"
+#include "Utility/Particle/SimpleParticle.h"
 
 using namespace cocos2d;
 
@@ -29,9 +30,23 @@ bool TitleState::init(Layer* layer){
 
 	mCount = 0;
 
+	auto titlebg = Sprite::create("Scene/Title/title_bg.png");
+	parentLayer->addChild(titlebg);
+	titlebg->setPosition(Director::getInstance()->getVisibleSize() / 2);
+
+	
+	auto titleWing = Sprite::create("Scene/Title/title_wing.png");
+	parentLayer->addChild(titleWing);
+	titleWing->setPosition(Director::getInstance()->getVisibleSize() / 2);
+
 	auto title = Sprite::create("Scene/Title/title.png");
 	parentLayer->addChild(title);
-	title->setPosition(Director::getInstance()->getVisibleSize() / 2);
+	title->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, Director::getInstance()->getVisibleSize().height / 2 + 50));
+	title->setScale(2.f);
+
+	auto titlestart = Sprite::create("Scene/Title/title_start.png");
+	parentLayer->addChild(titlestart);
+	titlestart->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, titlestart->getContentSize().height * 4.5f));
 
 	return true;
 }
