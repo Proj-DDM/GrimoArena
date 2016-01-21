@@ -6,7 +6,7 @@
 #include "StagePanel.h"
 #include "../../../Character/PlayerDeck.h"
 #include "../../../UI/ParameterView.h"
-
+#include "Game/Layer/UILayer.h"
 
 
 using namespace cocos2d;
@@ -42,6 +42,8 @@ namespace
 
 		return sortContener;
 	}
+
+	std::array<cocos2d::Color3B, 2> playerColorArray{ { cocos2d::Color3B::BLUE, cocos2d::Color3B::RED } };
 }
 
 StageManager::~StageManager(){
@@ -68,7 +70,6 @@ bool StageManager::init(Layer* layer) {
 
 	this->schedule(schedule_selector(StageManager::update));
 	mCount = 0;
-	mTestTrun = 1;
 	
 	auto fac = std::make_shared< StageFactory >();
 	fac->createPanel(&m_Container,this);
@@ -85,8 +86,11 @@ bool StageManager::init(Layer* layer) {
 
 	playerManager->setPlayer(this, pos1, pos2);
 
-
 	addChild(playerManager);
+
+	playerManager->createPlayerDisplay();
+
+	this->uiLayer = layer;
 
 	return true;
 }
@@ -95,59 +99,6 @@ void StageManager::update(float at) {
 	manager->update(at);
 }
 
-int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
-	
-	auto uiLayer = getParent()->getParent()->getChildByTag(1);
-	mId = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"))->getCharacterID();
-	mParam = Parameter(10, 10, 10);
-	int vectData[25];
-	if (manager->onTouchBegan(touch, event))
-	{
-		if (touch->getLocation().y <= 120) {
-			manager->getParameter().vect;
-		}
-		auto ui = dynamic_cast<ParameterView*>(getParent()->getParent()->getChildByTag(1)->getChildByName("View"));
-		ui->setParameter(manager->getParameter());
-	}
-	return true;
-}
-
-void StageManager::onTouchMove(cocos2d::Point pos) 
-{
-
-}
-
-void StageManager::onTouchEnd(cocos2d::Point pos) {
-	//if (pos.y <= this->getPanel(0)->getPositionY() - this->getPanel(0)->getContentSize().height / 2) return;
-
-	auto uiLayer = getParent()->getParent()->getChildByTag(1);
-	auto deck = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"));
-
-	int panelNumber = this->touchPos(pos);
-	mIsChengeColor = true;
-
-	if (panelNumber >= 0 && PanelCore::isCreate(panelNumber) && deck->getIsSummons()){
-
-		//召喚予定パネルを取得
-		StagePanel* panel = this->getPanel(panelNumber);
-
-		//召喚
-		if (!summon(deck->getCharacterID(), panel->getPosition(), panelNumber)) return;
-
-		 std::array<int, 25> charavect{};
-		 charaContainer = manager->getCaras();
-		 for (int i = 0; i < 25; ++i) {
-			 mTestArray[i] = charaContainer.back()->getParameter().vect[i];
-		 }
-
-		//色変更が可能なら
-		if (mIsChengeColor == true) {
-			auto changer = std::make_shared< ColorChange >();
-			changer->changeColor(panel->getChildByName(panel->getName()), panelNumber, m_Container, false, 2, mTestArray);
-			mIsChengeColor = false;
-		}
-	}
-}
 void StageManager::checkOnPanel() {
 	int changeNumber;
 	int charauser = 0;
@@ -217,13 +168,32 @@ const cocos2d::Color3B& StageManager::getTurnPlayerColor(){
 
 void StageManager::setUI(GAMESEQUENCE sequence)
 {
-	playerManager->createPlayerDisplay();
+	if (sequence == GAMESEQUENCE::OPERATION_SEQUENCE)
+	{
+		playerManager->setHPBar();
+		playerManager->setMana();
+
+		UILayer::PHASETYPE phase { UILayer::PHASETYPE::P1 };
+
+		if (this->getTurnPlayer()->getName() == "Player2") phase = UILayer::PHASETYPE::P2;
+
+		dynamic_cast<UILayer*>(this->uiLayer)->setPhaseSprite(phase);
+
+		return;
+	}
+
+	dynamic_cast<UILayer*>(this->uiLayer)->setPhaseSprite(UILayer::PHASETYPE::AI);
 
 }
 
-bool StageManager::summon(const CharacterID& id, const Vec2& position,int panelNumber)
+void StageManager::setRoundSprite()
 {
-	auto obj = factory.create(id, position  - Vec2(PANELSIZE / 2, PANELSIZE / 2),panelNumber);
+	dynamic_cast<UILayer*>(this->uiLayer)->setRoundSprite();
+}
+
+bool StageManager::summon(const CharacterID& id, const Vec2& position, int panelNumber)
+{
+	auto obj = factory.create(id, position - Vec2(PANELSIZE / 2, PANELSIZE / 2), panelNumber);
 
 	//プレイヤーの周りでキャラが離されたか判定
 	auto check = [this, panelNumber, obj]()
@@ -257,3 +227,57 @@ bool StageManager::summon(const CharacterID& id, const Vec2& position,int panelN
 	return true;
 
 }
+
+int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
+	
+	auto uiLayer = getParent()->getParent()->getChildByTag(1);
+
+	int vectData[25];
+	if (manager->onTouchBegan(touch, event))
+	{
+		if (touch->getLocation().y <= 120) {
+			manager->getParameter().vect;
+		}
+		auto ui = dynamic_cast<ParameterView*>(getParent()->getParent()->getChildByTag(1)->getChildByName("View"));
+		ui->setParameter(manager->getParameter());
+	}
+	return true;
+}
+
+void StageManager::onTouchMove(cocos2d::Point pos) 
+{
+
+}
+
+void StageManager::onTouchEnd(cocos2d::Point pos) {
+	//if (pos.y <= this->getPanel(0)->getPositionY() - this->getPanel(0)->getContentSize().height / 2) return;
+
+	auto uiLayer = getParent()->getParent()->getChildByTag(1);
+	auto deck = dynamic_cast<PlayerDeck*>(uiLayer->getChildByName("Deck"));
+
+	int panelNumber = this->touchPos(pos);
+	mIsChengeColor = true;
+
+	if (panelNumber >= 0 && PanelCore::isCreate(panelNumber) && deck->getIsSummons()){
+
+		//召喚予定パネルを取得
+		StagePanel* panel = this->getPanel(panelNumber);
+
+		//召喚
+		if (!summon(deck->getCharacterID(), panel->getPosition(), panelNumber)) return;
+
+		 std::array<int, 25> charavect{};
+		 charaContainer = manager->getCaras();
+		 for (int i = 0; i < 25; ++i) {
+			 mTestArray[i] = charaContainer.back()->getParameter().vect[i];
+		 }
+
+		//色変更が可能なら
+		if (mIsChengeColor == true) {
+			auto changer = std::make_shared< ColorChange >();
+			changer->changeColor(panel->getChildByName(panel->getName()), panelNumber, m_Container, false, 2, mTestArray);
+			mIsChengeColor = false;
+		}
+	}
+}
+

@@ -111,3 +111,8 @@ void PlayerManager::setHPBar()
 {
 	this->ui->setHPBar(this->getTurnPlayer()->getParameter().hp.getHp());
 }
+
+void PlayerManager::setMana()
+{
+	this->mana->setMana(this->getTurnPlayer()->getMana());
+}

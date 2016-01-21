@@ -1,6 +1,6 @@
 #include "SequenceManager.h"
 
-#define MAXTURN 6
+#define MAXTURN 7
 
 SequenceManager::SequenceManager():m_Turn(1)
 {
@@ -36,6 +36,8 @@ bool SequenceManager::update(float at){
 
 	currentSequence = m_SequenceStack.top();
 
+	if (!currentSequence) (m_Turn >= MAXTURN);
+ 
 	if (currentSequence->update(at) == S_NULL){
 		
 		if (currentSequence != NULL){
@@ -140,6 +142,7 @@ TURN_PLAYER SequenceManager::getTurnPlayer() const{
 //I—¹ƒ{ƒ^ƒ“
 void SequenceManager::setEndSequence(){
 	currentSequence->onEndSequence();
+
 	if (m_TrunPlayer == PLAYER1) m_TrunPlayer = PLAYER2;
 	else m_TrunPlayer = PLAYER1;
 }

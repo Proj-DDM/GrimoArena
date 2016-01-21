@@ -43,18 +43,13 @@ public:
 	void reset();
 
 	void checkOnPanel();
-
 	void deadChangePanel(int user, int pos, std::array<int, 25> array);
-
 	StagePanel* getPanel(int number);
-
 	int touchPos(cocos2d::Point pos);
-
 	Player* getTurnPlayer();
-
 	const cocos2d::Color3B& getTurnPlayerColor();
-
 	void setUI(GAMESEQUENCE sequence);
+	void setRoundSprite();
 
 	std::vector < Character* > getCaras();
 	bool summon(const CharacterID& id, const Vec2& position, int panelNumber);
@@ -63,16 +58,12 @@ private:
 	using CharacterContainer = std::vector < Character* >;
 
 	Layer* uiLayer;
-	PanelContainer m_Container;
 	CharacterFactory factory;
 	CharacterManager* manager;
 	PlayerManager* playerManager;
-	Parameter mParam;
-	CharacterID mId;
-	int mTestTrun;
+	PanelContainer m_Container;
 	CharacterContainer charaContainer;
 	std::array<int, 25> mTestArray;
-	std::array<cocos2d::Color3B, 2> playerColorArray { { cocos2d::Color3B::BLUE, cocos2d::Color3B::RED } };
 
 
 public:

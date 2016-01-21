@@ -14,6 +14,8 @@ Mana::~Mana()
 bool Mana::init(int mana)
 {
 	if (!Node::init()) return false;
+	manaSpriteContainer.clear();
+
 	int createCount { 6 };
 
 	if (createCount < mana) createCount = mana;
@@ -57,7 +59,7 @@ void Mana::setFadeAnimation(int manaCount)
 
 	if (this->manaSpriteContainer.size() < createCount)
 	{ 
-		for (int i = this->manaSpriteContainer.size() - 1; i < createCount; ++i){
+		for (int i = this->manaSpriteContainer.size() ; i < createCount; ++i){
 			
 			//ƒ}ƒi‰æ‘œ
 			auto manaBack = Sprite::create("Scene/Main/orb_null.png");
@@ -73,9 +75,9 @@ void Mana::setFadeAnimation(int manaCount)
 		}
 	}
 
-	for (int i = 0; i < createCount; ++i)
+	for (int i = 0; i < this->manaSpriteContainer.size(); ++i)
 	{
-		if (this->manaSpriteContainer.size() <= i) break;
+		if (this->manaSpriteContainer.size() < i) break;
 	
 		ActionInterval* action { nullptr };
 

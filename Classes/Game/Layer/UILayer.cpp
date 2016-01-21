@@ -9,11 +9,12 @@ using namespace cocos2d;
 
 namespace
 {
-
+	
 }
 
 UILayer::UILayer()
 {
+
 }
 
 UILayer::~UILayer()
@@ -38,6 +39,21 @@ bool UILayer::init()
 	view->setVisible(false);
 	setTag(1);
 
+	auto size = cocos2d::Director::getInstance()->getVisibleSize();
+	
+	auto uiTopSprite = Sprite::create("Scene/Main/main_topui.png");
+	uiTopSprite->setPosition(Vec2(size.width / 2, size.height - uiTopSprite->getContentSize().height / 2));
+	this->addChild(uiTopSprite);
+
+	this->roundTexture = Sprite::create("Scene/Main/round_1.png");
+	this->roundTexture->setPosition(Vec2(size.width / 2, size.height - this->roundTexture->getContentSize().height / 2));
+	this->roundTexture->setOpacity(0);
+	this->roundTexture->runAction(FadeIn::create(0.5f));
+	this->addChild(this->roundTexture);
+	
+	this->phaseTexture = Sprite::create("Scene/Main/1P_turn.png");
+	this->phaseTexture->setPosition(Vec2(this->phaseTexture->getContentSize().width / 2 - 50, size.height - this->phaseTexture->getContentSize().height / 2 - 20));
+	this->addChild(this->phaseTexture);
 
 	return true;
 }
@@ -94,10 +110,6 @@ void UILayer::createMenuButton(EventListener* listener)
 	this->listner = listener;
 
 	auto size = cocos2d::Director::getInstance()->getVisibleSize();
-
-	auto uiTopSprite = Sprite::create("Scene/Main/main_topui.png");
-	uiTopSprite->setPosition(Vec2(size.width / 2, size.height - uiTopSprite->getContentSize().height / 2));
-	this->addChild(uiTopSprite);
 
 	auto menuButton = cocos2d::MenuItemImage::create("Scene/Main/button_menu.png", "Scene/Main/button_menu.png", CC_CALLBACK_0(UILayer::onMenuButton, this));
 	menuButton->setPosition(cocos2d::Vec2(size.width - menuButton->getContentSize().width / 2 + 50, size.height - menuButton->getContentSize().height / 2));
@@ -193,12 +205,37 @@ void UILayer::onViewButton()
 //ラウンドスプライト切り替え
 void UILayer::setRoundSprite()
 {
+	if (6 < SequenceManager::GetInstance()->getRoundCount()) return;
 
+	if (!this->roundTexture) this->roundTexture = Sprite::create("Scene/Main/round_" + std::to_string(SequenceManager::GetInstance()->getRoundCount()) + ".png");
+	
+	this->roundTexture->setOpacity(0);
+	this->roundTexture->runAction(FadeIn::create(0.5f));
+	this->roundTexture->setTexture("Scene/Main/round_" + std::to_string(SequenceManager::GetInstance()->getRoundCount()) + ".png");
 }
 
 //フェイズスプライト切り替え
-void UILayer::setPhaseSprite()
+void UILayer::setPhaseSprite(PHASETYPE phase)
 {
+
+	switch (phase)
+	{
+	case UILayer::PHASETYPE::P1:
+		this->phaseTexture->setTexture("Scene/Main/1P_turn.png");
+		break;
+	case UILayer::PHASETYPE::P2:
+		this->phaseTexture->setTexture("Scene/Main/2P_turn.png");
+		break;
+	case UILayer::PHASETYPE::AI:
+		this->phaseTexture->setTexture("Scene/Main/AI_turn.png");
+
+		break;
+	default:
+		break;
+	}
+
+	this->phaseTexture->setOpacity(0);
+	this->phaseTexture->runAction(FadeIn::create(0.5f));
 
 }
 

@@ -37,6 +37,7 @@ void EndSequence::end(float at){
 	sequenceManager->nextScene(new OperationSequence(mStageManager));
 	
 	sequenceManager->addTurn();
+	mStageManager->setRoundSprite();
 	mState = S_NULL;
 }
 

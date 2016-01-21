@@ -56,9 +56,14 @@ const cocos2d::Vec2& Player::getPosition() const {
 
 void Player::mathMana(const int value){
 	this->mana += value;
-	this->mana = MyMath::clamp(this->mana, 0, 6);
+	this->mana = MyMath::clamp(this->mana, 0, 8);
 }
 
 cocos2d::Sprite* Player::setIcon(std::string textureName){
 	return nullptr;
+}
+
+void Player::turnEndFuncWithManaClamp()
+{
+	this->mana = MyMath::clamp(this->mana, 0, 6);
 }

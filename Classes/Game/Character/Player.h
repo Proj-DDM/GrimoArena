@@ -37,6 +37,8 @@ public:
 
 	const int getPanelNumber() { return this->panelNumber; };
 
+	void turnEndFuncWithManaClamp();
+
 private:
 
 	int mana { 0 };

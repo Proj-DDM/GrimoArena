@@ -5,6 +5,7 @@
 
 class PlayerDeck;
 class ParameterView;
+USING_NS_CC;
 
 class UILayer:public cocos2d::Layer
 {
@@ -18,6 +19,16 @@ class UILayer:public cocos2d::Layer
 	};
 
 	class EventListener;
+
+public:
+	enum class PHASETYPE
+	{
+		P1,
+		P2,
+		AI,
+
+		SIZE
+	};
 
 public:
 	
@@ -57,7 +68,7 @@ public:
 	void setRoundSprite();
 	
 	//フェイズスプライト切り替え
-	void setPhaseSprite();
+	void setPhaseSprite(PHASETYPE phase);
 
 protected:
 	UILayer();
@@ -66,9 +77,11 @@ protected:
 private:
 	PlayerDeck* playerDeck;
 	ParameterView* view;
-	bool isMenuEnable{ false };
 
+	bool isMenuEnable{ false };
 	std::map<BUTTONTYPE,cocos2d::MenuItemImage*> buttons;
+	Sprite* phaseTexture;
+	Sprite* roundTexture;
 
 	EventListener* listner;	 //イベントリスナー
 

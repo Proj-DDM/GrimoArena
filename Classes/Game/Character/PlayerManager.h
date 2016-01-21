@@ -39,6 +39,8 @@ public:
 
 	void setHPBar();
 
+	void setMana();
+
 private:
 	Mana* mana { nullptr };
 	PlayerUI* ui{ nullptr };

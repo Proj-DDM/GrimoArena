@@ -32,9 +32,9 @@ void OperationSequence::start(float at){
 
 	isPlayerMove = TOUCH;
 
-	mStageManager->setUI(OPERATION_SEQUENCE);
+	mTurnPlayer->mathMana(SequenceManager::GetInstance()->getRoundCount());
 
-	mTurnPlayer->mathMana(6);
+	mStageManager->setUI(OPERATION_SEQUENCE);
 }
 
 void OperationSequence::main(float at){
@@ -42,13 +42,13 @@ void OperationSequence::main(float at){
 }
 
 void OperationSequence::end(float at){
-	
-	SequenceManager::GetInstance()->nextScene(new BattelSequence(mStageManager));
 
 	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2){
 		mState = S_START;
 		return;
 	}
+
+	SequenceManager::GetInstance()->nextScene(new BattelSequence(mStageManager));
 
 	mState = S_NULL;
 }
@@ -110,6 +110,8 @@ void OperationSequence::move(const cocos2d::Vec2& touchPos){
 
 void OperationSequence::onEndSequence()
 {
+	mStageManager->getTurnPlayer()->turnEndFuncWithManaClamp();
+
 	mState = S_END;
 }
 
