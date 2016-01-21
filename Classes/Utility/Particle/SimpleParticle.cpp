@@ -4,7 +4,7 @@
 ParticleSystemQuad* SimpleParticle::create( const std::string& particleName, const Vec2& createPos )
 {
 	// plistFileからパーティクルシステムを生成します
-	auto filePath	= "Particle2dx/Normal/" + particleName + ".plist";
+	auto filePath	= particleName;
 	auto particle	= ParticleSystemQuad::create( filePath );
 	
 	// 各パラメータを設定します

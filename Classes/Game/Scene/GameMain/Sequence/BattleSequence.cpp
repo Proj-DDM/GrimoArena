@@ -123,7 +123,7 @@ void BattelSequence::main(float at){
 			pos = container.at(mCount)->getParameter().position;
 			mStageManager->deadChangePanel(charauser + 2, pos);
 		}*/
-		mStageManager->checkOnPanel();
+		//mStageManager->checkOnPanel();
 		++mCount;
 	}
 	if (mCount == container.size()) {
@@ -198,7 +198,7 @@ void  BattelSequence::deadCheck() {
 				mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 			}
 		}
-		mStageManager->checkOnPanel();
+		//mStageManager->checkOnPanel();
 	}
 }
 
