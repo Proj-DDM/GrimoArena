@@ -234,9 +234,6 @@
     <ClCompile Include="Mana.cpp">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerUI.cpp">
-      <Filter>Classes\Game\Chara\Player\UI</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Game\Character\CharacterFactory.cpp">
       <Filter>Classes\Game\Chara\Util</Filter>
     </ClCompile>
@@ -335,6 +332,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Character\Zombie.cpp">
       <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\PlayerUI.cpp">
+      <Filter>Classes\Game\Chara\Player\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -479,9 +479,6 @@
     <ClInclude Include="Mana.h">
       <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerUI.h">
-      <Filter>Classes\Game\Chara\Player\UI</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\CharacterFactory.h">
       <Filter>Classes\Game\Chara\Util</Filter>
     </ClInclude>
@@ -604,6 +601,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\Zombie.h">
       <Filter>Classes\Game\Chara\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\PlayerUI.h">
+      <Filter>Classes\Game\Chara\Player\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

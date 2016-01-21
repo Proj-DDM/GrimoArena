@@ -48,7 +48,8 @@ public:
 	/*------------------------------------------------------------------
 	|	初期化
 	------------------------------------------------------------------*/
-	virtual bool init(cocos2d::Layer* layer) = 0;
+	virtual bool init(cocos2d::Layer* layer){ return false; };
+	virtual bool init(cocos2d::Layer* layer, cocos2d::Layer* subLayer){ return false; };
 
 	/*------------------------------------------------------------------
 	|	更新関数（メイン）

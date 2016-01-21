@@ -1,6 +1,6 @@
 #include "SequenceManager.h"
 
-#define MAXTURN 5
+#define MAXTURN 6
 
 SequenceManager::SequenceManager():m_Turn(1)
 {

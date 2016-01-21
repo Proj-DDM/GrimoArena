@@ -5,7 +5,6 @@
 #include "Utility/DeleteContainer.h"
 #include "StagePanel.h"
 #include "../../../Character/PlayerDeck.h"
-#include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 #include "../../../UI/ParameterView.h"
 
 
@@ -49,10 +48,10 @@ StageManager::~StageManager(){
 	
 }
 
-StageManager* StageManager::create() {
+StageManager* StageManager::create(Layer* layer) {
 	auto inst = new StageManager();
 	
-	if ( inst && inst->init() ) {
+	if ( inst && inst->init(layer) ) {
 		inst->autorelease();
 		return inst;
 	}
@@ -61,7 +60,7 @@ StageManager* StageManager::create() {
 	return nullptr;
 }
 
-bool StageManager::init() {
+bool StageManager::init(Layer* layer) {
 	if ( !Node::init() ) {
 		return false;
 	}
@@ -80,7 +79,7 @@ bool StageManager::init() {
 	addChild(manager);
 
 	//プレイヤーマネージャー
-	playerManager = PlayerManager::create();
+	playerManager = PlayerManager::create(layer);
 	auto pos1 = this->getPanel(4)->getPosition();
 	auto pos2 = this->getPanel(94)->getPosition();
 
@@ -94,14 +93,6 @@ bool StageManager::init() {
 
 void StageManager::update(float at) {
 	manager->update(at);
-	if (mCount <= 0) { mCount = 0; }
-	if (mCount >= 99) { mCount = 99; }
-
-	auto uiLayer = this->getParent()->getParent()->getChildByTag(1);
-	if (!uiLayer->getChildByTag(NUMBERTAG)) return;
-	int mana = playerManager->getTurnPlayer()->getMana();
-	dynamic_cast<Sprite*>(uiLayer->getChildByTag(NUMBERTAG))->setTextureRect(Rect(32 * mana, 0, 32, 32));
-
 }
 
 int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
@@ -224,61 +215,9 @@ const cocos2d::Color3B& StageManager::getTurnPlayerColor(){
 	return playerColorArray[SequenceManager::GetInstance()->getTurnPlayer()];
 }
 
-void StageManager::setUI()
+void StageManager::setUI(GAMESEQUENCE sequence)
 {
-	auto uiLayer = this->getParent()->getParent()->getChildByTag(1);
-
-	if (uiLayer->getChildByTag(ICONTAG))		 uiLayer->removeChildByTag(ICONTAG);
-	if (uiLayer->getChildByTag(NUMBERTAG))		 uiLayer->removeChildByTag(NUMBERTAG);
-	if (uiLayer->getChildByTag(ICONBACK))		 uiLayer->removeChildByTag(ICONBACK);
-	if (uiLayer->getChildByTag(PLAYER_HP_FRAME)) uiLayer->removeChildByTag(PLAYER_HP_FRAME);
-	if (uiLayer->getChildByTag(PLAYER_HP_BACK))  uiLayer->removeChildByTag(PLAYER_HP_BACK);
-	if (uiLayer->getChildByTag(HP_FRAME_BACK))	 uiLayer->removeChildByTag(HP_FRAME_BACK);
-
-	auto visibleSize = Director::getInstance()->getVisibleSize();
-	auto action = FadeIn::create(2);
-
-	//アイコン背景
-	auto iconBack = Sprite::create("Scene/Main/UI_playerFrame.png");
-	iconBack->setPosition(Vec2(iconBack->getContentSize().width / 2.8f, iconBack->getContentSize().height * 1.25));
-	iconBack->setTag(ICONBACK);
-	uiLayer->addChild(iconBack);
-
-	//プレイヤーアイコン
-	auto icon = playerManager->createIcon();
-	icon->setPosition(Vec2(icon->getContentSize().width / 1.85, icon->getContentSize().height * 2.1));
-	icon->setTag(ICONTAG);
-	uiLayer->addChild(icon);
-
-	//HPバックバー
-	auto hpBackBar = Sprite::create("Scene/Main/hp_framebg.png");
-	hpBackBar->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, hpBackBar->getContentSize().height * 4.8));
-	hpBackBar->setTag(ICONTAG);
-	uiLayer->addChild(hpBackBar);
-
-	//HPバー
-	auto hpBar = Sprite::create("Scene/Main/p_player.png");
-	hpBar->setPosition(Vec2(hpBackBar->getPositionX() + 50, hpBackBar->getPositionY()));
-	hpBar->setTag(ICONTAG);
-	uiLayer->addChild(hpBar);
-
-	//HPフレーム
-	auto hpFrame = Sprite::create("Scene/Main/hp_frame.png");
-	hpFrame->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, hpFrame->getContentSize().height * 4.8));
-	hpFrame->setTag(PLAYER_HP_FRAME);
-	uiLayer->addChild(hpFrame);
-
-	uiLayer->addChild(playerManager->createManaDisplay());
-
-	////フェイズ表記
-	//auto action4 = FadeIn::create(2);
-	//auto PhaseImage = Sprite::create("MAINPHASE.png");
-	//PhaseImage->setScale(0.2f);
-	//PhaseImage->setPosition(Vec2(PhaseImage->getContentSize().width, visibleSize.height - PhaseImage->getContentSize().height));
-	//PhaseImage->setOpacity(0);
-	//PhaseImage->setTag(PHASETAG);
-	//PhaseImage->runAction(action4);
-	//uiLayer->addChild(PhaseImage);
+	playerManager->createPlayerDisplay();
 
 }
 

@@ -57,12 +57,16 @@ public:
 
 	TURN_PLAYER getTurnPlayer() const;
 
+	int getRoundCount() { return m_Turn; };
+
+
+
 private:
 
 	std::stack<ISequence*> m_SequenceStack;
 	ISequence* currentSequence;
 	ISequence* nextSequence;
-	int m_Turn;
+	int m_Turn { 0 };
 	GAMESEQUENCE m_Sequence;
 	TURN_PLAYER m_TrunPlayer{ PLAYER1 };
 	// P1

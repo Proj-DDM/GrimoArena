@@ -10,21 +10,15 @@
 #include "../../../Character/CharacterManager.h"
 #include "../../../Character/Player.h"
 #include "../../../Character/PlayerManager.h"
+#include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 
 USING_NS_CC;
 
 class StagePanel;
 
+
 class StageManager : public cocos2d::Node {
 	
-#define ICONTAG			1111
-#define NUMBERTAG		1113
-#define PHASETAG		1114
-#define ICONBACK		1115
-#define PLAYER_HP_FRAME 1116
-#define PLAYER_HP_BACK  1117
-#define HP_FRAME_BACK   1118
-
 protected:	
 	StageManager() = default;
 	
@@ -32,9 +26,9 @@ protected:
 	
 public:
 	
-	static StageManager* create();
+	static StageManager* create(Layer* layer);
 	
-	virtual bool init() override;
+	virtual bool init(Layer* layer);
 
 	void update(float at) override;
 
@@ -60,13 +54,15 @@ public:
 
 	const cocos2d::Color3B& getTurnPlayerColor();
 
-	void setUI();
+	void setUI(GAMESEQUENCE sequence);
 
 	std::vector < Character* > getCaras();
 	bool summon(const CharacterID& id, const Vec2& position, int panelNumber);
 
-
 private:
+	using CharacterContainer = std::vector < Character* >;
+
+	Layer* uiLayer;
 	PanelContainer m_Container;
 	CharacterFactory factory;
 	CharacterManager* manager;
@@ -74,10 +70,10 @@ private:
 	Parameter mParam;
 	CharacterID mId;
 	int mTestTrun;
-	using CharacterContainer = std::vector < Character* >;
 	CharacterContainer charaContainer;
 	std::array<int, 25> mTestArray;
 	std::array<cocos2d::Color3B, 2> playerColorArray { { cocos2d::Color3B::BLUE, cocos2d::Color3B::RED } };
+
 
 public:
 	int				   mCount;

@@ -1,6 +1,7 @@
 #include "PlayerManager.h"
 #include "Player.h"
 #include "../Scene/GameMain/Sequence/SequenceManager.h"
+#include "PlayerUI.h"
 #include <array>
 
 
@@ -25,11 +26,11 @@ PlayerManager::~PlayerManager()
 }
 
 
-PlayerManager* PlayerManager::create(){
+PlayerManager* PlayerManager::create(cocos2d::Node* layer){
 
 	auto obj = new PlayerManager();
 
-	if (obj && obj->init()){
+	if (obj && obj->init(layer)){
 		obj->autorelease();
 
 		return obj;
@@ -41,7 +42,7 @@ PlayerManager* PlayerManager::create(){
 
 }
 
-bool PlayerManager::init(){
+bool PlayerManager::init(cocos2d::Node* layer){
 
 	if (!Node::init()){
 		return false;
@@ -49,6 +50,7 @@ bool PlayerManager::init(){
 
 	m_Players.clear();
 
+	this->layer = layer;
 	return true;
 
 }
@@ -79,9 +81,12 @@ Player* PlayerManager::getTurnPlayer(){
 	return m_Players.at(SequenceManager::GetInstance()->getTurnPlayer());
 }
 
-cocos2d::Sprite* PlayerManager::createIcon()
+void PlayerManager::createPlayerDisplay()
 {
-	return cocos2d::Sprite::create("Scene/Main/core.png");
+	this->layer->addChild(PlayerUI::create());
+
+	this->layer->addChild(this->createManaDisplay());
+
 }
 
 Mana* PlayerManager::createManaDisplay()

@@ -18,9 +18,9 @@ public:
 
 	using Players = std::vector<Player*>;
 
-	static PlayerManager* create();
+	static PlayerManager* create(cocos2d::Node* layer);
 
-	virtual bool init() override;
+	virtual bool init(cocos2d::Node* layer);
 
 	void update(float at) override;
 
@@ -30,9 +30,11 @@ public:
 
 	Players m_Players;
 
+	void createPlayerDisplay();
+
 	Mana* createManaDisplay();
 
-	cocos2d::Sprite* createIcon();
+	//cocos2d::Sprite* createIcon();
 
 	void mathMana(int value);
 
@@ -40,6 +42,8 @@ private:
 	Mana* mana { nullptr };
 
 	void push(cocos2d::Vec2 pos,int number,std::string name);
+
+	cocos2d::Node* layer;
 
 };
 

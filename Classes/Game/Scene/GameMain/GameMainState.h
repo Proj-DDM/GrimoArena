@@ -21,12 +21,12 @@ public:
 	/*-------------------------------------------------------------------
 	|	・レイヤーの生成
 	-------------------------------------------------------------------*/
-	static GameMainState* create(cocos2d::Layer* layer);
+	static GameMainState* create(cocos2d::Layer* layer, cocos2d::Layer* uiLayer);
 
 	/*-------------------------------------------------------------------
 	|	・初期化
 	--------------------------------------------------------------------*/
-	bool init(cocos2d::Layer* layer) override;
+	bool init(cocos2d::Layer* layer, cocos2d::Layer* uiLayer) override;
 
 	/*-------------------------------------------------------------------
 	|	・描画開始時

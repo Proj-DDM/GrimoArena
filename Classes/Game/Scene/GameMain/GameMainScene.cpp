@@ -30,7 +30,7 @@ bool GameMainScene::init(cocos2d::Layer* layer){
 		return false;
 	}
 
-	mState = GameMainState::create(this);
+	mState = GameMainState::create(this,layer);
 
 	auto onTouchBegan = CC_CALLBACK_2(GameMainScene::onTouchBegan, this);
 	auto onTouchEnd = CC_CALLBACK_2(GameMainScene::onTouchEnded, this);
@@ -47,19 +47,13 @@ bool GameMainScene::init(cocos2d::Layer* layer){
 
 	this->scheduleUpdate();
 
-	auto endButton = cocos2d::MenuItemImage::create("Scene/Main/menu_turnend.png", "Scene/Main/menu_turnend.png",CC_CALLBACK_0(GameMainScene::onEndButton,this));
+	UILayer::EventListener* lisner = UILayer::EventListener::create();
+	lisner->onViewButton = CC_CALLBACK_0(GameMainScene::onViewButton, this);
+	lisner->onEndButton = CC_CALLBACK_0(GameMainScene::onEndButton, this);
+	lisner->onBackButton = CC_CALLBACK_0(GameMainScene::onEndButton, this);
+	lisner->onGiveUpButton = CC_CALLBACK_0(GameMainScene::onEndButton, this);
 
-	endButton->setPosition(cocos2d::Vec2(endButton->getContentSize().width / 4, size.height - endButton->getContentSize().height / 2));
-	auto menu = cocos2d::Menu::create(endButton,nullptr);
-	menu->setPosition(cocos2d::Point::ZERO);
-	this->uiLayer->addChild(menu);
-
-	auto viewButton = cocos2d::MenuItemImage::create("Scene/Main/menu_turnend.png", "Scene/Main/menu_turnend.png", CC_CALLBACK_0(GameMainScene::onViewButton, this));
-
-	viewButton->setPosition(cocos2d::Vec2(Director::getInstance()->getVisibleSize().width - viewButton->getContentSize().width, size.height - viewButton->getContentSize().height / 2));
-	auto viewMenu = cocos2d::Menu::create(viewButton, nullptr);
-	viewMenu->setPosition(cocos2d::Point::ZERO);
-	this->uiLayer->addChild(viewMenu);
+	dynamic_cast<UILayer*>(this->uiLayer)->createMenuButton(lisner);
 
 	return true;
 }
@@ -75,13 +69,13 @@ void GameMainScene::update(float at){
 }
 
 bool GameMainScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event){
+	dynamic_cast<UILayer*>(this->uiLayer)->closeMenu();
 	mState->onTouchBegan(touch, event);
 	return true;
 }
 
 void GameMainScene::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event){
 	mState->onTouchMoved(touch, event);
-
 }
 
 void GameMainScene::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){

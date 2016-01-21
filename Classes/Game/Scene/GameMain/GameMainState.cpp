@@ -14,11 +14,11 @@
 
 using namespace cocos2d;
 
-GameMainState* GameMainState::create(Layer* layer){
+GameMainState* GameMainState::create(Layer* layer,Layer* uiLayer){
 
 	auto obj = new GameMainState();
 	
-	if (obj && obj->init(layer)){
+	if (obj && obj->init(layer,uiLayer)){
 		obj->retain();
 		obj->autorelease();
 		return obj;
@@ -28,14 +28,12 @@ GameMainState* GameMainState::create(Layer* layer){
 	return nullptr;
 }
 
-bool GameMainState::init(Layer* layer){
+bool GameMainState::init(Layer* layer,Layer* uiLayer){
 	mSceneState = FADEIN;
 	mUpdateState = UPDATESTART;
 	parentLayer = layer;
 
-
-	mStageManager = StageManager::create();
-
+	mStageManager = StageManager::create(uiLayer);
 	parentLayer->addChild(mStageManager);
 
 	mCount = 0;
@@ -128,7 +126,7 @@ void GameMainState::onEndButton(){
 }
 
 void GameMainState::onViewButton(){
-	if (!this->isView)	
+	if (this->isView)	
 	{
 		gremo::Camera::getInstance().setPosition(mStageManager->getTurnPlayer()->getPosition());
 	}

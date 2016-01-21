@@ -79,7 +79,7 @@ void ModalLayer::onSelectButton(std::function<void()> func)
 
 		this->getEventDispatcher()->removeEventListenersForTarget(this);
 
-		CC_SAFE_RETAIN(this->listner);
+		CC_SAFE_RELEASE(this->listner);
 
 	}), nullptr);
 
