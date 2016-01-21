@@ -41,6 +41,9 @@ public:
 	----------------------------------------------------------------------*/
 	bool onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event) override;
 private:
+	cocos2d::Sprite* sprite;
+	cocos2d::Animate* anime;
+	bool isAnime;
 	int mCount;
 	int mCharaPos;
 	int charauser;

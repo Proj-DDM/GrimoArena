@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include "Game\Object\StageObject\StageMap/StageManager.h"
 #include "Utility/Particle/SimpleParticle.h"
+#include "Utility/Animation/SpriteAnimation.h"
 
 #define MAX_ARRAY 24
 
@@ -63,13 +64,14 @@ S_STATUS BattelSequence::update(float at){
 void BattelSequence::start(float at){
 	container = mStageManager->getCaras();
 	container = Mysort(container);
-	mState = S_MAIN;
+	mStageManager->allCheck(0);
 	mAttackArray = { 0, 0, 0, 0, 0,
 					 0, 1, 1, 1, 0,
 					 0, 1, 2, 1, 0,
 					 0, 1, 1, 1, 0,
 					 0, 0, 0, 0, 0 };
 	mCount = 0;
+	mState = S_MAIN;
 }
 
 void BattelSequence::main(float at){
@@ -77,6 +79,12 @@ void BattelSequence::main(float at){
 	static int i = 0;
 	++i;
 	//deadCheck();
+	for (int i = 0; i < container.size(); ++i) {
+		if (container.at(i)->getParameter().hp.isDead() == true) {
+			auto act = RemoveSelf::create();
+			container[i]->runAction(act);
+		}
+	}
 	if (i % 60 == 0) {
 		if (container[mCount]->getParameter().hp.isDead()) {
 			if (container.at(mCount)->getState() != CharacterState::Dead) {
@@ -113,72 +121,12 @@ void BattelSequence::main(float at){
 			CCLOG("attack : %i", mCount);
 			attackPos(charaPos);
 		}
-		//死んだときに自分ので塗ってる
-		/*if (container[mCount]->getParameter().hp.isDead()) {
-			if (container.at(mCount)->getState() != CharacterState::Dead) {
-				container.at(mCount)->getState() = CharacterState::Dead;
-				CCLOG("dead : %i", mCount);
-			}
-			int pos;
-			pos = container.at(mCount)->getParameter().position;
-			mStageManager->deadChangePanel(charauser + 2, pos);
-		}*/
-		//mStageManager->checkOnPanel();
 		++mCount;
 	}
+	
 	if (mCount == container.size()) {
 		mState = S_END;
 	}
-	//どのキャラを移動行動させるか決定
-	/*for (auto i = 0; i < container.size(); ++i) {
-		if (container[i]->getParameter().hp.isDead()) {
-			if (container.at(i)->getState() != CharacterState::Dead) {
-				container.at(i)->getState() = CharacterState::Dead;
-				CCLOG("dead : %i", i);
-			}
-		}
-		charaPos = container.at(i)->getParameter().position;
-		mAttackParam = container.at(i)->getParameter().attackPoint;
-		if (container.at(i)->getCharacterUser() == CharacterUser::Player1) {
-			charauser = 1;
-		} else {
-			charauser = 2;
-		}
-
-		//攻撃範囲変換
-		for (int i = 0; i < mAttackArray.size(); ++i) {
-			if (mAttackArray[i] == 2){
-				mCharaLine.x = i % 5;
-				mCharaLine.y = i / 5;
-				mBaseLine.x = mCharaLine.x;
-				mBaseLine.y = mCharaLine.y;
-				mCharaLine.x = 0;
-				mCharaLine.y = 0;
-			}
-		}
-		if (container.at(i)->getState() != CharacterState::Dead) {
-			container.at(i)->getState() = CharacterState::MoveWait;
-		}
-		move(i, charauser);
-		charaPos = container.at(i)->getParameter().position;
-		if (container.at(i)->getState() != CharacterState::Dead) {
-			CCLOG("attack : %i", i);
-			attackPos(charaPos);
-		}
-		if (container[i]->getParameter().hp.isDead()) {
-			if (container.at(i)->getState() != CharacterState::Dead) {
-				container.at(i)->getState() = CharacterState::Dead;
-				CCLOG("dead : %i", i);
-			}
-			int pos;
-			pos = container.at(i)->getParameter().position;
-			mStageManager->deadChangePanel(charauser + 2, pos);
-		}
-		mStageManager->checkOnPanel();
-	}
-	mStageManager->checkOnPanel();
-	mState = S_END;
-	*/
 }
 
 void  BattelSequence::deadCheck() {
@@ -218,6 +166,7 @@ void BattelSequence::actionMain(int id) {
 void BattelSequence::move(int id, int user) {
 	CCLOG("move : %i", id);
 	if (container.at(id)->getState() != CharacterState::MoveWait) return;
+	
 	int moveCount = 0;
 	int charaPosY = 0;
 	int moveVelocity = 0;
@@ -246,7 +195,16 @@ void BattelSequence::move(int id, int user) {
 		}
 	}
 	//画像移動
-	container.at(id)->setPositionY(moveVelocity);
+	//適当な範囲制限
+	if (moveVelocity > 0 || moveVelocity < 1500) {
+		auto sprite = (Sprite*)container.at(id)->getSprite();
+		auto move = MoveTo::create(0.3f, Vec2(
+			container.at(id)->getSprite()->getPositionX(),
+			container.at(id)->getSprite()->getPositionY() + moveVelocity));
+		auto easemove = EaseInOut::create(move, 10);
+		sprite->runAction(easemove);
+		//container.at(id)->setPositionY(moveVelocity);
+	}
 	//キャラクターパラメーターの位置の値を画像位置と同期
 	//CCLOG("%i", std::abs(moveCount));
 	if (container.at(id)->getCharacterUser() == CharacterUser::Player2) {
@@ -302,11 +260,37 @@ void BattelSequence::checkPos(int pos) {
 			if (charauser == 1) {
 				if (container.at(i)->getCharacterUser() == CharacterUser::Player1) return;
 				container.at(i)->getParameter().hp.operator-=(mAttackParam);
+				
+				auto sprite = Sprite::create();
+				mStageManager->addChild(sprite);
+				sprite->setPosition(Point(
+					container.at(i)->getSprite()->getPositionX() + (int)container.at(i)->getPositionX(),
+					container.at(i)->getSprite()->getPositionY() + (int)container.at(i)->getPositionY()));
+				CCLOG("X %i", (int)container.at(i)->getSprite()->getPositionX());
+				CCLOG("Y %i", (int)container.at(i)->getSprite()->getPositionY());
+				sprite->setTextureRect(Rect(0, 0, 120, 120));
+				sprite->setCameraMask((int)CameraFlag::USER1);
+				Util::SpriteAnimation spriteAnimetion("Effect/");
+				//
+				if (container.at(mCount)->getParameter().attribute == 1000) {
+					anime = spriteAnimetion.createAnim("fire_", 8, 0.08f, true);
+				}
+				if (container.at(mCount)->getParameter().attribute == 1001) {
+					anime = spriteAnimetion.createAnim("water_", 8, 0.08f, true);
+				}
+				if (container.at(mCount)->getParameter().attribute == 1010) {
+					anime = spriteAnimetion.createAnim("wood_", 8, 0.08f, true);
+				}
+				auto func = CallFunc::create([sprite]() {
+					sprite->removeFromParentAndCleanup(true);
+				});
+				auto seq = Sequence::create(anime, func, NULL);
+				sprite->runAction(seq);
+
 				CCLOG("Player1Attack for %i", i);
 				if (container.at(i)->getParameter().hp.isDead() == true) {
 					int pos;
 					pos = container.at(i)->getParameter().position;
-
 
 					std::array<int, 25> charavect{};
 					for (int k = 0; k < 25; ++k) {
@@ -314,11 +298,40 @@ void BattelSequence::checkPos(int pos) {
 					}
 
 					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
+					//キャラの削除
+					container.erase(container.begin() + i);
 				}
 			}
 			if (charauser == 2) {
 				if (container.at(i)->getCharacterUser() == CharacterUser::Player2) return;
 				container.at(i)->getParameter().hp.operator-=(mAttackParam);
+
+				auto sprite = Sprite::create();
+				mStageManager->addChild(sprite);
+				sprite->setPosition(Point(
+					container.at(i)->getSprite()->getPositionX() + (int)container.at(i)->getPositionX(),
+					container.at(i)->getSprite()->getPositionY() + (int)container.at(i)->getPositionY()));
+				CCLOG("X %i", (int)container.at(i)->getSprite()->getPositionX());
+				CCLOG("Y %i", (int)container.at(i)->getSprite()->getPositionY());
+				sprite->setTextureRect(Rect(0, 0, 120, 120));
+				sprite->setCameraMask((int)CameraFlag::USER1);
+				Util::SpriteAnimation spriteAnimetion("Effect/");
+				//
+				if (container.at(mCount)->getParameter().attribute == 1000) {
+					anime = spriteAnimetion.createAnim("fire_", 8, 0.08f, true);
+				}
+				if (container.at(mCount)->getParameter().attribute == 1001) {
+					anime = spriteAnimetion.createAnim("water_", 8, 0.08f, true);
+				}
+				if (container.at(mCount)->getParameter().attribute == 1010) {
+					anime = spriteAnimetion.createAnim("wood_", 8, 0.08f, true);
+				}
+				auto func = CallFunc::create([sprite]() {
+					sprite->removeFromParentAndCleanup(true);
+				});
+				auto seq = Sequence::create(anime, func, NULL);
+				sprite->runAction(seq);
+
 				CCLOG("Player2Attack for %i", i);
 				if (container.at(i)->getParameter().hp.isDead() == true) {
 					int pos;
@@ -330,18 +343,12 @@ void BattelSequence::checkPos(int pos) {
 					}
 
 					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
+					//キャラの削除
+					//バトルシーケンスのコンテナ内の敵を殴ってる可能性が微レ存
+					container.erase(container.begin() + i);
 				}
 			}
 		}
-		/*if (container.at(i)->getParameter().hp.isDead()) {
-			if (container.at(i)->getState() != CharacterState::Dead) {
-			container.at(i)->getState() = CharacterState::Dead;
-			CCLOG("dead : %i", i);
-			}
-			int pos;
-			pos = container.at(i)->getParameter().position;
-			mStageManager->deadChangePanel(charauser + 2, pos);
-		}*/
 	}
 }
 

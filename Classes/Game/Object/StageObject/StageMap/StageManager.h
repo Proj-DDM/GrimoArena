@@ -65,6 +65,7 @@ public:
 	std::vector < Character* > getCaras();
 	bool summon(const CharacterID& id, const Vec2& position, int panelNumber);
 
+	int allCheck(int id);
 
 private:
 	PanelContainer m_Container;
@@ -74,6 +75,8 @@ private:
 	Parameter mParam;
 	CharacterID mId;
 	int mTestTrun;
+	bool isAnime;
+	Sprite* sprite;
 	using CharacterContainer = std::vector < Character* >;
 	CharacterContainer charaContainer;
 	std::array<int, 25> mTestArray;

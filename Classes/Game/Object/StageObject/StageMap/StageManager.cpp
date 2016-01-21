@@ -7,7 +7,9 @@
 #include "../../../Character/PlayerDeck.h"
 #include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 #include "../../../UI/ParameterView.h"
-
+#include "Utility/Particle/SimpleParticle.h"
+#include "Utility/Animation/SpriteAnimation.h"
+#include "Game/Score.h"
 
 
 using namespace cocos2d;
@@ -65,25 +67,30 @@ bool StageManager::init() {
 	if ( !Node::init() ) {
 		return false;
 	}
+	isAnime = false;
 	m_Container.clear();
 
 	this->schedule(schedule_selector(StageManager::update));
 	mCount = 0;
 	mTestTrun = 1;
+
+	//auto bable = SimpleParticle::create("effect_god.plist", Point(100, 100));
+	//this->addChild(bable, 30);
 	
 	auto fac = std::make_shared< StageFactory >();
 	fac->createPanel(&m_Container,this);
 	
 	factory.init();
 	manager = CharacterManager::create();
-
+	
 	addChild(manager);
 
 	//プレイヤーマネージャー
 	playerManager = PlayerManager::create();
 	auto pos1 = this->getPanel(4)->getPosition();
 	auto pos2 = this->getPanel(94)->getPosition();
-
+	m_Container.at(4)->sprite->setColor(Color3B::BLUE);
+	m_Container.at(94)->sprite->setColor(Color3B::RED);
 	playerManager->setPlayer(this, pos1, pos2);
 
 
@@ -317,4 +324,28 @@ bool StageManager::summon(const CharacterID& id, const Vec2& position,int panelN
 
 	return true;
 
+}
+
+int StageManager::allCheck(int id) {
+	//id = 0 BRUE, id = 1 RED
+	int brue , red;
+	brue = 0, red = 0;
+	//BRUE
+	if (id == 0) {
+		for (int i = 0; i < m_Container.size(); ++i) {
+			if (m_Container.at(i)->getColor() == Color3B::BLUE) {
+				 ++brue;
+			}
+		}
+		return brue;
+	}
+	//RED
+	if (id == 1) {
+		for (int i = 0; i < m_Container.size(); ++i) {
+			if (m_Container.at(i)->getColor() == Color3B::RED) {
+				++red;
+			}
+		}
+		return red;
+	}
 }
