@@ -71,7 +71,6 @@ void BattelSequence::start(float at){
 					 0, 1, 1, 1, 0,
 					 0, 0, 0, 0, 0 };
 	mCount = 0;
-
 	mStageManager->setUI(BATTLE_SEQUENCE);
 	mState = S_MAIN;
 }

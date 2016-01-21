@@ -75,6 +75,9 @@ bool StageManager::init(Layer* layer) {
 	this->schedule(schedule_selector(StageManager::update));
 	mCount = 0;
 	mTestTrun = 1;
+
+	//auto bable = SimpleParticle::create("effect_god.plist", Point(100, 100));
+	//this->addChild(bable, 30);
 	
 	auto fac = std::make_shared< StageFactory >();
 	fac->createPanel(&m_Container,this);
@@ -309,4 +312,5 @@ int StageManager::allCheck(int id) {
 		}
 		return red;
 	}
+}
 }

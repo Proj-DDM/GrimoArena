@@ -54,7 +54,8 @@ public:
 	std::vector < Character* > getCaras();
 	bool summon(const CharacterID& id, const Vec2& position, int panelNumber);
 
-	int allCheck(int id);ト
+	int allCheck(int id);
+
 private:
 	using CharacterContainer = std::vector < Character* >;
 
