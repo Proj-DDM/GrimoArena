@@ -4,6 +4,7 @@
 #include <vector>
 #include "cocos2d.h"
 #include "../../proj.win32/Mana.h"
+#include "PlayerUI.h"
 
 class Player;
 class Mana;
@@ -34,13 +35,13 @@ public:
 
 	Mana* createManaDisplay();
 
-	//cocos2d::Sprite* createIcon();
-
 	void mathMana(int value);
+
+	void setHPBar();
 
 private:
 	Mana* mana { nullptr };
-
+	PlayerUI* ui{ nullptr };
 	void push(cocos2d::Vec2 pos,int number,std::string name);
 
 	cocos2d::Node* layer;

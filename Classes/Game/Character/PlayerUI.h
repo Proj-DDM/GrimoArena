@@ -13,6 +13,7 @@ public:
 
 	CREATE_FUNC(PlayerUI);
 
+	void setHPBar(int hp);
 	bool init();
 
 private:

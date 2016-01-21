@@ -2,7 +2,7 @@
 #include "Utility/Math/MyMath.h"
 using namespace cocos2d;
 
-
+#define MAX_HP 500
 
 Player::Player()
 {
@@ -16,7 +16,7 @@ Player::~Player()
 
 bool Player::init(const cocos2d::Vec2& position)
 {
-	parameter = Parameter(500, 0, 0);
+	parameter = Parameter(MAX_HP, 0, 0);
 	sprite = Sprite::create("Chara/1P/mon5_icon_r.png");
 	addChild(sprite);
 	setPosition(position);

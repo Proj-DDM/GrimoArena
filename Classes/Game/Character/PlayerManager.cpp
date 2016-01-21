@@ -1,7 +1,6 @@
 #include "PlayerManager.h"
 #include "Player.h"
 #include "../Scene/GameMain/Sequence/SequenceManager.h"
-#include "PlayerUI.h"
 #include <array>
 
 
@@ -83,10 +82,11 @@ Player* PlayerManager::getTurnPlayer(){
 
 void PlayerManager::createPlayerDisplay()
 {
-	this->layer->addChild(PlayerUI::create());
-
+	this->ui = PlayerUI::create();
+	this->layer->addChild(ui);
 	this->layer->addChild(this->createManaDisplay());
 
+	this->ui->setHPBar(this->getTurnPlayer()->getParameter().hp.getHp());
 }
 
 Mana* PlayerManager::createManaDisplay()
@@ -103,4 +103,9 @@ void PlayerManager::mathMana(int value)
 	this->getTurnPlayer()->mathMana(value);
 
 	this->mana->setMana(this->getTurnPlayer()->getMana());
+}
+
+void PlayerManager::setHPBar()
+{
+	this->ui->setHPBar(this->getTurnPlayer()->getParameter().hp.getHp());
 }
