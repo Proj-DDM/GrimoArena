@@ -9,7 +9,7 @@
 #include "Game/Layer/UILayer.h"
 #include "Utility/Particle/SimpleParticle.h"
 #include "Utility/Animation/SpriteAnimation.h"
-#include "Game/Score.h"
+
 
 
 using namespace cocos2d;

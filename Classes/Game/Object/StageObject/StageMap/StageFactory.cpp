@@ -51,7 +51,7 @@ void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 	background->setCameraMask((int)CameraFlag::USER1);
 	background->setPosition(Vec2(16 + background->getContentSize().width / 2 - 60, 350 + background->getContentSize().height / 2 - 40));
 
-	Sprite* backBase = Sprite::create("Scene/Main/stage_base2.png");
+	Sprite* backBase = Sprite::create("Scene/Main/stage_bara2.png");
 	backBase->setCameraMask((int)CameraFlag::USER1);
 	backBase->setPosition(Vec2(16 + backBase->getContentSize().width / 2 - 484, 350 + backBase->getContentSize().height / 2 - 364));
 

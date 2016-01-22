@@ -205,6 +205,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Game\Test\TestScene.cpp" />
     <ClCompile Include="..\Classes\Game\UI\ParameterView.cpp" />
     <ClCompile Include="..\Classes\Utility\Action\Follow\CustomFollow.cpp" />
+    <ClCompile Include="..\Classes\Utility\Animation\SpriteAnimation.cpp" />
     <ClCompile Include="..\Classes\Utility\Camera\Camera.cpp" />
     <ClCompile Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.cpp" />
     <ClCompile Include="..\Classes\Utility\cocosAssistant\SpriteCreator.cpp" />
@@ -292,6 +293,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Game\UI\ParameterPtr.h" />
     <ClInclude Include="..\Classes\Game\UI\ParameterView.h" />
     <ClInclude Include="..\Classes\Utility\Action\Follow\CustomFollow.h" />
+    <ClInclude Include="..\Classes\Utility\Animation\SpriteAnimation.h" />
     <ClInclude Include="..\Classes\Utility\Camera\Camera.h" />
     <ClInclude Include="..\Classes\Utility\cocosAssistant\ListenerAssistant.h" />
     <ClInclude Include="..\Classes\Utility\cocosAssistant\SpriteCreator.h" />

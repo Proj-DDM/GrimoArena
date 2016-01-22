@@ -93,7 +93,8 @@ void OperationSequence::move(const cocos2d::Vec2& touchPos){
 
 
 	int number = (((int)touchPos.x - 60) / 120) + (((int)touchPos.y - 360) / 120 * 9);
-
+	
+	if (number <= -1 || 99 <= number) return;
 	if (isPlayerMove != MOVE || mStageManager->getPanel(number)->getColor() != mStageManager->getTurnPlayerColor()) return;
 
 	this->touchPos = touchPos;

@@ -118,6 +118,9 @@
     <Filter Include="Classes\Utility\Particle">
       <UniqueIdentifier>{08d4c751-2026-44a5-aa5a-d89f8f51f174}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Utility\Animation">
+      <UniqueIdentifier>{c14c3d75-d58b-4a49-8fca-cf105563d193}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -341,6 +344,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Utility\Particle\SimpleParticle.cpp">
       <Filter>Classes\Utility\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility\Animation\SpriteAnimation.cpp">
+      <Filter>Classes\Utility\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -613,6 +619,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\HP.h">
       <Filter>Classes\Game\Chara\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\Animation\SpriteAnimation.h">
+      <Filter>Classes\Utility\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
