@@ -55,6 +55,7 @@ public:
 	bool summon(const CharacterID& id, const Vec2& position, int panelNumber);
 
 	int allCheck(int id);
+
 private:
 	using CharacterContainer = std::vector < Character* >;
 
