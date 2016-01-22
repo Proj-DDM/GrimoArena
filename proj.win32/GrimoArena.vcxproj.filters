@@ -497,9 +497,6 @@
     <ClInclude Include="..\Classes\Game\Character\CharacterType.h">
       <Filter>Classes\Game\Chara\Util</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Game\Character\HP.h">
-      <Filter>Classes\Game\Chara\Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\Character.h">
       <Filter>Classes\Game\Chara\Other</Filter>
     </ClInclude>
@@ -613,6 +610,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\Particle\SimpleParticle.h">
       <Filter>Classes\Utility\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\HP.h">
+      <Filter>Classes\Game\Chara\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

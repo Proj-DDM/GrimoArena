@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "Utility/Math/MyMath.h"
 
 NS_BEGIN(gremo)
 
@@ -29,8 +30,11 @@ void Camera::moveLookAt(const Vec2& eye)
 void Camera::movePosition(const Vec2& position)
 {
 	auto cameraPos = this->getCameraPosition();
-	this->camera->setPosition3D(Vec3(cameraPos.x + position.x, cameraPos.y + position.y, POSITIONZ));
-
+	
+	auto clampPos = Vec2(MyMath::clamp(cameraPos.x + position.x, -220.f, 800.f), clampf(cameraPos.y + position.y, -200, 800));
+	if (clampPos.x <= -220.f  || clampPos.x == 800.f) return;
+	this->camera->setPosition3D(Vec3(cameraPos.x + position.x, clampPos.y, POSITIONZ));
+	
 	this->moveLookAt(position);
 }
 
