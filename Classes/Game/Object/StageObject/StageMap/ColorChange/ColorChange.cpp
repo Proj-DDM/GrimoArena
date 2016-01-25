@@ -45,6 +45,7 @@ void ColorChange::setPanel(Node* node, int value, PanelContainer container, bool
 			mBaseLine.y = mCharaLine.y;
 			mCharaLine.x = 0;
 			mCharaLine.y = 0;
+			break;
 		}
 	}
 	checkColor(node, value, container);
@@ -69,7 +70,7 @@ void ColorChange::checkColor(Node* node, int value, PanelContainer container) {
 				mChangePanelNum =  value + mPanelLine.x + mPanelLine.y * 9;
 
 				if (mChangePanelNum < 0) continue;
-				if (mChangePanelNum > 98) return;
+				if (mChangePanelNum > 98) continue;
 				if (mChangePanelNum == P1POS) continue;
 				if (mChangePanelNum == P2POS) continue;
 

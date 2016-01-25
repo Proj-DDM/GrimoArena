@@ -10,6 +10,8 @@
 #include "Game/Scene/Result/ResultScene.h"
 #include "Utility/Camera/Camera.h"
 #include "Game/Layer/UILayer.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 
 using namespace cocos2d;
@@ -38,6 +40,9 @@ bool GameMainState::init(Layer* layer,Layer* uiLayer){
 
 	mCount = 0;
 
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("Sound/BGM/battle02.mp3");
+	SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(1.0f);
+
 	return true;
 }
 
@@ -56,7 +61,7 @@ void GameMainState::update(float at){
 }
 
 void GameMainState::fadeIn(float at){
-
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("Sound/BGM/battle02.mp3");
 	mSceneState = MAIN;
 }
 
@@ -66,6 +71,7 @@ void GameMainState::sceneMain(float at){
 
 void GameMainState::fadeOut(float at){	
 
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 	mSceneState = SCENEEND;	
 
 	auto nextScene = SceneCreator::createScene(ResultScene::create());
@@ -83,6 +89,10 @@ void GameMainState::mainStart(float at){
 
 void GameMainState::mainLoop(float at){
 	
+	if (!SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying()){
+		SimpleAudioEngine::getInstance()->rewindBackgroundMusic();
+	}
+
 	if (SequenceManager::GetInstance()->update(at)) mUpdateState = UPDATEEND;
 }
 

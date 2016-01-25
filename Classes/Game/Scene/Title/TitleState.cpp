@@ -4,6 +4,8 @@
 #include "../GameMain/GameMainScene.h"
 #include "Game/Layer/UILayer.h"
 #include "Utility/Particle/SimpleParticle.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 using namespace cocos2d;
 
@@ -48,6 +50,9 @@ bool TitleState::init(Layer* layer){
 	parentLayer->addChild(titlestart);
 	titlestart->setPosition(Vec2(Director::getInstance()->getVisibleSize().width / 2, titlestart->getContentSize().height * 4.5f));
 
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("Sound/BGM/bgm_title.mp3");
+	SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(1.0f);
+
 	return true;
 }
 
@@ -65,6 +70,7 @@ void TitleState::update(float at){
 }
 
 void TitleState::fadeIn(float at){
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("Sound/BGM/bgm_title.mp3");
 	mSceneState = MAIN;
 }
 
@@ -73,6 +79,7 @@ void TitleState::sceneMain(float at){
 }
 
 void TitleState::fadeOut(float at){
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic(true);
 	mSceneState = SCENEEND;
 
 	//シーン切り替え
@@ -88,13 +95,15 @@ void TitleState::fadeOut(float at){
 }
 
 void TitleState::mainStart(float at){
-	
+
+
 	mUpdateState = UPDATELOOP;
 }
 
 void TitleState::mainLoop(float at){
-
-
+	if (!SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying()){
+		SimpleAudioEngine::getInstance()->rewindBackgroundMusic();
+	}
 }
 
 void TitleState::mainEnd(float at){

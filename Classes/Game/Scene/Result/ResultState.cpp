@@ -5,6 +5,8 @@
 #include "Utility/Modal/ModalLayer.h"
 #include "Game/Layer/UILayer.h"
 #include "Utility/SceneSupport/FadeScene.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 using namespace cocos2d;
 
@@ -31,6 +33,9 @@ bool ResultState::init(Layer* layer){
 
 	mCount = 0;
 
+	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("Sound/BGM/BGM_result.mp3");
+	SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(1.0f);
+
 	return true;
 }
 
@@ -42,7 +47,7 @@ void ResultState::update(float at){
 }
 
 void ResultState::fadeIn(float at){
-
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("Sound/BGM/BGM_result.mp3");
 	mSceneState = MAIN;
 }
 
@@ -51,6 +56,8 @@ void ResultState::sceneMain(float at){
 }
 
 void ResultState::fadeOut(float at){
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic(true);
+
 	mSceneState = SCENEEND;
 
 	ModalLayer::EventListener* listener = ModalLayer::EventListener::create();
@@ -70,7 +77,9 @@ void ResultState::mainStart(float at){
 
 void ResultState::mainLoop(float at){
 
-	
+	if (!SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying()){
+		SimpleAudioEngine::getInstance()->rewindBackgroundMusic();
+	}
 }
 
 void ResultState::mainEnd(float at){
