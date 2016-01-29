@@ -139,6 +139,7 @@ void UILayer::closeMenu()
 
 	auto move = [](Node* target, float animationTime, const Vec2& position)
 	{
+		target->stopAllActions();
 		target->runAction(MoveTo::create(animationTime, position));
 	};
 
@@ -157,6 +158,7 @@ void UILayer::onMenuButton()
 {
 	auto move = [](Node* target,float animationTime,  const Vec2& position)
 	{
+		target->stopAllActions();
 		target->runAction(MoveTo::create(animationTime, position));
 	};
 
