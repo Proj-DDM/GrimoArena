@@ -194,7 +194,7 @@ void ResultState::fadeOut(float at){
 	listener->onButtonYes = CC_CALLBACK_0(ResultState::onPushYesButton, this);
 	listener->onButtonNo = CC_CALLBACK_0(ResultState::onPushNoButton, this);
 
-	auto modalLayer = ModalLayer::create(listener, "mouitid.png", "un.png", "iya.png");
+	auto modalLayer = ModalLayer::create(listener, "Scene/Result/mouitid.png", "Scene/Result/un.png", "Scene/Result/iya.png");
 	auto isScene = cocos2d::Director::getInstance()->getRunningScene();
 
 	isScene->addChild(modalLayer);
@@ -250,8 +250,7 @@ void ResultState::onPushNoButton(){
 	//シーン切り替え
 	auto func = []()
 	{
-		auto uiLayer = UILayer::create();
-		return SceneCreator::createScene(GameMainScene::create(uiLayer), uiLayer);
+		return SceneCreator::createScene(TitleScene::create());
 	};
 
 	auto scene = FadeScene::create(1.5f, func);
