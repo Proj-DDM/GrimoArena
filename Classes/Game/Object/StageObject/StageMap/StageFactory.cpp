@@ -66,5 +66,4 @@ void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 	node->addChild(backBase);
 	node->addChild(background);
 	node->addChild(backBara);
-	
 }

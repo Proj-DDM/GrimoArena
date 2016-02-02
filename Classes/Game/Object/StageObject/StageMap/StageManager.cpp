@@ -293,13 +293,15 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 
 int StageManager::allCheck(int id) {
 	//id = 0 BRUE, id = 1 RED
-	int brue , red;
+	int brue, red;
+	UserDefault* userdef = UserDefault::getInstance();
 	brue = 0, red = 0;
 	//BRUE
 	if (id == 0) {
 		for (int i = 0; i < m_Container.size(); ++i) {
 			if (m_Container.at(i)->getColor() == Color3B::BLUE) {
 				 ++brue;
+				 userdef->setIntegerForKey("blue", brue);
 			}
 		}
 		return brue;
@@ -309,6 +311,7 @@ int StageManager::allCheck(int id) {
 		for (int i = 0; i < m_Container.size(); ++i) {
 			if (m_Container.at(i)->getColor() == Color3B::RED) {
 				++red;
+				userdef->setIntegerForKey("red", red);
 			}
 		}
 		return red;

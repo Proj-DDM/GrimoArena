@@ -74,6 +74,8 @@ void GameMainState::fadeOut(float at){
 	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
 	mSceneState = SCENEEND;	
 
+	mStageManager->allCheck(0);
+	mStageManager->allCheck(1);
 	auto nextScene = SceneCreator::createScene(ResultScene::create());
 	auto scene = TransitionFade::create(1.5f, nextScene, Color3B::BLACK);
 
