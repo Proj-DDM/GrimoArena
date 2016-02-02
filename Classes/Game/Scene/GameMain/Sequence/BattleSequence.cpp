@@ -117,6 +117,8 @@ void BattelSequence::main(float at){
 		}
 		move(mCount, charauser);
 		charaPos = container.at(mCount)->getParameter().position;
+		mStageManager->checkOnPanel();
+
 		if (container.at(mCount)->getState() != CharacterState::Dead) {
 			CCLOG("attack : %i", mCount);
 			attackPos(charaPos);

@@ -19,7 +19,7 @@ bool PlayerUI::init()
 	if (!Node::init()) return false;
 
 	//ƒAƒCƒRƒ“”wŒi
-	auto iconBack = Sprite::create("Scene/Main/UI_playerFrame.png");
+	auto iconBack = Sprite::create("Scene/Main/UI_playerframe.png");
 	iconBack->setPosition(Vec2(iconBack->getContentSize().width / 2.8f, iconBack->getContentSize().height * 1.25));
 	this->addChild(iconBack);
 

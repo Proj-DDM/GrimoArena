@@ -56,6 +56,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	register_all_packages;
 
+	//auto uiLayer = UILayer::create();
+	//auto firstScene = SceneCreator::createScene(GameMainScene::create(uiLayer), uiLayer);
+
 	auto firstScene = SceneCreator::createScene(TitleScene::create());
 	auto scene = TransitionFade::create(1.5f, firstScene, Color3B::WHITE);
 	director->runWithScene(scene);

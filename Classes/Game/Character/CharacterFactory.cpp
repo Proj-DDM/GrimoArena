@@ -51,7 +51,7 @@ CharacterFactory::~CharacterFactory()
 void CharacterFactory::init()
 {
 	CharaReader read;
-	data = read.read("Plist/charalist.plist");//Plistからのデータ読み込み
+	data = read.read("plist/charalist.plist");//Plistからのデータ読み込み
 	converter.initialize();
 	add(CharacterID::Aster,  [](const Parameter& param, const cocos2d::Vec2& position){ return Aster::create(param, position); });
 	add(CharacterID::Cerberus, [](const Parameter& param, const cocos2d::Vec2& position){ return Cerberus::create(param, position); });
