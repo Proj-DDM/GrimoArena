@@ -41,9 +41,20 @@ bool ModalLayer::init(EventListener* listener, const std::string& windowImage, c
 
 	this->addChild(window);
 
-	this->addButton(window, okButton, okButton, CC_CALLBACK_1(ModalLayer::onYesButton, this), YES);
+	MenuItemImage* yes = MenuItemImage::create(okButton, okButton, CC_CALLBACK_1(ModalLayer::onYesButton, this));
+	yes->setPosition(Vec2(150, 500));
 
-	this->addButton(window, NoButton, NoButton, CC_CALLBACK_1(ModalLayer::onNoButton, this), NO);
+	MenuItemImage* no = MenuItemImage::create(NoButton, NoButton, CC_CALLBACK_1(ModalLayer::onNoButton, this));
+	no->setPosition(Vec2(550, 500));
+
+	Menu* menu = Menu::create(yes,no, nullptr);
+	menu->setPosition(Point::ZERO);
+
+	this->addChild(menu);
+
+	//this->addButton(window, okButton, okButton, CC_CALLBACK_1(ModalLayer::onYesButton, this), YES);
+
+	//this->addButton(window, NoButton, NoButton, CC_CALLBACK_1(ModalLayer::onNoButton, this), NO);
 
 	this->listner = listener;
 	
@@ -90,25 +101,25 @@ void ModalLayer::addButton(cocos2d::Node* window, const std::string& normalImage
 
 	MenuItemImage* item = MenuItemImage::create(normalImage, selectImage,callback);
 
-	Menu* menu = Menu::create(item, NULL);
-
+	Menu* menu = Menu::create(item, nullptr);
+	menu->setPosition(Point::ZERO);
 	auto point = buttonAddPoint(item->getContentSize(),window->getContentSize(), type);
 
-	menu->setPosition(point);
+	item->setPosition(point);
 	
-	window->addChild(menu);
+	this->addChild(menu);
 }
 
-const Point& ModalLayer::buttonAddPoint(const Size& contentSize,const Size& windowSize, ModalLayer::BUTTONTYPE type){
+const Vec2& ModalLayer::buttonAddPoint(const Size& contentSize,const Size& windowSize, ModalLayer::BUTTONTYPE type){
 
 	switch (type)
 	{
 	case ModalLayer::YES:
-		return Point(contentSize.width / 1.5f, contentSize.height / 2);
+		return Vec2(150, 500);
 	case ModalLayer::NO:
-		return Point(contentSize.width * 2, contentSize.height / 2);
+		return Vec2(550, 500);
 	case ModalLayer::CLOSE:
-		return Point(windowSize.width - contentSize.width, windowSize.height - contentSize.height);
+		return Vec2(windowSize.width - contentSize.width, windowSize.height - contentSize.height);
 	case ModalLayer::SIZE:
 		break;
 	default:

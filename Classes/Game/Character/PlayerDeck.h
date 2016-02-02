@@ -37,6 +37,10 @@ public:
 	{
 		return isSummons;
 	}
+	void deckInit();
+
+	void deckInitByP1();
+	void deckInitByP2();
 
 protected:
 	PlayerDeck();
@@ -44,7 +48,7 @@ protected:
 
 private:
 	void add(Character* panel);
-	void deckInit();
+	
 
 private:
 	using Deck = std::vector < Character* > ;

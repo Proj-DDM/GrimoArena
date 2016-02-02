@@ -171,7 +171,7 @@ Player* StageManager::getTurnPlayer(){
 	return playerManager->getTurnPlayer();
 }
 
-const cocos2d::Color3B& StageManager::getTurnPlayerColor(){
+const cocos2d::Color3B StageManager::getTurnPlayerColor(){
 	return playerColorArray[SequenceManager::GetInstance()->getTurnPlayer()];
 }
 
@@ -187,6 +187,11 @@ void StageManager::setUI(GAMESEQUENCE sequence)
 		if (this->getTurnPlayer()->getName() == "Player2") phase = UILayer::PHASETYPE::P2;
 
 		dynamic_cast<UILayer*>(this->uiLayer)->setPhaseSprite(phase);
+
+		int number = 0;
+		if (this->getTurnPlayer()->getName() == "Player2") number = 1;
+
+		dynamic_cast<UILayer*>(this->uiLayer)->setDeck(number);
 
 		return;
 	}

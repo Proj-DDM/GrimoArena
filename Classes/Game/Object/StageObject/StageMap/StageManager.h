@@ -47,7 +47,7 @@ public:
 	StagePanel* getPanel(int number);
 	int touchPos(cocos2d::Point pos);
 	Player* getTurnPlayer();
-	const cocos2d::Color3B& getTurnPlayerColor();
+	const cocos2d::Color3B getTurnPlayerColor();
 	void setUI(GAMESEQUENCE sequence);
 	void setRoundSprite();
 

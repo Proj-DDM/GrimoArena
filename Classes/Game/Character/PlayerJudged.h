@@ -6,8 +6,8 @@
 namespace{
 	std::string JudgedPlayer(const std::string& name)
 	{
-		//TURN_PLAYER turn = SequenceManager::GetInstance()->getTurnPlayer();
-		TURN_PLAYER turn = TURN_PLAYER::PLAYER1;
+		TURN_PLAYER turn = SequenceManager::GetInstance()->getTurnPlayer();
+		//TURN_PLAYER turn = TURN_PLAYER::PLAYER1;
 		std::string spriteName;
 		switch (turn)
 		{

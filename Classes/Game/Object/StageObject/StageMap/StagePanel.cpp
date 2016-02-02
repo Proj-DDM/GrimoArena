@@ -57,6 +57,6 @@ void StagePanel::setTouchPos(){
 }
 
 
-const Color3B& StagePanel::getColor(void) const {
+const Color3B StagePanel::getColor() {
 	return sprite->getColor();
 }

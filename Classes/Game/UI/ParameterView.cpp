@@ -1,5 +1,7 @@
 #include "ParameterView.h"
 #include "../Character/CharacterIDConverter.h"
+#include "Game/Character/PlayerJudged.h"
+
 using namespace cocos2d;
 
 ParameterView::ParameterView()
@@ -16,7 +18,7 @@ bool ParameterView::init()
 	if (!Node::init()) return false;
 	auto backSprite = Sprite::create();
 	backSprite->setTextureRect(Rect(0, 0, 1024, 300));
-	backSprite->setColor(Color3B::GREEN);
+	backSprite->setColor(Color3B::WHITE);
 	setName("View");
 	sprite = Sprite::create(); 
 	sprite->setPosition(Director::getInstance()->getWinSize().width / 2 + 200, Director::getInstance()->getWinSize().height - sprite->getContentSize().height );
@@ -50,7 +52,7 @@ void ParameterView::setParameter(Parameter& parameter)
 	auto funcName = [&]() {labelAttack->setString("Attack: " + StringUtils::toString(param.attackPoint)); };
 	funcName();
 	
-	//sprite->setTexture(param.name + ".png");
+	sprite->setTexture(JudgedPlayer(param.name) + ".png");
 	setVisible(true);
 
 	
@@ -79,34 +81,39 @@ void ParameterView::labelInit()
 	label->setName("name");
 
 	label->setPosition(Vec2((origin.x + visibleSize.width / 2) - 200,
-		origin.y + visibleSize.height - label->getContentSize().height));
+		origin.y + visibleSize.height - label->getContentSize().height- 70));
 	//addChild(label);
 
 	auto labelHP = LabelTTF::create("HP: ", "Arial", 32);
 	labelHP->setName("HP");
+	labelHP->setColor(Color3B::BLACK);
 
 	labelHP->setPosition(Vec2((origin.x + visibleSize.width / 2) - 205,
-		origin.y + visibleSize.height - label->getContentSize().height-40));
+		origin.y + visibleSize.height - label->getContentSize().height-110));
 	addChild(labelHP);
 
 	auto labelSpeed = LabelTTF::create("Speed: ", "Arial", 32);
 	labelSpeed->setName("Speed");
+	labelSpeed->setColor(Color3B::BLACK);
 
 	labelSpeed->setPosition(Vec2((origin.x + visibleSize.width / 2) - 190,
-		origin.y + visibleSize.height - label->getContentSize().height - 80));
+		origin.y + visibleSize.height - label->getContentSize().height - 150));
 	addChild(labelSpeed);
 
 	auto labelAttack = LabelTTF::create("Attack: ", "Arial", 32);
 	labelAttack->setName("Attack");
+	labelAttack->setColor(Color3B::BLACK);
+
 
 	labelAttack->setPosition(Vec2((origin.x + visibleSize.width / 2) - 190,
-		origin.y + visibleSize.height - label->getContentSize().height - 120));
+		origin.y + visibleSize.height - label->getContentSize().height - 190));
 	addChild(labelAttack);
 
 	auto labelSkill = LabelTTF::create("Skill: ", "Arial", 32);
 	labelSkill->setName("Skill");
+	labelSkill->setColor(Color3B::WHITE);
 
 	labelSkill->setPosition(Vec2((origin.x + visibleSize.width / 2) - 200,
-		origin.y + visibleSize.height - label->getContentSize().height - 160));
+		origin.y + visibleSize.height - label->getContentSize().height - 240));
 	addChild(labelSkill);
 }

@@ -25,9 +25,9 @@ public:
 	
 	void setPosition(const Vec2& position);
 
-	const Vec2& getCameraPosition();
+	const Vec2 getCameraPosition();
 
-	const Vec2& convertTouchPosition(Touch* touch);
+	const Vec2 convertTouchPosition(Touch* touch);
 
 	void setUseCamera(const CameraFlag& flag);
 

@@ -70,6 +70,7 @@ bool OperationSequence::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* even
 bool OperationSequence::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event){
 
 	mStageManager->onTouchEnd(gremo::Camera::getInstance().convertTouchPosition(touch));
+	//mStageManager->onTouchEnd(touch->getLocation());
 
 	return true;
 }
@@ -89,13 +90,13 @@ void OperationSequence::isTouch(cocos2d::Vec2 touchPos){
 	move(touchPos);
 }
 
-void OperationSequence::move(const cocos2d::Vec2& touchPos){
+void OperationSequence::move(const cocos2d::Vec2 touchPos){
 
 
 	int number = (((int)touchPos.x - 60) / 120) + (((int)touchPos.y - 360) / 120 * 9);
 	
 	if (number <= -1 || 99 <= number) return;
-	if (isPlayerMove != MOVE || mStageManager->getPanel(number)->getColor() != mStageManager->getTurnPlayerColor()) return;
+	if (isPlayerMove != MOVE) return; //|| mStageManager->getPanel(number)->getColor() != mStageManager->getTurnPlayerColor()) return;
 
 	this->touchPos = touchPos;
 

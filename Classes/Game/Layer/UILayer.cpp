@@ -242,3 +242,15 @@ void UILayer::setPhaseSprite(PHASETYPE phase)
 
 }
 
+void UILayer::setDeck(int i)
+{
+	if (i == 0)
+	{
+		this->playerDeck->deckInitByP1();
+		return;
+	}
+
+	this->playerDeck->deckInitByP2();
+
+}
+

@@ -63,6 +63,8 @@ void PlayerDeck::add(Character* panel)
 
 void PlayerDeck::deckInit()
 {
+	removeAllChildren();
+
 	//using PositionX = std::vector < int > ;
 	//PositionX positionX{ 46, 118, 192, 266, 336, 406 };
 	int positionX[] = { ICONSIZE / 2, positionX[0] + ICONSIZE, positionX[1] + ICONSIZE, 
@@ -72,12 +74,54 @@ void PlayerDeck::deckInit()
 	CharacterFactory factory;
 	factory.init();
 
-	add(factory.create(CharacterID::Vect,   Vec2(positionX[0], 130), 0));
-	add(factory.create(CharacterID::Aster,  Vec2(positionX[1], 130), 0));
-	add(factory.create(CharacterID::Myu,    Vec2(positionX[2], 130), 0));
-	add(factory.create(CharacterID::Phoenix,Vec2(positionX[3], 130), 0));
-	add(factory.create(CharacterID::Ruby,   Vec2(positionX[4], 130), 0));
-	add(factory.create(CharacterID::Mint,   Vec2(positionX[5], 130), 0));
+	add(factory.create(CharacterID::Cerberus, Vec2(positionX[0], 130), 0));
+	add(factory.create(CharacterID::Fee, Vec2(positionX[1], 130), 0));
+	add(factory.create(CharacterID::Lilith, Vec2(positionX[2], 130), 0));
+	add(factory.create(CharacterID::Phoenix, Vec2(positionX[3], 130), 0));
+	add(factory.create(CharacterID::Ruby, Vec2(positionX[4], 130), 0));
+	add(factory.create(CharacterID::Rouge, Vec2(positionX[5], 130), 0));
+}
+
+void PlayerDeck::deckInitByP1()
+{
+	removeAllChildren();
+
+	//using PositionX = std::vector < int > ;
+	//PositionX positionX{ 46, 118, 192, 266, 336, 406 };
+	int positionX[] = { ICONSIZE / 2, positionX[0] + ICONSIZE, positionX[1] + ICONSIZE,
+		positionX[2] + ICONSIZE, positionX[3] + ICONSIZE, positionX[4] + ICONSIZE };
+	auto ui = this->getChildByName("Deck");
+
+	CharacterFactory factory;
+	factory.init();
+
+	add(factory.create(CharacterID::Cerberus, Vec2(positionX[0], 130), 0));
+	add(factory.create(CharacterID::Fee, Vec2(positionX[1], 130), 0));
+	add(factory.create(CharacterID::Lilith, Vec2(positionX[2], 130), 0));
+	add(factory.create(CharacterID::Phoenix, Vec2(positionX[3], 130), 0));
+	add(factory.create(CharacterID::Ruby, Vec2(positionX[4], 130), 0));
+	add(factory.create(CharacterID::Rouge, Vec2(positionX[5], 130), 0));
+}
+
+void PlayerDeck::deckInitByP2()
+{
+	removeAllChildren();
+
+	//using PositionX = std::vector < int > ;
+	//PositionX positionX{ 46, 118, 192, 266, 336, 406 };
+	int positionX[] = { ICONSIZE / 2, positionX[0] + ICONSIZE, positionX[1] + ICONSIZE,
+		positionX[2] + ICONSIZE, positionX[3] + ICONSIZE, positionX[4] + ICONSIZE };
+	auto ui = this->getChildByName("Deck");
+
+	CharacterFactory factory;
+	factory.init();
+
+	add(factory.create(CharacterID::Aster, Vec2(positionX[0], 130), 0));
+	add(factory.create(CharacterID::DryArd, Vec2(positionX[1], 130), 0));
+	add(factory.create(CharacterID::Eta, Vec2(positionX[2], 130), 0));
+	add(factory.create(CharacterID::Griffon, Vec2(positionX[3], 130), 0));
+	add(factory.create(CharacterID::Mint, Vec2(positionX[4], 130), 0));
+	add(factory.create(CharacterID::Emerald, Vec2(positionX[5], 130), 0));
 }
 
 void PlayerDeck::update(float deltaTime)

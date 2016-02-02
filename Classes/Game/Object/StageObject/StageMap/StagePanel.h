@@ -40,7 +40,7 @@ public:
 
 	void setTouchPos();
 
-	const cocos2d::Color3B& getColor(void) const override;
+	const cocos2d::Color3B getColor();
 
 public:
 	bool mIsChengeColor;

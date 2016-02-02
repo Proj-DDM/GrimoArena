@@ -31,7 +31,7 @@ public:
 
 	void isTouch(cocos2d::Vec2 touchPos);				//フィールドへのタッチ処理
 
-	void move(const cocos2d::Vec2& touchPos);					//プレイヤーの移動
+	void move(const cocos2d::Vec2 touchPos);					//プレイヤーの移動
 
 	void onPushYesButton();
 
@@ -51,9 +51,10 @@ private:
 
 	Player* mTurnPlayer;
 
-	MOVE_STATUS isPlayerMove { TOUCH };
+	int isPlayerMove { (int)TOUCH };
 
 	cocos2d::Vec2 touchPos;
+	cocos2d::Label* testLabel{ nullptr };
 
 };
 

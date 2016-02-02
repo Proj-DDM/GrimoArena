@@ -83,6 +83,8 @@ public:
 	//フェイズスプライト切り替え
 	void setPhaseSprite(PHASETYPE phase);
 
+	void setDeck(int i);
+
 protected:
 	UILayer();
 	~UILayer();

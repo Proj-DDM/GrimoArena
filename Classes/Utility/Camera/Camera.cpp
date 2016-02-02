@@ -47,16 +47,16 @@ void Camera::setPosition(const Vec2& position)
 	this->setLookAt(centor);
 }
 
-const Vec2& Camera::getCameraPosition()
+const Vec2 Camera::getCameraPosition()
 {
-	auto position = this->camera->getPosition3D();
+	Vec3 position = this->camera->getPosition3D();
 
 	return Vec2(position.x, position.y);
 };
 
-const Vec2& Camera::convertTouchPosition(Touch* touch)
+const Vec2 Camera::convertTouchPosition(Touch* touch)
 {
-	auto visibleBottomLeft = this->getCameraPosition();
+	Vec2 visibleBottomLeft = this->getCameraPosition();
 
 	return visibleBottomLeft + touch->getLocation();
 }
