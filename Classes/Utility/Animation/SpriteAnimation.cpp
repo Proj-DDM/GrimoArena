@@ -45,7 +45,7 @@ Animate* SpriteAnimation::createAnim(const std::string& spriteName, const int co
 
 	auto animation = Animation::create();
 	for (int i = 2; i <= count; ++i){
-		animation->addSpriteFrameWithFile(mResourcePath + StringUtils::toString(i) + ".png");
+		animation->addSpriteFrameWithFile(mResourcePath + textureName + StringUtils::toString(i) + ".png");
 	}
 	animation->setRestoreOriginalFrame(restart);
 	animation->setDelayPerUnit(delay);
