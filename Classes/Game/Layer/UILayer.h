@@ -18,9 +18,22 @@ class UILayer:public cocos2d::Layer
 		GIVEUP
 	};
 
-	class EventListener;
+public:
 
 public:
+	class EventListene :public cocos2d::Ref{
+
+	public:
+		CREATE_FUNC(EventListene);
+		EventListene(){};
+		bool init(){ return true; }
+
+		std::function<void()> onEndButton{ nullptr };
+		std::function<void()> onGiveUpButton{ nullptr };
+		std::function<void()> onBackButton{ nullptr };
+		std::function<void()> onViewButton{ nullptr };
+	};
+
 	enum class PHASETYPE
 	{
 		P1,
@@ -44,7 +57,7 @@ public:
 
 	void update(float deltaTime)override;
 
-	void createMenuButton(EventListener* listener);
+	void createMenuButton(EventListene* listener);
 
 	//メニューを閉じる
 	void closeMenu();
@@ -83,21 +96,8 @@ private:
 	Sprite* phaseTexture;
 	Sprite* roundTexture;
 
-	EventListener* listner;	 //イベントリスナー
+	EventListene* listner;	 //イベントリスナー
 
-public:
-	class EventListener :public cocos2d::Ref{
-
-	public:
-		CREATE_FUNC(EventListener);
-		EventListener(){};
-		bool init(){ return true; }
-
-		std::function<void()> onEndButton{ nullptr };
-		std::function<void()> onGiveUpButton{ nullptr };
-		std::function<void()> onBackButton{ nullptr };
-		std::function<void()> onViewButton{ nullptr };
-	};
 };
 
 

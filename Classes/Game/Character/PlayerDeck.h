@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "CharacterType.h"
+#include "Game/UI/ParameterView.h"
 #include "CharacterParameter.h"
 #include <array>
 

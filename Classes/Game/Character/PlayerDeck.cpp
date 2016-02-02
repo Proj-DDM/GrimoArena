@@ -1,13 +1,10 @@
 #include "PlayerDeck.h"
 #include "CharacterPanel.h"
-#include "../Test/SamplePanel.h"
 #include "../Test/HigePanel.h"
 #include "../../Utility/cocosAssistant/ListenerAssistant.h"
 #include "Character.h"
-#include "SampleHige.h"	
-#include "SampleKamata.h"
 #include "CharacterFactory.h"
-#include "../UI/ParameterView.h"
+#include "Game/UI/ParameterView.h"
 
 
 using namespace cocos2d;
@@ -113,8 +110,10 @@ bool PlayerDeck::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 			character->setName("summon");
 			character->setOpacity(80);
 			addChild(character);
-			auto view = dynamic_cast<ParameterView*>(getParent()->getChildByName("View"));
-			view->setParameter(panel->getParameter());
+			ParameterView* view = dynamic_cast<ParameterView*>(getParent()->getChildByName("View"));
+			Parameter param { panel->getParameter() };
+			
+			view->setParameter(param);
 			this->nowCharacterID = panel->getCharacterID();
 			continue;
 		}

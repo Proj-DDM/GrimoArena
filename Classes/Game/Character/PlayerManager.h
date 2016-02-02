@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "cocos2d.h"
-#include "../../proj.win32/Mana.h"
+#include "Mana.h"
 #include "PlayerUI.h"
 
 class Player;

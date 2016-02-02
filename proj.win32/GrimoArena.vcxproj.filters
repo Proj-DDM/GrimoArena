@@ -121,6 +121,9 @@
     <Filter Include="Classes\Utility\Animation">
       <UniqueIdentifier>{c14c3d75-d58b-4a49-8fca-cf105563d193}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Game\Chara\Monster\Util">
+      <UniqueIdentifier>{4e0493e0-4413-4f1a-8f12-ea1316e49d88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -173,9 +176,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Test\TestScene.cpp">
       <Filter>Classes\Game\Chara\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.cpp">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Object\StageObject\StageMap\ColorChange\ColorChange.cpp">
       <Filter>Classes\Game\Object\StageObject\StageMap\ColorChange</Filter>
@@ -236,9 +236,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Utility\Camera\Camera.cpp">
       <Filter>Classes\Utility\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Mana.cpp">
-      <Filter>Classes\Game\Chara\Player</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Game\Character\CharacterFactory.cpp">
       <Filter>Classes\Game\Chara\Util</Filter>
@@ -348,6 +345,9 @@
     <ClCompile Include="..\Classes\Utility\Animation\SpriteAnimation.cpp">
       <Filter>Classes\Utility\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Game\Character\Mana.cpp">
+      <Filter>Classes\Game\Chara\Player\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -406,9 +406,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Test\TestScene.h">
       <Filter>Classes\Game\Chara\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\IPanel.h">
-      <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Object\StageObject\StageMap\Panel.h">
       <Filter>Classes\Game\Object\StageObject\StageMap</Filter>
@@ -487,9 +484,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\Camera\Camera.h">
       <Filter>Classes\Utility\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Mana.h">
-      <Filter>Classes\Game\Chara\Player</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\CharacterFactory.h">
       <Filter>Classes\Game\Chara\Util</Filter>
@@ -622,6 +616,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\Animation\SpriteAnimation.h">
       <Filter>Classes\Utility\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillField.h">
+      <Filter>Classes\Game\Chara\Monster\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Mana.h">
+      <Filter>Classes\Game\Chara\Player\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\EnumHash.h">
+      <Filter>Classes\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

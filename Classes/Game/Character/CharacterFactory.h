@@ -7,6 +7,7 @@
 #include "../../Utility/FileIO/CharaData.h"
 #include <unordered_map>
 #include "CharacterIDConverter.h"
+#include "Utility/EnumHash.h"
 
 class Character;
 
@@ -14,7 +15,7 @@ class CharacterFactory
 {
 private:
 	using Function = std::function < Character*(const Parameter& param, const cocos2d::Vec2& position) >;
-	using Container = std::unordered_map < CharacterID, Function >;
+	using Container = std::unordered_map < CharacterID, Function, EnumHash >;
 	using Charadata = std::vector<CharaData>;
 
 public:

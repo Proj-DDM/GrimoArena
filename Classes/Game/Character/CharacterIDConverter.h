@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <string>
 #include "CharacterType.h"
+#include "Utility/EnumHash.h"
 
 class CharacterIDConverter
 {
@@ -20,7 +21,7 @@ public:
 	}
 
 private:
-	using IDContainer = std::unordered_map <CharacterID , std::string >;
+	using IDContainer = std::unordered_map <CharacterID, std::string, EnumHash>;
 	IDContainer container;
 };
 

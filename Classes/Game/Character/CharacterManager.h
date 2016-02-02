@@ -27,7 +27,7 @@ public:
 
 	bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	
-	Parameter getParameter()const
+	Parameter& getParameter()
 	{
 		return parameter;
 	}

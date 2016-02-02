@@ -1,4 +1,5 @@
 ﻿#include "SpriteAnimation.h"
+#include <string>
 
 using namespace Util;
 USING_NS_CC;
@@ -17,7 +18,7 @@ Sprite* SpriteAnimation::create(const std::string& spriteName, const int count, 
 
 	auto animation = Animation::create();
 	for (int i = 2; i <= count; ++i){
-		animation->addSpriteFrameWithFile(mResourcePath + textureName + std::to_string(i) + ".png");
+		animation->addSpriteFrameWithFile(mResourcePath + textureName + StringUtils::toString(i) + ".png");
 	}
 	animation->setRestoreOriginalFrame(restart);
 	animation->setDelayPerUnit(delay);
@@ -44,7 +45,7 @@ Animate* SpriteAnimation::createAnim(const std::string& spriteName, const int co
 
 	auto animation = Animation::create();
 	for (int i = 2; i <= count; ++i){
-		animation->addSpriteFrameWithFile(mResourcePath + textureName + std::to_string(i) + ".png");
+		animation->addSpriteFrameWithFile(mResourcePath + StringUtils::toString(i) + ".png");
 	}
 	animation->setRestoreOriginalFrame(restart);
 	animation->setDelayPerUnit(delay);

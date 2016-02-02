@@ -12,7 +12,19 @@ class ModalLayer : public cocos2d::Layer{
 		SIZE
 	};
 
-	class EventListener;
+public:
+	class EventListener :public cocos2d::Ref{
+
+	public:
+		CREATE_FUNC(EventListener);
+		EventListener(){};
+		bool init(){ return true; }
+
+		std::function<void()> onButtonYes{ nullptr };
+		std::function<void()> onButtonNo{ nullptr };
+	};
+
+	
 private:
 	void onYesButton(cocos2d::Ref* ref);	//Yesボタンが押されたとき 
 
@@ -41,18 +53,6 @@ public:
 
 	//画面がタッチされた時
 	virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event); 
-
-public:
-	class EventListener :public cocos2d::Ref{
-
-	public:
-		CREATE_FUNC(EventListener);
-		EventListener(){};
-		bool init(){ return true; }
-
-		std::function<void()> onButtonYes { nullptr };
-		std::function<void()> onButtonNo { nullptr };
-	};
 
 };
 

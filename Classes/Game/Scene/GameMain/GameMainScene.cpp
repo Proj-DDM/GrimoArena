@@ -47,7 +47,7 @@ bool GameMainScene::init(cocos2d::Layer* layer){
 
 	this->scheduleUpdate();
 
-	UILayer::EventListener* lisner = UILayer::EventListener::create();
+	UILayer::EventListene* lisner = UILayer::EventListene::create();
 	lisner->onViewButton = CC_CALLBACK_0(GameMainScene::onViewButton, this);
 	lisner->onEndButton = CC_CALLBACK_0(GameMainScene::onEndButton, this);
 	lisner->onBackButton = CC_CALLBACK_0(GameMainScene::onEndButton, this);

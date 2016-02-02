@@ -69,7 +69,6 @@ private:
 	int mTestTrun;
 	bool isAnime;
 	Sprite* sprite;
-	using CharacterContainer = std::vector < Character* >;
 	CharacterContainer charaContainer;
 	std::array<int, 25> mTestArray;
 

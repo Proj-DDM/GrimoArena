@@ -1,7 +1,7 @@
 ﻿#include "TitleState.h"
 #include "Utility/SceneSupport/SceneCreator.h"
 #include "Utility/SceneSupport/FadeScene.h"
-#include "../GameMain/GameMainScene.h"
+#include "Game/Scene/GameMain/GameMainScene.h"
 #include "Game/Layer/UILayer.h"
 #include "Utility/Particle/SimpleParticle.h"
 #include "SimpleAudioEngine.h"

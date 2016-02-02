@@ -1,5 +1,6 @@
 #include "StageFactory.h"
 #include "StagePanel.h"
+#include <string>
 
 namespace {
 #define MAXSTAGEX 9
@@ -24,7 +25,8 @@ void StageFactory::createPanel(PanelContainer* container,cocos2d::Node* node) {
 	int count = 0;
 
 	for (int i = 0; i < createCount; ++i) {
-		auto panel = StagePanel::create("StagePanel" + std::to_string(i));
+
+		auto panel = StagePanel::create("StagePanel" + StringUtils::toString(i));
 		panel->setContentSize(Size(panelSize, panelSize));
 		panel->setCameraMask((int)CameraFlag::USER1);
 		node->addChild(panel);

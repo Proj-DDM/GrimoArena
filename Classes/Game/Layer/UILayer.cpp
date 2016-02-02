@@ -103,7 +103,7 @@ bool UILayer::isSummon() const
 	return this->playerDeck->getIsSummons();
 }
 
-void UILayer::createMenuButton(EventListener* listener)
+void UILayer::createMenuButton(EventListene* listener)
 {
 	buttons.clear();
 
@@ -209,11 +209,12 @@ void UILayer::setRoundSprite()
 {
 	if (6 < SequenceManager::GetInstance()->getRoundCount()) return;
 
-	if (!this->roundTexture) this->roundTexture = Sprite::create("Scene/Main/round_" + std::to_string(SequenceManager::GetInstance()->getRoundCount()) + ".png");
-	
+	if (!this->roundTexture) this->roundTexture = Sprite::create("Scene/Main/round_" + StringUtils::toString(SequenceManager::GetInstance()->getRoundCount()) + ".png");
+
 	this->roundTexture->setOpacity(0);
 	this->roundTexture->runAction(FadeIn::create(0.5f));
-	this->roundTexture->setTexture("Scene/Main/round_" + std::to_string(SequenceManager::GetInstance()->getRoundCount()) + ".png");
+
+	this->roundTexture->setTexture("Scene/Main/round_" + StringUtils::toString(SequenceManager::GetInstance()->getRoundCount()) + ".png");
 }
 
 //フェイズスプライト切り替え

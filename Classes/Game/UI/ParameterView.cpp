@@ -29,7 +29,7 @@ bool ParameterView::init()
 	return true;
 }
 
-void ParameterView::setParameter(Parameter parameter)
+void ParameterView::setParameter(Parameter& parameter)
 {
 	if (parameter == param)return;
 	//auto label = dynamic_cast<LabelTTF*>(getChildByName("HP"));
@@ -37,20 +37,20 @@ void ParameterView::setParameter(Parameter parameter)
 	//this->param = parameter;
 	//func();
 	this->param = parameter;
-	auto labelHP = dynamic_cast<LabelTTF*>(getChildByName("HP"));
+	auto labelHP = dynamic_cast<Label*>(getChildByName("HP"));
 	auto func = [&]() {labelHP->setString("HP: " + StringUtils::toString(param.hp.getHp())); };
 	
 	func();
 
-	auto labelSpeed = dynamic_cast<LabelTTF*>(getChildByName("Speed"));
+	auto labelSpeed = dynamic_cast<Label*>(getChildByName("Speed"));
 	auto funcSpeed = [&]() {labelSpeed->setString("Speed: " + StringUtils::toString(param.speed)); };
 	funcSpeed();
 
-	auto labelAttack = dynamic_cast<LabelTTF*>(getChildByName("Attack"));
+	auto labelAttack = dynamic_cast<Label*>(getChildByName("Attack"));
 	auto funcName = [&]() {labelAttack->setString("Attack: " + StringUtils::toString(param.attackPoint)); };
 	funcName();
 	
-	sprite->setTexture(param.name + ".png");
+	//sprite->setTexture(param.name + ".png");
 	setVisible(true);
 
 	

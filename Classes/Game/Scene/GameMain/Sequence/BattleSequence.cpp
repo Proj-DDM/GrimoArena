@@ -3,7 +3,6 @@
 #include "EndSequence.h"
 #include <array>
 #include <math.h>
-#include <Windows.h>
 #include "Game\Object\StageObject\StageMap/StageManager.h"
 #include "Utility/Particle/SimpleParticle.h"
 #include "Utility/Animation/SpriteAnimation.h"
@@ -16,7 +15,7 @@ namespace
 	{
 		std::vector < Character* > sortContener;
 
-		for each (Character* chara in contener)
+		for(Character* chara : contener)
 		{
 			sortContener.push_back(chara);
 			if (sortContener.size() == 1) continue;

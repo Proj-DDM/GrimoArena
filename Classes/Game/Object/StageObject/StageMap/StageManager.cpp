@@ -4,8 +4,8 @@
 #include "PanelCore.h"
 #include "Utility/DeleteContainer.h"
 #include "StagePanel.h"
-#include "../../../Character/PlayerDeck.h"
-#include "../../../UI/ParameterView.h"
+#include "Game/UI/ParameterView.h"
+#include "Game/Character/PlayerDeck.h"
 #include "Game/Layer/UILayer.h"
 #include "Utility/Particle/SimpleParticle.h"
 #include "Utility/Animation/SpriteAnimation.h"
@@ -19,7 +19,7 @@ namespace
 	{
 		std::vector < Character* > sortContener;
 
-		for each (Character* chara in contener)
+		for(Character* chara : contener )
 		{
 			sortContener.push_back(chara);
 			if (sortContener.size() == 1) continue;
@@ -40,8 +40,8 @@ namespace
 					continue;
 				}
 			}
-		}
 
+		}
 
 		return sortContener;
 	}
@@ -248,7 +248,8 @@ int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {
 			manager->getParameter().vect;
 		}
 		auto ui = dynamic_cast<ParameterView*>(getParent()->getParent()->getChildByTag(1)->getChildByName("View"));
-		ui->setParameter(manager->getParameter());
+		Parameter param{ manager->getParameter() };
+		ui->setParameter(param);
 	}
 	return true;
 }

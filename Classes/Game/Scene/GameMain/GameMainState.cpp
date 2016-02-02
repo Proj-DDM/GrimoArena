@@ -4,7 +4,7 @@
 #include "Utility/SceneSupport/SceneCreator.h"
 #include "Game/Test/TestScene.h"
 #include "Game/Object/StageObject/StageMap/StagePanel.h"
-#include "../../../Utility/FileIO/CharaReader.h"
+#include "Utility/FileIO/CharaReader.h"
 #include "Game/Scene/GameMain/Sequence/SequenceManager.h"
 #include "Game/Scene/GameMain/Sequence/OperationSequence.h"
 #include "Game/Scene/Result/ResultScene.h"
