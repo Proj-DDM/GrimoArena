@@ -95,3 +95,51 @@ bool CharacterManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event
 	}
 	return false;
 }
+
+void CharacterManager::test(std::array<int, 50>& testarray, Vec2 position, int number, Skill skill, CharacterUser user) {
+	Vec2 mBaseLine = Vec2(0, 0);
+
+	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2) {
+		std::reverse(testarray.begin(), testarray.end());
+	}
+
+	for (int i = 0; i < testarray.size(); ++i) {
+		if (testarray[i] == 2){
+			mBaseLine.x = i % 5;
+			mBaseLine.y = i / 5;
+
+			break;
+		}
+	}
+
+	Vec2 mPanelLine = Vec2(0, 0);
+
+	int mChangePanelNum = number;
+
+	for (int i = 0; i < testarray.size(); ++i){
+
+		if (testarray[i] == 1){
+
+			mPanelLine.x = i % 5 - mBaseLine.x;
+			mPanelLine.y = (mBaseLine.y - i / 5);
+
+			int test_x = number % 9 + mPanelLine.x;
+
+			if (test_x >= 0 && test_x < 9){
+
+				Vec2 touchNum;
+				touchNum.x = number % 9;
+				touchNum.y = number / 9;
+
+				mChangePanelNum = (touchNum.x + mPanelLine.x) + (touchNum.y + mPanelLine.y);
+
+				Vec2 test{ Vec2((mPanelLine.x + touchNum.x) * 120 + 60, (mPanelLine.y + touchNum.y) * 120 + 360) };
+
+				for (Character* chara : this->container)
+				{
+					chara->checkSkillRange(test, skill.getStatus(),user);
+				}
+			}
+		}
+	}
+}

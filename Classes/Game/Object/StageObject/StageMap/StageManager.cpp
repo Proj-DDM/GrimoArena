@@ -236,10 +236,26 @@ bool StageManager::summon(const CharacterID& id, const Vec2& position, int panel
 	//マナを消費
 	playerManager->mathMana(-(obj->getParameter().cost));
 
+	obj->read();
 	manager->add(obj);
+	manager->test(obj->getSkillParameter().getArray(), Vec2(0, 0), panelNumber,obj->getSkillParameter(),obj->getCharacterUser());
 
-	return true;
 
+	for (Character* chara : manager->getCaras())
+	{
+		if (chara->getParameter().hp.isDead() == true) {
+			int pos;
+			pos = chara->getParameter().position;
+
+			std::array<int, 25> charavect{};
+			for (int k = 0; k < 25; ++k) {
+				charavect[k] = chara->getParameter().vect[k];
+			}
+			int number = (chara->getCharacterUser() == CharacterUser::Player1) ? 1 : 2;
+
+			this->deadChangePanel(number + 2, pos, charavect);	
+		}	
+	}
 }
 
 int StageManager::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event) {

@@ -21,9 +21,8 @@ bool ParameterView::init()
 	backSprite->setColor(Color3B::WHITE);
 	setName("View");
 	sprite = Sprite::create(); 
-	sprite->setPosition(Director::getInstance()->getWinSize().width / 2 + 200, Director::getInstance()->getWinSize().height - sprite->getContentSize().height );
+	sprite->setPosition(Director::getInstance()->getWinSize().width / 2 + 200, Director::getInstance()->getWinSize().height - sprite->getContentSize().height -200 );
 	
-
 	backSprite->setPosition(Director::getInstance()->getWinSize().width / 2, Director::getInstance()->getWinSize().height - backSprite->getContentSize().height / 2);
 	addChild(backSprite);
 	addChild(sprite);
@@ -55,7 +54,10 @@ void ParameterView::setParameter(Parameter& parameter)
 	sprite->setTexture(JudgedPlayer(param.name) + ".png");
 	setVisible(true);
 
-	
+	if (SequenceManager::GetInstance()->getTurnPlayer() == TURN_PLAYER::PLAYER2)
+	{
+		sprite->setRotationX(180);
+	}	
 }
 
 ParameterView* ParameterView::create()

@@ -211,6 +211,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Utility\cocosAssistant\SpriteCreator.cpp" />
     <ClCompile Include="..\Classes\Utility\FileIO\CharaReader.cpp" />
     <ClCompile Include="..\Classes\Utility\FileIO\PlistReader.cpp" />
+    <ClCompile Include="..\Classes\Utility\FileIO\SkillReader.cpp" />
     <ClCompile Include="..\Classes\Utility\Modal\ModalLayer.cpp" />
     <ClCompile Include="..\Classes\Utility\Particle\SimpleParticle.cpp" />
     <ClCompile Include="..\Classes\Utility\SceneSupport\FadeScene.cpp" />
@@ -261,6 +262,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Game\Character\SampleHige.h" />
     <ClInclude Include="..\Classes\Game\Character\SampleKamata.h" />
     <ClInclude Include="..\Classes\Game\Character\Sapphire.h" />
+    <ClInclude Include="..\Classes\Game\Character\Skill.h" />
     <ClInclude Include="..\Classes\Game\Character\Vect.h" />
     <ClInclude Include="..\Classes\Game\Character\Zombie.h" />
     <ClInclude Include="..\Classes\Game\Layer\UILayer.h" />
@@ -302,6 +304,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\FileIO\CharaReader.h" />
     <ClInclude Include="..\Classes\Utility\FileIO\PlistReader.h" />
     <ClInclude Include="..\Classes\Utility\DeleteContainer.h" />
+    <ClInclude Include="..\Classes\Utility\FileIO\SkillReader.h" />
     <ClInclude Include="..\Classes\Utility\Math\MyMath.h" />
     <ClInclude Include="..\Classes\Utility\Modal\ModalLayer.h" />
     <ClInclude Include="..\Classes\Utility\Particle\SimpleParticle.h" />
@@ -311,7 +314,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility\Template\Singleton.h" />
     <ClInclude Include="..\Classes\Utility\Timer\Timer.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="SkillField.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

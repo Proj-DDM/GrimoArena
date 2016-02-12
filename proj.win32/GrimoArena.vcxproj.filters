@@ -348,6 +348,9 @@
     <ClCompile Include="..\Classes\Game\Character\Mana.cpp">
       <Filter>Classes\Game\Chara\Player\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Utility\FileIO\SkillReader.cpp">
+      <Filter>Classes\Utility\FileIO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -617,14 +620,17 @@
     <ClInclude Include="..\Classes\Utility\Animation\SpriteAnimation.h">
       <Filter>Classes\Utility\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="SkillField.h">
-      <Filter>Classes\Game\Chara\Monster\Util</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Game\Character\Mana.h">
       <Filter>Classes\Game\Chara\Player\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Utility\EnumHash.h">
       <Filter>Classes\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Game\Character\Skill.h">
+      <Filter>Classes\Game\Chara\Monster\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility\FileIO\SkillReader.h">
+      <Filter>Classes\Utility\FileIO</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

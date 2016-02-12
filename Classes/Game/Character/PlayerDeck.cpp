@@ -117,6 +117,11 @@ void PlayerDeck::deckInitByP1()
 	add(factory.create(CharacterID::Phoenix, Vec2(positionX[3], 130), 0));
 	add(factory.create(CharacterID::Ruby, Vec2(positionX[4], 130), 0));
 	add(factory.create(CharacterID::Rouge, Vec2(positionX[5], 130), 0));
+	for (Character* chara : deck)
+	{
+		chara->read();
+	}
+
 }
 
 void PlayerDeck::deckInitByP2()
@@ -146,6 +151,12 @@ void PlayerDeck::deckInitByP2()
 	add(factory.create(CharacterID::Griffon, Vec2(positionX[3], 130), 0));
 	add(factory.create(CharacterID::Mint, Vec2(positionX[4], 130), 0));
 	add(factory.create(CharacterID::Emerald, Vec2(positionX[5], 130), 0));
+
+	for (Character* chara : deck)
+	{
+		chara->read();
+		chara->getSprite()->setRotation(180);
+	}
 }
 
 void PlayerDeck::update(float deltaTime)

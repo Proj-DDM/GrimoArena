@@ -32,6 +32,8 @@ public:
 		return parameter;
 	}
 
+	void test(std::array<int, 50>& testarray, cocos2d::Vec2 position, int number, Skill skill, CharacterUser user);
+
 private:
 	using CharacterContainer = std::vector < Character* >;
 	CharacterContainer container;

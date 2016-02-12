@@ -6,6 +6,8 @@
 #include "CharacterType.h"
 #include <vector>
 #include "CharactorCore.h"
+#include "Skill.h"
+#include "Utility/FileIO/SkillReader.h"
 
 class Character : public cocos2d::Node
 {
@@ -23,8 +25,9 @@ public:
 
 	bool onTouchCheck(const cocos2d::Vec2& touchPoint);
 
+	void checkSkillRange(const cocos2d::Vec2& position, const Skill::Status& status, CharacterUser player);
+
 	void setOpacity(int alpha);
-	
 
 	CharacterID getCharacterID() const
 	{
@@ -42,6 +45,9 @@ public:
 	}
 
 	cocos2d::Sprite* getSprite(){ return this->sprite; };
+	Skill getSkillParameter() { return skill; };
+
+	void read();
 
 protected:
 	Parameter parameter;
@@ -49,7 +55,9 @@ protected:
 	CharacterID id;
 	CharacterUser user;
 	CharacterState state;
+	Skill skill;
 	bool isTouch;
+	Parameter parameterOrigin;
 };
 
 
