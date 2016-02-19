@@ -38,13 +38,11 @@ namespace
 			}
 		}
 
-
 		return sortContener;
 	}
 }
 
-BattelSequence::BattelSequence(StageManager* stageManager) :ISequence(stageManager)
-{
+BattelSequence::BattelSequence(StageManager* stageManager) :ISequence(stageManager){
 	mState = S_START;
 }
 
@@ -85,10 +83,13 @@ void BattelSequence::main(float at){
 			container[i]->runAction(act);
 		}
 	}
+	//mCountが原因くさい
 	if (i % 60 == 0) {
+		mStageManager->playerPos(0);
 		if (container[mCount]->getParameter().hp.isDead()) {
 			if (container.at(mCount)->getState() != CharacterState::Dead) {
 				container.at(mCount)->getState() = CharacterState::Dead;
+				
 				CCLOG("dead : %i", mCount);
 			}
 		}
@@ -126,6 +127,7 @@ void BattelSequence::main(float at){
 		++mCount;
 	}
 	
+	//AIバトルターン終了
 	if (mCount == container.size()) {
 		mState = S_END;
 	}
@@ -254,44 +256,20 @@ void BattelSequence::checkPos(int pos) {
 	mPanelLine = cocos2d::Vec2(0, 0);
 
 	attackpanel = pos;
-
-
 	for (int i = 0; i < container.size(); ++i) {
 		//攻撃範囲
 		if (attackpanel == container.at(i)->getParameter().position) {
+			if (container.at(i)->getParameter().hp == 0) return;
 			if (charauser == 1) {
 				if (container.at(i)->getCharacterUser() == CharacterUser::Player1) return;
 				container.at(i)->getParameter().hp.operator-=(mAttackParam);
-				
-				auto sprite = Sprite::create();
-				mStageManager->addChild(sprite);
-				sprite->setPosition(Point(
-					container.at(i)->getSprite()->getPositionX() + (int)container.at(i)->getPositionX(),
-					container.at(i)->getSprite()->getPositionY() + (int)container.at(i)->getPositionY()));
-				CCLOG("X %i", (int)container.at(i)->getSprite()->getPositionX());
-				CCLOG("Y %i", (int)container.at(i)->getSprite()->getPositionY());
-				sprite->setTextureRect(Rect(0, 0, 120, 120));
-				sprite->setCameraMask((int)CameraFlag::USER1);
-				Util::SpriteAnimation spriteAnimetion("Effect/");
-				//
-				if (container.at(mCount)->getParameter().attribute == 1000) {
-					anime = spriteAnimetion.createAnim("fire_", 8, 0.08f, true);
-				}
-				if (container.at(mCount)->getParameter().attribute == 1001) {
-					anime = spriteAnimetion.createAnim("water_", 8, 0.08f, true);
-				}
-				if (container.at(mCount)->getParameter().attribute == 1010) {
-					anime = spriteAnimetion.createAnim("wood_", 8, 0.08f, true);
-				}
-				auto func = CallFunc::create([sprite]() {
-					sprite->removeFromParentAndCleanup(true);
-				});
-				auto seq = Sequence::create(anime, func, NULL);
-				sprite->runAction(seq);
+
+				attackEffect(i);
 
 				CCLOG("Player1Attack for %i", i);
 				if (container.at(i)->getParameter().hp.isDead() == true) {
 					int pos;
+					deadEffect(i);
 					pos = container.at(i)->getParameter().position;
 
 					std::array<int, 25> charavect{};
@@ -301,42 +279,18 @@ void BattelSequence::checkPos(int pos) {
 
 					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 					//キャラの削除
-					container.erase(container.begin() + i);
+					//container.erase(container.begin() + i);
 				}
 			}
 			if (charauser == 2) {
 				if (container.at(i)->getCharacterUser() == CharacterUser::Player2) return;
 				container.at(i)->getParameter().hp.operator-=(mAttackParam);
 
-				auto sprite = Sprite::create();
-				mStageManager->addChild(sprite);
-				sprite->setPosition(Point(
-					container.at(i)->getSprite()->getPositionX() + (int)container.at(i)->getPositionX(),
-					container.at(i)->getSprite()->getPositionY() + (int)container.at(i)->getPositionY()));
-				CCLOG("X %i", (int)container.at(i)->getSprite()->getPositionX());
-				CCLOG("Y %i", (int)container.at(i)->getSprite()->getPositionY());
-				sprite->setTextureRect(Rect(0, 0, 120, 120));
-				sprite->setCameraMask((int)CameraFlag::USER1);
-				Util::SpriteAnimation spriteAnimetion("Effect/");
-				//
-				if (container.at(mCount)->getParameter().attribute == 1000) {
-					anime = spriteAnimetion.createAnim("fire_", 8, 0.08f, true);
-				}
-				if (container.at(mCount)->getParameter().attribute == 1001) {
-					anime = spriteAnimetion.createAnim("water_", 8, 0.08f, true);
-				}
-				if (container.at(mCount)->getParameter().attribute == 1010) {
-					anime = spriteAnimetion.createAnim("wood_", 8, 0.08f, true);
-				}
-				auto func = CallFunc::create([sprite]() {
-					sprite->removeFromParentAndCleanup(true);
-				});
-				auto seq = Sequence::create(anime, func, NULL);
-				sprite->runAction(seq);
-
+				attackEffect(i);
 				CCLOG("Player2Attack for %i", i);
 				if (container.at(i)->getParameter().hp.isDead() == true) {
 					int pos;
+					deadEffect(i);
 					pos = container.at(i)->getParameter().position;
 
 					std::array<int, 25> charavect{};
@@ -347,11 +301,62 @@ void BattelSequence::checkPos(int pos) {
 					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 					//キャラの削除
 					//バトルシーケンスのコンテナ内の敵を殴ってる可能性が微レ存
-					container.erase(container.begin() + i);
+					//container.erase(container.begin() + i);
 				}
 			}
 		}
 	}
+}
+
+//攻撃用エフェクト時々白いのが見える
+void BattelSequence::attackEffect(int id) {
+
+	auto sprite = Sprite::create();
+	mStageManager->addChild(sprite);
+	sprite->setPosition(Point(
+		container.at(id)->getSprite()->getPositionX() + (int)container.at(id)->getPositionX(),
+		container.at(id)->getSprite()->getPositionY() + (int)container.at(id)->getPositionY()));
+	CCLOG("X %i", (int)container.at(id)->getSprite()->getPositionX());
+	CCLOG("Y %i", (int)container.at(id)->getSprite()->getPositionY());
+	sprite->setTextureRect(Rect(0, 0, 240, 240));
+	sprite->setScale(2, 2);
+	sprite->setCameraMask((int)CameraFlag::USER1);
+	Util::SpriteAnimation spriteAnimetion("Effect/");
+	if (container.at(mCount)->getParameter().attribute == 1000) {
+		anime = spriteAnimetion.createAnim("fire_", 8, 0.08f, true);
+	}
+	if (container.at(mCount)->getParameter().attribute == 1001) {
+		anime = spriteAnimetion.createAnim("water_", 8, 0.08f, true);
+	}
+	if (container.at(mCount)->getParameter().attribute == 1010) {
+		anime = spriteAnimetion.createAnim("wood_", 8, 0.08f, true);
+	}
+	auto func = CallFunc::create([sprite]() {
+		sprite->removeFromParentAndCleanup(true);
+	});
+	auto seq = Sequence::create(anime, func, NULL);
+	sprite->runAction(seq);
+}
+
+void BattelSequence::deadEffect(int id) {
+
+	auto sprite = Sprite::create();
+	mStageManager->addChild(sprite);
+	sprite->setPosition(Point(
+		container.at(id)->getSprite()->getPositionX() + (int)container.at(id)->getPositionX(),
+		container.at(id)->getSprite()->getPositionY() + (int)container.at(id)->getPositionY()));
+	CCLOG("X %i", (int)container.at(id)->getSprite()->getPositionX());
+	CCLOG("Y %i", (int)container.at(id)->getSprite()->getPositionY());
+	sprite->setTextureRect(Rect(0, 0, 240, 240));
+	sprite->setScale(2, 2);
+	sprite->setCameraMask((int)CameraFlag::USER1);
+	Util::SpriteAnimation spriteAnimetion("Effect/");
+	anime = spriteAnimetion.createAnim("death_", 8, 0.08f, true);
+	auto func = CallFunc::create([sprite]() {
+		sprite->removeFromParentAndCleanup(true);
+	});
+	auto seq = Sequence::create(anime, func, NULL);
+	sprite->runAction(seq);
 }
 
 void BattelSequence::end(float at){
