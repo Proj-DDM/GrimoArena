@@ -113,7 +113,7 @@ bool ResultState::init(Layer* layer){
 		int mNum = 0;
 		mNum = userDef->getIntegerForKey("blue") * 80;
 		auto rect = CCRectMake(mNum, 0, 80, 128);
-		auto player2num = Sprite::create("Scene/Result/num2P.png", rect);
+		auto player2num = Sprite::create("Scene/Result/num1P.png", rect);
 		player2num->setPosition(player2icon->getPositionX(),
 			Director::getInstance()->getVisibleSize().height - player2icon->getContentSize().height * 2);
 		parentLayer->addChild(player2num);
