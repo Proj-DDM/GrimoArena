@@ -300,13 +300,13 @@ void StageManager::onTouchEnd(cocos2d::Point pos) {
 		 std::array<int, 25> charavect{};
 		 charaContainer = manager->getCaras();
 		 for (int i = 0; i < 25; ++i) {
-			 mTestArray[i] = charaContainer.back()->getParameter().vect[i];
+			 charavect[i] = charaContainer.back()->getParameter().vect[i];
 		 }
 
 		//色変更が可能なら
 		if (mIsChengeColor == true) {
 			auto changer = std::make_shared< ColorChange >();
-			changer->changeColor(panel->getChildByName(panel->getName()), panelNumber, m_Container, false, 2, mTestArray);
+			changer->changeColor(panel->getChildByName(panel->getName()), panelNumber, m_Container, false, 2, charavect);
 			mIsChengeColor = false;
 		}
 	}

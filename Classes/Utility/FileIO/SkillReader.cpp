@@ -75,7 +75,7 @@ Skill::Status SkillReader::read(const std::string& charaName)
 
 	for (auto& map : valueMap)
 	{
-		if (!std::strstr(charaName.c_str(), map.at("TextureName").asString().c_str())) continue;
+		if (!strstr(charaName.c_str(), map.at("TextureName").asString().c_str())) continue;
 
 		data.damage = map.at("damage").asInt();
 		data.attack = map.at("attack").asInt();

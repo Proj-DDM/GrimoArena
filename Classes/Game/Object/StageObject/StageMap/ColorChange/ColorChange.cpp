@@ -12,7 +12,7 @@ ColorChange::ColorChange() {}
 
 ColorChange::~ColorChange() {}
 
-void ColorChange::changeColor(Node* node, int value, PanelContainer container, bool move, int user, std::array<int, 25> testarray) {
+void ColorChange::changeColor(Node* node, int value, PanelContainer container, bool move, int user, const std::array<int, 25> testarray) {
 	mBaseLine = Vec2(0,0);
 	mCharaLine = Vec2(0,0);
 	mUser = user;

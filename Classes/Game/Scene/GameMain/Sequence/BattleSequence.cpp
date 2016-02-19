@@ -301,7 +301,6 @@ void BattelSequence::checkPos(int pos) {
 
 					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 					//キャラの削除
-					container.erase(container.begin() + i);
 				}
 			}
 			if (charauser == 2) {
@@ -346,8 +345,6 @@ void BattelSequence::checkPos(int pos) {
 
 					mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 					//キャラの削除
-					//バトルシーケンスのコンテナ内の敵を殴ってる可能性が微レ存
-					container.erase(container.begin() + i);
 				}
 			}
 		}

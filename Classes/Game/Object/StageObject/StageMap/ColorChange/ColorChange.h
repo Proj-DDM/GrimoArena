@@ -10,7 +10,7 @@ public:
 	ColorChange();
 	~ColorChange();
 public:
-	void changeColor(cocos2d::Node* node, int value, PanelContainer container, bool move, int user, std::array<int, 25> testarray);
+	void changeColor(cocos2d::Node* node, int value, PanelContainer container, bool move, int user, const std::array<int, 25> testarray);
 	void setPanel(cocos2d::Node* node, int value, PanelContainer container, bool move);
 	void posCast(cocos2d::Node* node, int value, PanelContainer container);
 	//êFïœÇ¶é¿çs
