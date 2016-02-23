@@ -7,7 +7,18 @@
 #include "Utility/Particle/SimpleParticle.h"
 #include "Utility/Animation/SpriteAnimation.h"
 
+//汚いけど取りあえずdefineで
+#define MAP_HEIGHT 9
+#define MAP_WIDTH 5
+#define STAGE_HEIGHT 11
+#define STAGE_WIDTH 9
 #define MAX_ARRAY 24
+#define ATTACK_ARRAY 25
+#define MAP_MAX 1610
+#define MAP_MIN 410
+#define ANIME_FRAME 8
+#define ANIME_TIME 0.08f
+#define EFFECT_SIZE 240
 
 namespace 
 {
@@ -38,7 +49,7 @@ namespace
 			}
 		}
 
-		return sortContener;
+		return std::move( sortContener );
 	}
 }
 
@@ -105,8 +116,8 @@ void BattelSequence::main(float at){
 		//攻撃範囲変換
 		for (int i = 0; i < mAttackArray.size(); ++i) {
 			if (mAttackArray[i] == 2){
-				mCharaLine.x = i % 5;
-				mCharaLine.y = i / 5;
+				mCharaLine.x = i % MAP_WIDTH;
+				mCharaLine.y = i / MAP_WIDTH;
 				mBaseLine.x = mCharaLine.x;
 				mBaseLine.y = mCharaLine.y;
 				mCharaLine.x = 0;
@@ -118,7 +129,6 @@ void BattelSequence::main(float at){
 		}
 		move(mCount, charauser);
 		charaPos = container.at(mCount)->getParameter().position;
-		mStageManager->checkOnPanel();
 
 		if (container.at(mCount)->getState() != CharacterState::Dead) {
 			CCLOG("attack : %i", mCount);
@@ -142,15 +152,14 @@ void  BattelSequence::deadCheck() {
 				int pos = 0;
 				pos = container.at(i)->getParameter().position;
 
-				std::array<int, 25> charavect{};
-				for (int k = 0; k < 25; ++k) {
+				std::array<int, ATTACK_ARRAY> charavect{};
+				for (int k = 0; k < ATTACK_ARRAY; ++k) {
 					charavect[k] = container.at(i)->getParameter().vect[k];
 				}
 
 				mStageManager->deadChangePanel(charauser + 2, pos, charavect);
 			}
 		}
-		//mStageManager->checkOnPanel();
 	}
 }
 
@@ -183,7 +192,7 @@ void BattelSequence::move(int id, int user) {
 		moveCount = -1 * moveCount;
 	}
 	moveVelocity = charaPosY + moveCount * PANELSIZE;
-	correctionCount = container.at(id)->getParameter().move.y * 9;
+	correctionCount = container.at(id)->getParameter().move.y * MAP_HEIGHT;
 	if (container.at(id)->getCharacterUser() == CharacterUser::Player2) {
 		correctionCount = -1 * correctionCount;
 	}
@@ -198,17 +207,45 @@ void BattelSequence::move(int id, int user) {
 			return;
 		}
 	}
-	//画像移動
-	//適当な範囲制限
-	if (moveVelocity > 0 || moveVelocity < 1500) {
-		auto sprite = (Sprite*)container.at(id)->getSprite();
-		auto move = MoveTo::create(0.3f, Vec2(
-			container.at(id)->getSprite()->getPositionX(),
-			container.at(id)->getSprite()->getPositionY() + moveVelocity));
-		auto easemove = EaseInOut::create(move, 10);
-		sprite->runAction(easemove);
-		//container.at(id)->setPositionY(moveVelocity);
+	//-76
+	//-410
+	int player1stagepos, player2stagepos;
+	Vec2 player1pos, player2pos;
+	player1pos = mStageManager->playerPos(0);
+	player2pos = mStageManager->playerPos(1);
+	player1pos.x = (player1pos.x - 76) / 120;
+	player1pos.y = (player1pos.y - 410) / 120;
+	player2pos.x = (player2pos.x - 76) / 120;
+	player2pos.y = (player2pos.y - 410) / 120;
+	CCLOG("player1pos.x %i", (int)player1pos.x);
+	CCLOG("player1pos.y %i", (int)player1pos.y);
+	CCLOG("player2pos.x %i", (int)player2pos.x);
+	CCLOG("player2pos.y %i", (int)player2pos.y);
+	player1stagepos = player1pos.x + player1pos.y * 9;
+	player2stagepos = player2pos.x + player2pos.y * 9;
+	CCLOG("player1pos %i", player1stagepos);
+	CCLOG("player2pos %i", player2stagepos);
+	if (container.at(id)->getParameter().position + correctionCount == player1stagepos) {
+		container.at(id)->getState() = CharacterState::MoveEnd;
+		return;
 	}
+	if (container.at(id)->getParameter().position + correctionCount == player2stagepos) {
+		container.at(id)->getState() = CharacterState::MoveEnd;
+		return;
+	}
+	//画像移動
+	//下410
+	//上1610
+	CCLOG("move %i", (int)container.at(id)->getSprite()->getPosition().y);
+	if ((int)container.at(id)->getSprite()->getPosition().y + moveVelocity > MAP_MAX) return;
+	if ((int)container.at(id)->getSprite()->getPosition().y + moveVelocity < MAP_MIN) return;
+	//移動アニメーション
+	auto sprite = (Sprite*)container.at(id)->getSprite();
+	auto move = MoveTo::create(0.3f, Vec2(
+		container.at(id)->getSprite()->getPositionX(),
+		container.at(id)->getSprite()->getPositionY() + moveVelocity));
+	auto easemove = EaseInOut::create(move, 10);
+	sprite->runAction(easemove);
 	//キャラクターパラメーターの位置の値を画像位置と同期
 	//CCLOG("%i", std::abs(moveCount));
 	if (container.at(id)->getCharacterUser() == CharacterUser::Player2) {
@@ -218,16 +255,23 @@ void BattelSequence::move(int id, int user) {
 	if (moveCount > 1) {
 		for (int i = 0; i < moveCount; ++i) {
 			if (container.at(id)->getCharacterUser() == CharacterUser::Player2) {
-				container.at(id)->getParameter().position -= 9;
+				container.at(id)->getParameter().position -= MAP_HEIGHT;
 			} else {
-				container.at(id)->getParameter().position += 9;
+				container.at(id)->getParameter().position += MAP_HEIGHT;
 			}
-			mStageManager->checkOnPanel();
+			//ごみ 一応修正
+			if (container.at(id)->getParameter().hp.isDead() != true) {
+				mStageManager->checkOnPanel();
+			}
 		}
 	} else {
 		container.at(id)->getParameter().position += correctionCount;
 	}
 	container.at(id)->getState() = CharacterState::MoveEnd;
+}
+
+void BattelSequence::movecheck(int id) {
+
 }
 
 void BattelSequence::attackPos(int pos) {
@@ -238,13 +282,13 @@ void BattelSequence::attackPos(int pos) {
 	for (int i = 0; i < mAttackArray.size(); ++i){
 
 		if (mAttackArray[i] >= 1){
-			mPanelLine.x = i % 5 - mBaseLine.x;
-			mPanelLine.y = (MAX_ARRAY - i) / 5 - mBaseLine.y;
+			mPanelLine.x = i % MAP_WIDTH - mBaseLine.x;
+			mPanelLine.y = (MAX_ARRAY - i) / MAP_WIDTH - mBaseLine.y;
 
-			int test_x = pos % 9 + mPanelLine.x;
+			int test_x = pos % MAP_HEIGHT + mPanelLine.x;
 
-			if (test_x >= 0 && test_x < 9){
-				attackpanel = pos + mPanelLine.x + mPanelLine.y * 9;
+			if (test_x >= 0 && test_x < MAP_HEIGHT){
+				attackpanel = pos + mPanelLine.x + mPanelLine.y * MAP_HEIGHT;
 
 				checkPos(attackpanel);
 			}
@@ -272,8 +316,8 @@ void BattelSequence::checkPos(int pos) {
 					deadEffect(i);
 					pos = container.at(i)->getParameter().position;
 
-					std::array<int, 25> charavect{};
-					for (int k = 0; k < 25; ++k) {
+					std::array<int, ATTACK_ARRAY> charavect{};
+					for (int k = 0; k < ATTACK_ARRAY; ++k) {
 						charavect[k] = container.at(i)->getParameter().vect[k];
 					}
 
@@ -292,8 +336,8 @@ void BattelSequence::checkPos(int pos) {
 					deadEffect(i);
 					pos = container.at(i)->getParameter().position;
 
-					std::array<int, 25> charavect{};
-					for (int k = 0; k < 25; ++k) {
+					std::array<int, ATTACK_ARRAY> charavect{};
+					for (int k = 0; k < ATTACK_ARRAY; ++k) {
 						charavect[k] = container.at(i)->getParameter().vect[k];
 					}
 
@@ -315,18 +359,18 @@ void BattelSequence::attackEffect(int id) {
 		container.at(id)->getSprite()->getPositionY() + (int)container.at(id)->getPositionY()));
 	CCLOG("X %i", (int)container.at(id)->getSprite()->getPositionX());
 	CCLOG("Y %i", (int)container.at(id)->getSprite()->getPositionY());
-	sprite->setTextureRect(Rect(0, 0, 240, 240));
+	sprite->setTextureRect(Rect(0, 0, EFFECT_SIZE, EFFECT_SIZE));
 	sprite->setScale(2, 2);
 	sprite->setCameraMask((int)CameraFlag::USER1);
 	Util::SpriteAnimation spriteAnimetion("Effect/");
 	if (container.at(mCount)->getParameter().attribute == 1000) {
-		anime = spriteAnimetion.createAnim("fire_", 8, 0.08f, true);
+		anime = spriteAnimetion.createAnim("fire_", ANIME_FRAME, ANIME_TIME, true);
 	}
 	if (container.at(mCount)->getParameter().attribute == 1001) {
-		anime = spriteAnimetion.createAnim("water_", 8, 0.08f, true);
+		anime = spriteAnimetion.createAnim("water_", ANIME_FRAME, ANIME_TIME, true);
 	}
 	if (container.at(mCount)->getParameter().attribute == 1010) {
-		anime = spriteAnimetion.createAnim("wood_", 8, 0.08f, true);
+		anime = spriteAnimetion.createAnim("wood_", ANIME_FRAME, ANIME_TIME, true);
 	}
 	auto func = CallFunc::create([sprite]() {
 		sprite->removeFromParentAndCleanup(true);
@@ -344,11 +388,11 @@ void BattelSequence::deadEffect(int id) {
 		container.at(id)->getSprite()->getPositionY() + (int)container.at(id)->getPositionY()));
 	CCLOG("X %i", (int)container.at(id)->getSprite()->getPositionX());
 	CCLOG("Y %i", (int)container.at(id)->getSprite()->getPositionY());
-	sprite->setTextureRect(Rect(0, 0, 240, 240));
+	sprite->setTextureRect(Rect(0, 0, EFFECT_SIZE, EFFECT_SIZE));
 	sprite->setScale(2, 2);
 	sprite->setCameraMask((int)CameraFlag::USER1);
 	Util::SpriteAnimation spriteAnimetion("Effect/");
-	anime = spriteAnimetion.createAnim("death_", 8, 0.08f, true);
+	anime = spriteAnimetion.createAnim("death_", ANIME_FRAME, ANIME_TIME, true);
 	auto func = CallFunc::create([sprite]() {
 		sprite->removeFromParentAndCleanup(true);
 	});
