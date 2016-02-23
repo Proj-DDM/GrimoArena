@@ -30,6 +30,11 @@ public:
 	void checkPos(int pos);
 	void attackPos(int pos);
 	void move(int id, int user);
+	void movecheck(int id);
+	void attackEffect(int id);
+	void deadEffect(int id);
+	void bafEffect(int id);
+
 
 	/*----------------------------------------------------------------------
 	|	・タッチ始め

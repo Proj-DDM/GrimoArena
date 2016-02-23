@@ -113,7 +113,7 @@ bool ResultState::init(Layer* layer){
 		int mNum = 0;
 		mNum = userDef->getIntegerForKey("blue") * 80;
 		auto rect = CCRectMake(mNum, 0, 80, 128);
-		auto player2num = Sprite::create("Scene/Result/num2P.png", rect);
+		auto player2num = Sprite::create("Scene/Result/num1P.png", rect);
 		player2num->setPosition(player2icon->getPositionX(),
 			Director::getInstance()->getVisibleSize().height - player2icon->getContentSize().height * 2);
 		parentLayer->addChild(player2num);
@@ -148,22 +148,23 @@ bool ResultState::init(Layer* layer){
 	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("Sound/BGM/BGM_result.mp3");
 	SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(1.0f);
 
-
-	if (userDef->getIntegerForKey("blue") > userDef->getIntegerForKey("red")) {
-		auto win = Sprite::create("Scene/Result/win.png");
-		parentLayer->addChild(win);
-		win->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
-		auto lose = Sprite::create("Scene/Result/lose.png");
-		parentLayer->addChild(lose);
-		lose->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
-	}
-	else {
-		auto win = Sprite::create("Scene/Result/win.png");
-		parentLayer->addChild(win);
-		win->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
-		auto lose = Sprite::create("Scene/Result/lose.png");
-		parentLayer->addChild(lose);
-		lose->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
+	if (userDef->getIntegerForKey("blue") != userDef->getIntegerForKey("red")) {
+		if (userDef->getIntegerForKey("blue") > userDef->getIntegerForKey("red")) {
+			auto win = Sprite::create("Scene/Result/win.png");
+			parentLayer->addChild(win);
+			win->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
+			auto lose = Sprite::create("Scene/Result/lose.png");
+			parentLayer->addChild(lose);
+			lose->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
+		}
+		else {
+			auto win = Sprite::create("Scene/Result/win.png");
+			parentLayer->addChild(win);
+			win->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
+			auto lose = Sprite::create("Scene/Result/lose.png");
+			parentLayer->addChild(lose);
+			lose->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
+		}
 	}
 
 	return true;
