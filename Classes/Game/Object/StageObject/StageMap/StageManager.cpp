@@ -139,6 +139,15 @@ void StageManager::deadChangePanel(int user, int pos, std::array<int, 25> array)
 	}
 }
 
+Vec2 StageManager::playerPos(int id) {
+	Vec2 player1Pos;
+	CCLOG("id 0 PlayrPosX %i", (int)playerManager->m_Players.at(id)->getSprite()->getPosition().x);
+	CCLOG("id 0 PlayrPosY %i", (int)playerManager->m_Players.at(id)->getSprite()->getPosition().y);
+	player1Pos.x = (int)playerManager->m_Players.at(id)->getSprite()->getPosition().x;
+	player1Pos.y = (int)playerManager->m_Players.at(id)->getSprite()->getPosition().y;
+	return player1Pos;
+}
+
 std::vector < Character* > StageManager::getCaras() {
 	charaContainer = Mysort(charaContainer);
 	return manager->getCaras();

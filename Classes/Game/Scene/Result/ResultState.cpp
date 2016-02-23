@@ -148,22 +148,23 @@ bool ResultState::init(Layer* layer){
 	SimpleAudioEngine::getInstance()->preloadBackgroundMusic("Sound/BGM/BGM_result.mp3");
 	SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(1.0f);
 
-
-	if (userDef->getIntegerForKey("blue") > userDef->getIntegerForKey("red")) {
-		auto win = Sprite::create("Scene/Result/win.png");
-		parentLayer->addChild(win);
-		win->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
-		auto lose = Sprite::create("Scene/Result/lose.png");
-		parentLayer->addChild(lose);
-		lose->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
-	}
-	else {
-		auto win = Sprite::create("Scene/Result/win.png");
-		parentLayer->addChild(win);
-		win->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
-		auto lose = Sprite::create("Scene/Result/lose.png");
-		parentLayer->addChild(lose);
-		lose->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
+	if (userDef->getIntegerForKey("blue") != userDef->getIntegerForKey("red")) {
+		if (userDef->getIntegerForKey("blue") > userDef->getIntegerForKey("red")) {
+			auto win = Sprite::create("Scene/Result/win.png");
+			parentLayer->addChild(win);
+			win->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
+			auto lose = Sprite::create("Scene/Result/lose.png");
+			parentLayer->addChild(lose);
+			lose->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
+		}
+		else {
+			auto win = Sprite::create("Scene/Result/win.png");
+			parentLayer->addChild(win);
+			win->setPosition(player2icon->getPositionX(), player2icon->getPositionY() - 100);
+			auto lose = Sprite::create("Scene/Result/lose.png");
+			parentLayer->addChild(lose);
+			lose->setPosition(player1icon->getPositionX(), player1icon->getPositionY() - 100);
+		}
 	}
 
 	return true;
